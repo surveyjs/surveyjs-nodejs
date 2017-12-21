@@ -1,9 +1,17 @@
 var express = require("express");
+var dbadapter = require("./dbadapter");
+
 var app = express();
+var db = new dbadapter();
 
 app.get("/getActive", function(req, res) {
   res.setHeader("Content-Type", "application/json");
-  res.send(JSON.stringify([{ name: "Test", json: "" }]));
+  res.send(JSON.stringify(db.getSurveys()));
+});
+
+app.get("/getSurvey", function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+  res.send(JSON.stringify(db.getSurvey(surveyId)));
 });
 
 app.use(express.static(__dirname + "/public"));

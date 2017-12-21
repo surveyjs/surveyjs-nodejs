@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  dbsrv:
+    image: postgresql-db 
+    build: ./postgresql-db 
+    ports:
+      - 5432:5432
