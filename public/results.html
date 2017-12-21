@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Survey Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-debug.js"></script>
+</head>
+<body>
+    <h2><a href="/">< Return to the main page</a></h2>
+    <div id="results">
+        <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <td data-bind="text: surveyId + ' results (JSON)'"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- ko foreach: results -->
+                    <tr>
+                        <td data-bind="text: $data"></td>
+                    </tr>
+                <!-- /ko -->
+                </tbody>
+            </table>
+    </div>
+    <script src="./results.js"></script>
+</body>
+</html>

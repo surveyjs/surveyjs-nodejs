@@ -1,0 +1,23 @@
+{
+  "name": "surveyjs-nodejs",
+  "version": "0.0.1",
+  "description": "Sample NodeJS backend for SurveyJS library and Editor",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surveyjs/surveyjs-nodejs.git"
+  },
+  "keywords": ["survey", "surveyjs", "service", "nodejs"],
+  "author": "SurveyJS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/surveyjs/surveyjs-nodejs/issues"
+  },
+  "homepage": "https://github.com/surveyjs/surveyjs-nodejs#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
