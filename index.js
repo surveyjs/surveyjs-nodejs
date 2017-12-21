@@ -10,6 +10,7 @@ app.get("/getActive", function(req, res) {
 });
 
 app.get("/getSurvey", function(req, res) {
+  var surveyId = req.param("surveyId");
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(db.getSurvey(surveyId)));
 });
