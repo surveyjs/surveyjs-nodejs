@@ -1,9 +1,34 @@
 var pgp = require("pg-promise")(/*options*/);
 
 function PostgresDBAdapter() {
-  var db = pgp("postgres://postgres:123456@postgresql-db:5432/surveyjs");
+  var db = pgp("postgres://postgres:123456@localhost:5432/surveyjs");
 
-  function getSurveys() {
+  function getObjectFromStorage(tableName, callback) {
+    db.any("SELECT * FROM " + tableName).then(function(result) {
+      var objects = {};
+      (result || []).forEach(function(item) {
+        objects[item.id] = item;
+      });
+      callback(objects);
+    });
+  }
+
+  function addSurvey(name, callback) {
+    db
+      .one("INSERT INTO surveys (name, json) VALUES($1, $2) RETURNING *", [
+        name,
+        "{}"
+      ])
+      .then(callback);
+  }
+
+  function storeSurvey(id, json, callback) {
+    db
+      .one("UPDATE surveys SET json = $1 WHERE id = $2 RETURNING *", [json, id])
+      .then(callback);
+  }
+
+  function getSurveys(callback) {
     var surveys = {
       MySurvey1: {
         pages: [
@@ -34,7 +59,13 @@ function PostgresDBAdapter() {
         ]
       }
     };
-    // $result = $this->getObjectFromStorage('surveys');
+    getObjectFromStorage("surveys", function(objects) {
+      if (Object.keys(objects).length > 0) {
+        callback(objects);
+      } else {
+        callback(surveys);
+      }
+    });
     // if(count($result) == 0) {
     //     $id1 = $this->addSurvey('MySurvey1');
     //     $this->storeSurvey($id1, $surveys['MySurvey1']);
@@ -42,13 +73,16 @@ function PostgresDBAdapter() {
     //     $this->storeSurvey($id2, $surveys['MySurvey2']);
     //     $result = surveys;
     // }
-    return surveys;
   }
 
   return {
-    getSurvey: function(surveyId) {
-      return getSurveys()[surveyId];
+    addSurvey: addSurvey,
+    getSurvey: function(surveyId, callback) {
+      getSurveys(function(result) {
+        callback(JSON.parse(result[surveyId].json));
+      });
     },
+    storeSurvey: storeSurvey,
     getSurveys: getSurveys
   };
 }
