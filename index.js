@@ -28,7 +28,7 @@ app.get("/getSurvey", function(req, res) {
 
 app.get("/create", function(req, res) {
   var name = req.query["name"];
-  var id = db.addSurvey(name, function(result) {
+  db.addSurvey(name, function(result) {
     sendJsonResult(res, { Name: result.name, Id: result.id });
   });
 });
@@ -38,6 +38,28 @@ app.post("/changeJson", function(req, res) {
   var json = req.body.Json;
   db.storeSurvey(id, json, function(result) {
     sendJsonResult(res, result.json);
+  });
+});
+
+app.post("/post", function(req, res) {
+  var postId = req.body.postId;
+  var surveyResult = req.body.surveyResult;
+  db.postResults(postId, surveyResult, function(result) {
+    sendJsonResult(res, result.json);
+  });
+});
+
+app.get("/delete", function(req, res) {
+  var surveyId = req.query["id"];
+  db.deleteSurvey(surveyId, function(result) {
+    sendJsonResult(res, {});
+  });
+});
+
+app.get("/results", function(req, res) {
+  var postId = req.query["postId"];
+  db.getResults(postId, function(result) {
+    sendJsonResult(res, result);
   });
 });
 

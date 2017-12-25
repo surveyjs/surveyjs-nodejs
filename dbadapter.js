@@ -22,6 +22,33 @@ function PostgresDBAdapter() {
       .then(callback);
   }
 
+  function postResults(postId, json, callback) {
+    db
+      .one("INSERT INTO results (postid, json) VALUES($1, $2) RETURNING *", [
+        postId,
+        json
+      ])
+      .then(callback);
+  }
+
+  function getResults(postId, callback) {
+    db
+      .any("SELECT * FROM results WHERE postid=$1", [postId])
+      .then(function(data) {
+        //console.log(JSON.stringify(data));
+        var results = (data || []).map(function(item) {
+          return item["json"];
+        });
+        callback(results);
+      });
+  }
+
+  function deleteSurvey(surveyId, callback) {
+    db
+      .one("DELETE FROM surveys WHERE id=$1 RETURNING *", [surveyId])
+      .then(callback);
+  }
+
   function storeSurvey(id, json, callback) {
     db
       .one("UPDATE surveys SET json = $1 WHERE id = $2 RETURNING *", [json, id])
@@ -83,7 +110,10 @@ function PostgresDBAdapter() {
       });
     },
     storeSurvey: storeSurvey,
-    getSurveys: getSurveys
+    getSurveys: getSurveys,
+    deleteSurvey: deleteSurvey,
+    postResults: postResults,
+    getResults: getResults
   };
 }
 
