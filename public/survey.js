@@ -11,7 +11,7 @@ function getParams() {
 }
 
 function init() {
-  Survey.dxSurveyService.serviceUrl = "http://localhost:3000";
+  Survey.dxSurveyService.serviceUrl = "https://still-plateau-76186.herokuapp.com";
   Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
   Survey.Survey.cssType = "bootstrap";
 

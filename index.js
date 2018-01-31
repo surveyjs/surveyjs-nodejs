@@ -66,5 +66,5 @@ app.get("/results", function(req, res) {
 app.use(express.static(__dirname + "/public"));
 
 app.listen(process.env.PORT || 8080, function() {
-  console.log("Listening on port 3000!");
+  console.log("Listening!");
 });
