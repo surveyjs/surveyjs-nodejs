@@ -10,8 +10,7 @@ function getParams() {
   return result;
 }
 
-Survey.dxSurveyService.serviceUrl =
-  process.env.SERVICE_URL || "http://localhost:3000";
+Survey.dxSurveyService.serviceUrl = "https://surveyjs-nodejs.herokuapp.com";
 var accessKey = "";
 var editor = new SurveyEditor.SurveyEditor("editor");
 var surveyId = getParams()["id"];

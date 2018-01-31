@@ -11,7 +11,7 @@ function getParams() {
 }
 
 function init() {
-  Survey.dxSurveyService.serviceUrl = "process.env.SERVICE_URL || "http://localhost:3000"";
+  Survey.dxSurveyService.serviceUrl = "https://surveyjs-nodejs.herokuapp.com";
   Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
   Survey.Survey.cssType = "bootstrap";
 

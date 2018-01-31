@@ -30,6 +30,6 @@ function SurveyManager(baseUrl, accessKey) {
 }
 
 ko.applyBindings(
-  new SurveyManager(process.env.SERVICE_URL || "http://localhost:3000"),
+  new SurveyManager("https://surveyjs-nodejs.herokuapp.com"),
   document.getElementById("results")
 );
