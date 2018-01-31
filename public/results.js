@@ -30,6 +30,6 @@ function SurveyManager(baseUrl, accessKey) {
 }
 
 ko.applyBindings(
-  new SurveyManager("https://still-plateau-76186.herokuapp.com"),
+  new SurveyManager(process.env.SERVICE_URL || "http://localhost:3000"),
   document.getElementById("results")
 );

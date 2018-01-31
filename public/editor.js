@@ -10,7 +10,8 @@ function getParams() {
   return result;
 }
 
-Survey.dxSurveyService.serviceUrl = "https://still-plateau-76186.herokuapp.com";
+Survey.dxSurveyService.serviceUrl =
+  process.env.SERVICE_URL || "http://localhost:3000";
 var accessKey = "";
 var editor = new SurveyEditor.SurveyEditor("editor");
 var surveyId = getParams()["id"];

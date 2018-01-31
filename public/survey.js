@@ -11,7 +11,7 @@ function getParams() {
 }
 
 function init() {
-  Survey.dxSurveyService.serviceUrl = "https://still-plateau-76186.herokuapp.com";
+  Survey.dxSurveyService.serviceUrl = "process.env.SERVICE_URL || "http://localhost:3000"";
   Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
   Survey.Survey.cssType = "bootstrap";
 
@@ -22,7 +22,7 @@ function init() {
 
   // // Load survey by id from url
   // var xhr = new XMLHttpRequest();
-  // xhr.open('GET', "http://localhost:8000" + '/survey?surveyId=' + surveyId);
+  // xhr.open('GET', "http://localhost:3000" + '/survey?surveyId=' + surveyId);
   // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   // xhr.onload = function () {
   //     var result = JSON.parse(xhr.response);
