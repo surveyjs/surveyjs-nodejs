@@ -1,16 +1,16 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var session = require("express-session");
 var dbadapter = require("./dbadapter");
 var inmemorydbadapter = require("./inmemorydbadapter");
-var session = require("express-session");
 
 var app = express();
 app.use(
   session({
     secret: "mysecret",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: true }
+    //cookie: { secure: true }
   })
 );
 app.use(bodyParser.json());
@@ -42,11 +42,20 @@ app.get("/getSurvey", function(req, res) {
   });
 });
 
+app.get("/changeName", function(req, res) {
+  var db = getDBAdapter(req);
+  var id = req.query["id"];
+  var name = req.query["name"];
+  db.changeName(id, name, function(result) {
+    sendJsonResult(res, result);
+  });
+});
+
 app.get("/create", function(req, res) {
   var db = getDBAdapter(req);
   var name = req.query["name"];
   db.addSurvey(name, function(result) {
-    sendJsonResult(res, { Name: result.name, Id: result.id });
+    sendJsonResult(res, { Name: result.name, Id: result.name });
   });
 });
 
