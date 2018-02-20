@@ -25,6 +25,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "pg-promise": "^7.3.2"
   }
 }
