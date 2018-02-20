@@ -1,19 +1,25 @@
-function InmemoryDBAdapter(session) {
-  function getObjectFromStorage(tableName, callback) {
+function InMemoryDBAdapter(session) {
+
+  function getTable(tableName) {
+    var table = session[tableName];
+    if (!table) {
+      table = [];
+      session[tableName] = table;
+    }
+    return table;
+  }
+
+  function getObjectsFromStorage(tableName, callback) {
     var objects = {};
-    var result = session[tableName];
-    (result || []).forEach(function(item) {
-      objects[item.id] = item;
+    var table = getTable(tableName);
+    table.forEach(function(item) {
+      objects[item.name] = item;
     });
     callback(objects);
   }
 
   function addSurvey(name, callback) {
-    var table = session["surveys"];
-    if (!table) {
-      table = [];
-      session["surveys"] = table;
-    }
+    var table = getTable("surveys");
     var newObj = {
       name: name,
       json: "{}"
@@ -23,11 +29,7 @@ function InmemoryDBAdapter(session) {
   }
 
   function postResults(postId, json, callback) {
-    var table = session["results"];
-    if (!table) {
-      table = [];
-      session["results"] = table;
-    }
+    var table = getTable("results");
     var newObj = {
       postid: postId,
       json: json
@@ -37,27 +39,19 @@ function InmemoryDBAdapter(session) {
   }
 
   function getResults(postId, callback) {
-    var table = session["results"];
-    if (!table) {
-      table = [];
-      session["results"] = table;
-    }
-    var results = (table || [])
+    var table = getTable("results");
+    var results = table
       .filter(function(item) {
-        item.postId === postId;
+        return item.postid === postId;
       })
       .map(function(item) {
-        return item["json"];
+        return item.json;
       });
     callback(results);
   }
 
   function deleteSurvey(surveyId, callback) {
-    var table = session["surveys"];
-    if (!table) {
-      table = [];
-      session["surveys"] = table;
-    }
+    var table = getTable("surveys");
     var result = table.filter(function(item) {
       return item.name === surveyId;
     })[0];
@@ -66,23 +60,31 @@ function InmemoryDBAdapter(session) {
   }
 
   function storeSurvey(id, json, callback) {
-    var table = session["surveys"];
-    if (!table) {
-      table = [];
-      session["surveys"] = table;
-    }
+    var table = getTable("surveys");
     var result = table.filter(function(item) {
       return item.name === id;
     })[0];
     if (!!result) {
       result.json = json;
     } else {
-      table.push({
+      result = {
         name: id,
         json: json
-      });
+      };
+      table.push(result);
     }
-    callback();
+    callback && callback(result);
+  }
+
+  function changeName(id, name, callback) {
+    var table = getTable("surveys");
+    var result = table.filter(function(item) {
+      return item.name === id;
+    })[0];
+    if (!!result) {
+      result.name = name;
+    }
+    callback && callback(result);
   }
 
   function getSurveys(callback) {
@@ -116,13 +118,13 @@ function InmemoryDBAdapter(session) {
         ]
       }
     };
-    getObjectFromStorage("surveys", function(objects) {
+    getObjectsFromStorage("surveys", function(objects) {
       if (Object.keys(objects).length > 0) {
         callback(objects);
       } else {
-        this.storeSurvey("MySurvey1", JSON.stringify(surveys["MySurvey1"]));
-        this.storeSurvey("MySurvey2", JSON.stringify(surveys["MySurvey2"]));
-        getObjectFromStorage("surveys", callback);
+        storeSurvey("MySurvey1", JSON.stringify(surveys["MySurvey1"]));
+        storeSurvey("MySurvey2", JSON.stringify(surveys["MySurvey2"]));
+        getObjectsFromStorage("surveys", callback);
       }
     });
   }
@@ -138,8 +140,9 @@ function InmemoryDBAdapter(session) {
     getSurveys: getSurveys,
     deleteSurvey: deleteSurvey,
     postResults: postResults,
-    getResults: getResults
+    getResults: getResults,
+    changeName: changeName
   };
 }
 
-module.exports = InmemoryDBAdapter;
+module.exports = InMemoryDBAdapter;
