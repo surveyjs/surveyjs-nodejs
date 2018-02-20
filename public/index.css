@@ -86,3 +86,7 @@ section {
 .sv_body {
   overflow: scroll;
 }
+
+.fork_me_on_github img {
+  z-index: 1;
+}
