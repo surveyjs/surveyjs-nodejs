@@ -11,18 +11,21 @@ function getParams() {
 }
 
 function init() {
-  Survey.dxSurveyService.serviceUrl = "https://surveyjs-nodejs.herokuapp.com";
-  Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
-  Survey.Survey.cssType = "bootstrap";
+  Survey.dxSurveyService.serviceUrl = "";
 
-  var surveyId = getParams()["id"];
+  var css = {
+    root: "sv_main sv_frame sv_default_css"
+  };
+
+  var surveyId = decodeURI(getParams()["id"]);
   var model = new Survey.Model({ surveyId: surveyId, surveyPostId: surveyId });
+  model.css = css;
   window.survey = model;
   model.render("surveyElement");
 
   // // Load survey by id from url
   // var xhr = new XMLHttpRequest();
-  // xhr.open('GET', "http://localhost:3000" + '/survey?surveyId=' + surveyId);
+  // xhr.open('GET', "https://surveyjs-php.herokuapp.com" + '/survey?surveyId=' + surveyId);
   // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   // xhr.onload = function () {
   //     var result = JSON.parse(xhr.response);

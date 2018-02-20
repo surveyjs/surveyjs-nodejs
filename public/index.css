@@ -1,6 +1,88 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
 section {
-  margin: 20px;
+  margin: 2em 0;
 }
 .page-link {
-  margin: 10px 20px;
+  margin: 1em 2em;
+}
+
+.survey-page-header,
+.survey-page-header .sv_main {
+  background-color: #e7e7e7;
+}
+
+.survey-page-header-content {
+  max-width: 80%;
+  margin: auto;
+  padding: 1.5em;
+}
+
+.survey-page-header-content a {
+  color: white;
+  text-decoration: unset;
+}
+
+.sv_main.sv_frame .sv_container .sv_header {
+  padding-top: 2em;
+}
+
+.svd_container .sv_custom_header {
+  display: none;
+}
+
+.sv_main.sv_frame .svd_container .sv_container {
+  max-width: none;
+  padding: unset;
+}
+
+.surveys-list table thead td {
+  font-weight: bold;
+}
+
+.surveys-list table td:nth-child(2) {
+  width: 50%;
+}
+
+.sv_button_link {
+  color: #1ab394;
+  width: 100px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sv_button_link:hover,
+.sv_button_link:visited:hover {
+  background-color: #1ab394;
+  border-color: #1ab394;
+  color: #fff;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.sv_button_link:visited {
+  color: #1ab394;
+}
+
+.sv_button_link.sv_button_delete {
+  color: #ec2626;
+}
+
+.sv_button_link.sv_button_delete:hover {
+  background-color: #ec2626;
+  color: #fff;
+}
+
+#resultsTable td {
+  cursor: pointer;
+}
+
+.sv_body {
+  overflow: scroll;
 }

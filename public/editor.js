@@ -1,3 +1,39 @@
+var surveyName = "";
+function setSurveyName(name) {
+  var $titleTitle = jQuery("#sjs_editor_title_show");
+  $titleTitle.find("span:first-child").text(name);
+}
+function startEdit() {
+  var $titleEditor = jQuery("#sjs_editor_title_edit");
+  var $titleTitle = jQuery("#sjs_editor_title_show");
+  $titleTitle.hide();
+  $titleEditor.show();
+  $titleEditor.find("input")[0].value = surveyName;
+  $titleEditor.find("input").focus();
+}
+function cancelEdit() {
+  var $titleEditor = jQuery("#sjs_editor_title_edit");
+  var $titleTitle = jQuery("#sjs_editor_title_show");
+  $titleEditor.hide();
+  $titleTitle.show();
+}
+function postEdit() {
+  cancelEdit();
+  var oldName = surveyName;
+  var $titleEditor = jQuery("#sjs_editor_title_edit");
+  surveyName = $titleEditor.find("input")[0].value;
+  setSurveyName(surveyName);
+  jQuery
+    .get("/changeName?id=" + surveyId + "&name=" + surveyName, function(data) {
+      surveyId = data.Id;
+    })
+    .fail(function(error) {
+      surveyName = oldName;
+      setSurveyName(surveyName);
+      alert(JSON.stringify(error));
+    });
+}
+
 function getParams() {
   var url = window.location.href
     .slice(window.location.href.indexOf("?") + 1)
@@ -10,10 +46,10 @@ function getParams() {
   return result;
 }
 
-Survey.dxSurveyService.serviceUrl = "https://surveyjs-nodejs.herokuapp.com";
+Survey.dxSurveyService.serviceUrl = "";
 var accessKey = "";
 var editor = new SurveyEditor.SurveyEditor("editor");
-var surveyId = getParams()["id"];
+var surveyId = decodeURI(getParams()["id"]);
 editor.loadSurvey(surveyId);
 editor.saveSurveyFunc = function(saveNo, callback) {
   var xhr = new XMLHttpRequest();
@@ -35,3 +71,6 @@ editor.saveSurveyFunc = function(saveNo, callback) {
 editor.isAutoSave = true;
 editor.showState = true;
 editor.showOptions = true;
+
+surveyName = surveyId;
+setSurveyName(surveyName);

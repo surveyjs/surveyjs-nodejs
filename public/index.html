@@ -8,41 +8,44 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-debug.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/survey-knockout/survey.css" />
     <link rel="stylesheet" href="./index.css" />
 </head>
 
 <body>
-    <section>
-        <h1>Custom SurveyJS service usage example (backend is written in NodeJS)</h1>
-        <p>Here you can see the list of available sourveys you can edit and run:</p>
-        <div id="surveys-list">
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Action</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- ko foreach: availableSurveys -->
-                    <tr>
-                        <td data-bind="text: name"></td>
-                        <td>
-                            <a data-bind="attr: { href: 'survey.html?id=' + ko.unwrap(id) }">Run</a> |
-                            <a data-bind="attr: { href: 'editor.html?id=' + ko.unwrap(id) }">Edit</a> |
-                            <a data-bind="attr: { href: 'results.html?id=' + ko.unwrap(id) }">Results</a> |
-                            <span data-bind="click: function() { $parent.deleteSurvey(ko.unwrap(id), $parent.loadSurveys); }">Delete</span>
-                        </td>
-                    </tr>
-                    <!-- /ko -->
-                </tbody>
-            </table>
-            <div>
-                <button class="btn btn-default" data-bind="click: function() { createSurvey('NewSurvey' + availableSurveys().length, loadSurveys); }">Add</button>
+    <div class="sv_main sv_frame sv_default_css">
+        <div class="sv_custom_header"></div>
+        <div class="sv_container">
+            <div class="sv_header">
+                <h3>SurveyJS custom service NodeJS example</h3>
+                <p>Below you can see the list of available surveys you can edit, run and see the results</p>
+            </div>
+            <div class="sv_body">
+                <div id="surveys-list" class="surveys-list">
+                    <section>
+                        <button data-bind="click: function() { createSurvey('NewSurvey' + Date.now(), loadSurveys); }">Add</button>
+                    </section>
+                    <table class="table table-striped">
+                        <tbody>
+                            <!-- ko foreach: availableSurveys -->
+                            <tr>
+                                <td data-bind="text: name"></td>
+                                <td>
+                                    <a class="sv_button_link" data-bind="attr: { href: 'survey.html?id=' + ko.unwrap(id) }">Run</a>
+                                    <a class="sv_button_link" data-bind="attr: { href: 'editor.html?id=' + ko.unwrap(id) }">Edit</a>
+                                    <a class="sv_button_link" data-bind="attr: { href: 'results.html?id=' + ko.unwrap(id) }">Results</a>
+                                    <span class="sv_button_link sv_button_delete" data-bind="click: function() { $parent.deleteSurvey(ko.unwrap(id), $parent.loadSurveys); }">Delete</span>
+                                </td>
+                            </tr>
+                            <!-- /ko -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </body>
+
 <script src="index.js"></script>
 
 </html>
