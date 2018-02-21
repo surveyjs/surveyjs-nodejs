@@ -1,5 +1,6 @@
-function InMemoryDBAdapter(session) {
+var demoData = require("./demo-surveys");
 
+function InMemoryDBAdapter(session) {
   function getTable(tableName) {
     var table = session[tableName];
     if (!table) {
@@ -88,42 +89,23 @@ function InMemoryDBAdapter(session) {
   }
 
   function getSurveys(callback) {
-    var surveys = {
-      MySurvey1: {
-        pages: [
-          {
-            name: "page1",
-            elements: [
-              {
-                type: "radiogroup",
-                choices: ["item1", "item2", "item3"],
-                name: "question from survey1"
-              }
-            ]
-          }
-        ]
-      },
-      MySurvey2: {
-        pages: [
-          {
-            name: "page1",
-            elements: [
-              {
-                type: "checkbox",
-                choices: ["item1", "item2", "item3"],
-                name: "question from survey2"
-              }
-            ]
-          }
-        ]
-      }
-    };
     getObjectsFromStorage("surveys", function(objects) {
       if (Object.keys(objects).length > 0) {
         callback(objects);
       } else {
-        storeSurvey("MySurvey1", JSON.stringify(surveys["MySurvey1"]));
-        storeSurvey("MySurvey2", JSON.stringify(surveys["MySurvey2"]));
+        var table = getTable("results");
+        Object.keys(demoData.surveys).forEach(function(surveyId) {
+          storeSurvey(surveyId, JSON.stringify(demoData.surveys[surveyId]));
+          table.push.apply(
+            table,
+            demoData.results[surveyId].map(function(item) {
+              return {
+                postid: surveyId,
+                json: item
+              };
+            })
+          );
+        });
         getObjectsFromStorage("surveys", callback);
       }
     });
