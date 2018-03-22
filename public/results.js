@@ -37,11 +37,13 @@ function SurveyManager(baseUrl, accessKey) {
           return {
             data: q.name,
             sTitle: (q.title || "").trim(" ") || q.name,
-            mRender: function(rowdata) {
+            mRender: function(data, type, row) {
+              survey.data = row;
+              var displayValue = q.displayValue;
               return (
-                (typeof rowdata === "string"
-                  ? rowdata
-                  : JSON.stringify(rowdata)) || ""
+                (typeof displayValue === "string"
+                  ? displayValue
+                  : JSON.stringify(displayValue)) || ""
               );
             }
           };
