@@ -49,6 +49,13 @@ function PostgresDBAdapter() {
       .then(callback);
   }
 
+  function changeName(id, name, callback) {
+    console.log("THIS IS THE NAME: "+name+ " ID: "+id);
+    db
+      .one("UPDATE surveys SET name = $1 WHERE id = $2 RETURNING *", [name, id])
+      .then(callback);
+  }
+
   function storeSurvey(id, json, callback) {
     db
       .one("UPDATE surveys SET json = $1 WHERE id = $2 RETURNING *", [json, id])
@@ -113,7 +120,8 @@ function PostgresDBAdapter() {
     getSurveys: getSurveys,
     deleteSurvey: deleteSurvey,
     postResults: postResults,
-    getResults: getResults
+    getResults: getResults,
+    changeName: changeName
   };
 }
 
