@@ -50,6 +50,7 @@ Survey.dxSurveyService.serviceUrl = "";
 var accessKey = "";
 var editor = new SurveyEditor.SurveyEditor("editor");
 var surveyId = decodeURI(getParams()["id"]);
+surveyName = decodeURI(getParams()["name"]);
 editor.loadSurvey(surveyId);
 editor.saveSurveyFunc = function(saveNo, callback) {
   var xhr = new XMLHttpRequest();
@@ -72,5 +73,4 @@ editor.isAutoSave = true;
 editor.showState = true;
 editor.showOptions = true;
 
-surveyName = surveyId;
 setSurveyName(surveyName);

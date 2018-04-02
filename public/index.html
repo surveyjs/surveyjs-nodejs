@@ -36,7 +36,7 @@
                                 <td data-bind="text: name"></td>
                                 <td>
                                     <a class="sv_button_link" data-bind="attr: { href: 'survey.html?id=' + ko.unwrap(id) }">Run</a>
-                                    <a class="sv_button_link" data-bind="attr: { href: 'editor.html?id=' + ko.unwrap(id) }">Edit</a>
+                                    <a class="sv_button_link" data-bind="attr: { href: 'editor.html?id=' + ko.unwrap(id)+'&name='+ko.unwrap(name) }">Edit</a>
                                     <a class="sv_button_link" data-bind="attr: { href: 'results.html?id=' + ko.unwrap(id) }">Results</a>
                                     <span class="sv_button_link sv_button_delete" data-bind="click: function() { $parent.deleteSurvey(ko.unwrap(id), $parent.loadSurveys); }">Delete</span>
                                 </td>
