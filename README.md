@@ -1,5 +1,4 @@
-# surveyjs-nodejs
-Sample NodeJS backend for SurveyJS: Survey library and Survey Creator
+# Sample NodeJS backend for SurveyJS: Survey library and Survey Creator
 
 ## [SurveyJS Home Page](https://surveyjs.io/Examples/Service/)
 
