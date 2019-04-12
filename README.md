@@ -1,5 +1,5 @@
 # surveyjs-nodejs
-Sample NodeJS backend for SurveyJS library and Editor
+Sample NodeJS backend for SurveyJS: Survey library and Survey Creator
 
 ## [SurveyJS Home Page](https://surveyjs.io/Examples/Service/)
 
@@ -15,7 +15,7 @@ Sample NodeJS backend for SurveyJS library and Editor
 At this point demo surveyjs-nodejs service will be available at the `http://localhost:3000` address.
 If everything is ok, you should see project home page with list of available surveys and links to `Survey` and `Builder` pages.
 - You can continue with survey via `Run` page, go through the survey and post results to the custom service.
-- You can continue with editor via `Edit` page, change the survey and store survey JSON to the custom service.
+- You can continue with Survey Creator via `Edit` page, change the survey and store survey JSON to the custom service.
 - Saved survey results are available via `Results` link.
 
 

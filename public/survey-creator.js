@@ -1,27 +1,27 @@
 var surveyName = "";
 function setSurveyName(name) {
-  var $titleTitle = jQuery("#sjs_editor_title_show");
+  var $titleTitle = jQuery("#sjs_survey_creator_title_show");
   $titleTitle.find("span:first-child").text(name);
 }
 function startEdit() {
-  var $titleEditor = jQuery("#sjs_editor_title_edit");
-  var $titleTitle = jQuery("#sjs_editor_title_show");
+  var $titleSurveyCreator = jQuery("#sjs_survey_creator_title_edit");
+  var $titleTitle = jQuery("#sjs_survey_creator_title_show");
   $titleTitle.hide();
-  $titleEditor.show();
-  $titleEditor.find("input")[0].value = surveyName;
-  $titleEditor.find("input").focus();
+  $titleSurveyCreator.show();
+  $titleSurveyCreator.find("input")[0].value = surveyName;
+  $titleSurveyCreator.find("input").focus();
 }
 function cancelEdit() {
-  var $titleEditor = jQuery("#sjs_editor_title_edit");
-  var $titleTitle = jQuery("#sjs_editor_title_show");
-  $titleEditor.hide();
+  var $titleSurveyCreator = jQuery("#sjs_survey_creator_title_edit");
+  var $titleTitle = jQuery("#sjs_survey_creator_title_show");
+  $titleSurveyCreator.hide();
   $titleTitle.show();
 }
 function postEdit() {
   cancelEdit();
   var oldName = surveyName;
-  var $titleEditor = jQuery("#sjs_editor_title_edit");
-  surveyName = $titleEditor.find("input")[0].value;
+  var $titleSurveyCreator = jQuery("#sjs_survey_creator_title_edit");
+  surveyName = $titleSurveyCreator.find("input")[0].value;
   setSurveyName(surveyName);
   jQuery
     .get("/changeName?id=" + surveyId + "&name=" + surveyName, function(data) {
@@ -48,11 +48,11 @@ function getParams() {
 
 Survey.dxSurveyService.serviceUrl = "";
 var accessKey = "";
-var editor = new SurveyEditor.SurveyEditor("editor");
+var surveyCreator = new SurveyCreator.SurveyCreator("survey-creator-container");
 var surveyId = decodeURI(getParams()["id"]);
 surveyName = decodeURI(getParams()["name"]);
-editor.loadSurvey(surveyId);
-editor.saveSurveyFunc = function(saveNo, callback) {
+surveyCreator.loadSurvey(surveyId);
+surveyCreator.saveSurveyFunc = function(saveNo, callback) {
   var xhr = new XMLHttpRequest();
   xhr.open(
     "POST",
@@ -66,11 +66,15 @@ editor.saveSurveyFunc = function(saveNo, callback) {
     }
   };
   xhr.send(
-    JSON.stringify({ Id: surveyId, Json: editor.text, Text: editor.text })
+    JSON.stringify({
+      Id: surveyId,
+      Json: surveyCreator.text,
+      Text: surveyCreator.text
+    })
   );
 };
-editor.isAutoSave = true;
-editor.showState = true;
-editor.showOptions = true;
+surveyCreator.isAutoSave = true;
+surveyCreator.showState = true;
+surveyCreator.showOptions = true;
 
 setSurveyName(surveyName);

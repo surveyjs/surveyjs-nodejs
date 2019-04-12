@@ -1,7 +1,7 @@
 {
   "name": "surveyjs-nodejs",
-  "version": "0.0.1",
-  "description": "Sample NodeJS backend for SurveyJS library and Editor",
+  "version": "0.1.0",
+  "description": "Sample NodeJS backend for SurveyJS: Survey Library and Survey Creator",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -14,7 +14,10 @@
     "survey",
     "surveyjs",
     "service",
-    "nodejs"
+    "nodejs",
+    "survey-creator",
+    "survey-maker",
+    "form-builder"
   ],
   "author": "SurveyJS",
   "license": "MIT",
