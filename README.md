@@ -3,7 +3,7 @@ Sample NodeJS backend for SurveyJS: Survey library and Survey Creator
 
 ## [SurveyJS Home Page](https://surveyjs.io/Examples/Service/)
 
-## [Live Online Survey + Builder Demo](https://surveyjs-nodejs.herokuapp.com/)
+## [Live Online Survey and Survey Creator Demo](https://surveyjs-nodejs.herokuapp.com/)
 
 
 ### Getting started
@@ -13,7 +13,7 @@ Sample NodeJS backend for SurveyJS: Survey library and Survey Creator
 - Run the server via the `npm start` command
 
 At this point demo surveyjs-nodejs service will be available at the `http://localhost:3000` address.
-If everything is ok, you should see project home page with list of available surveys and links to `Survey` and `Builder` pages.
+If everything is ok, you should see project home page with list of available surveys and links to `Survey` and `Survey Creator` pages.
 - You can continue with survey via `Run` page, go through the survey and post results to the custom service.
 - You can continue with Survey Creator via `Edit` page, change the survey and store survey JSON to the custom service.
 - Saved survey results are available via `Results` link.
