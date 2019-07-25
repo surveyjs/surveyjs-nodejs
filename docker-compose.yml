@@ -7,16 +7,19 @@ services:
     restart: always
     container_name: postgres
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_DB=surveyjs
       - POSTGRES_PASSWORD=123456
       - POSTGRES_USER=postgres
     volumes:
-      - ./postgresql-db/initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+
+volumes:
+  pgdata:
