@@ -90,3 +90,74 @@ section {
 .fork_me_on_github img {
   z-index: 1;
 }
+
+.rounded-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-width: 155px;
+  height: 34px;
+  line-height: 34px;
+  border-radius: 17px;
+  background-color: #1ab394;
+  padding: 0 2em;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  outline: none; 
+}
+
+.sa-table .rounded-button {
+  background-color: #1ab394;
+  margin-right: 50px; 
+}
+
+.results-page {
+  font-family:"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Helvetica Neue", Arial, sans-serif;
+  background-color: #fff;
+}
+
+.results-page__title {
+  height:79px;
+  position:relative;
+  max-width: 80%;
+}
+
+.results-page__title h3 {
+  font-size:28px;
+  font-weight: 300;
+}
+
+.results-page__centered {
+  max-width: 80%;
+  margin: auto;
+}
+
+.results-page__tabs {
+  padding-left: 0;
+}
+
+.results-page__tab {
+  display: inline-block;
+  margin-right: -.25em;
+  margin-left: -2px;
+  padding: 0;
+}
+
+.results-page__tab a {
+  padding: .83em 1.5em;
+  border: 1px solid #e7e7e7;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: #404040;
+  text-decoration: none;
+}
+
+.results-page__tab--active a {
+  background-color: #f7f7f7;
+}

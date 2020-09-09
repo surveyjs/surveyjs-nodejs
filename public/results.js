@@ -1,9 +1,10 @@
 function getParams() {
   var url = window.location.href
+    .split("#")[0]
     .slice(window.location.href.indexOf("?") + 1)
     .split("&");
   var result = {};
-  url.forEach(function(item) {
+  url.forEach(function (item) {
     var param = item.split("=");
     result[param[0]] = param[1];
   });
@@ -12,54 +13,29 @@ function getParams() {
 
 function SurveyManager(baseUrl, accessKey) {
   var self = this;
+  self.activeTab = ko.observable(
+    window.location.hash.replace("#", "") || "summary"
+  );
   self.surveyId = decodeURI(getParams()["id"]);
   self.results = ko.observableArray();
   Survey.dxSurveyService.serviceUrl = "";
   var survey = new Survey.Model({
     surveyId: self.surveyId,
-    surveyPostId: self.surveyId
+    surveyPostId: self.surveyId,
   });
   self.columns = ko.observableArray();
 
-  self.loadResults = function() {
+  self.loadResults = function () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", baseUrl + "/results?postId=" + self.surveyId);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onload = function() {
+    xhr.onload = function () {
       var result = xhr.response ? JSON.parse(xhr.response) : [];
       self.results(
-        result.map(function(r) {
+        result.map(function (r) {
           return JSON.parse(r || "{}");
         })
       );
-      self.columns(
-        survey.getAllQuestions().map(function(q) {
-          return {
-            data: q.name,
-            sTitle: (q.title || "").trim(" ") || q.name,
-            mRender: function(data, type, row) {
-              survey.data = row;
-              var displayValue = q.displayValue;
-              return (
-                (typeof displayValue === "string"
-                  ? displayValue
-                  : JSON.stringify(displayValue)) || ""
-              );
-            }
-          };
-        })
-      );
-      self.columns.push({
-        targets: -1,
-        data: null,
-        sortable: false,
-        defaultContent:
-          "<button style='min-width: 150px;'>Show in Survey</button>"
-      });
-      var table = $("#resultsTable").DataTable({
-        columns: self.columns(),
-        data: self.results()
-      });
 
       var json = new Survey.JsonObject().toJsonObject(survey);
       var windowSurvey = new Survey.SurveyWindow(json);
@@ -67,17 +43,59 @@ function SurveyManager(baseUrl, accessKey) {
       windowSurvey.survey.title = self.surveyId;
       windowSurvey.show();
 
-      $(document).on("click", "#resultsTable td", function(e) {
-        var row_object = table.row(this).data();
-        windowSurvey.survey.data = row_object;
-        windowSurvey.isExpanded = true;
+      var visPanel = (self.visPanel = new SurveyAnalytics.VisualizationPanel(
+        survey.getAllQuestions(),
+        self.results(),
+        { haveCommercialLicense: true }
+      ));
+      visPanel.render(document.getElementById("summaryContainer"));
+
+      SurveyAnalyticsTabulator.TableExtensions.registerExtension({
+        location: "details",
+        name: "showinsurvey",
+        visibleIndex: 0,
+        render: (table, opt) => {
+          return SurveyAnalyticsTabulator.DocumentHelper.createElement(
+            "button",
+            "rounded-button",
+            {
+              innerHTML: "Show in Survey",
+              onclick: (e) => {
+                windowSurvey.survey.data =
+                  table.data[opt.row.getDataPosition()];
+                windowSurvey.isExpanded = true;
+              },
+            }
+          );
+        },
       });
+
+      var table = (self.table = new SurveyAnalyticsTabulator.Tabulator(
+        survey,
+        self.results(),
+        { haveCommercialLicense: true }
+      ));
+      table.render(document.getElementById("tableContainer"));
     };
     xhr.send();
   };
 
-  survey.onLoadSurveyFromService = function() {
+  survey.onLoadSurveyFromService = function () {
     self.loadResults();
+  };
+
+  self.showSummary = function () {
+    var tab = "summary";
+    self.activeTab(tab);
+    self.visPanel.layout();
+    window.location.hash = "#" + tab;
+  };
+
+  self.showTable = function () {
+    var tab = "table";
+    self.activeTab(tab);
+    self.table.layout();
+    window.location.hash = "#" + tab;
   };
 }
 
