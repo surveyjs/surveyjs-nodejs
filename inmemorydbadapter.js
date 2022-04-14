@@ -1,5 +1,7 @@
 var demoData = require("./demo-surveys");
 
+var currentId = demoData.surveys.length + 1;
+
 function InMemoryDBAdapter(session) {
   function getTable(tableName) {
     var table = session[tableName];
@@ -11,18 +13,24 @@ function InMemoryDBAdapter(session) {
   }
 
   function getObjectsFromStorage(tableName, callback) {
-    var objects = {};
+    // var objects = {};
     var table = getTable(tableName);
-    table.forEach(function(item) {
-      objects[item.name] = item;
-    });
-    callback(objects);
+    callback(table);
+    // table.forEach(function(item) {
+    //   objects[item.name] = item;
+    // });
+    // callback(objects);
+  }
+
+  function findById(objects, id) {
+    return objects.filter(function (o) { return o.id === id; })[0];
   }
 
   function addSurvey(name, callback) {
     var table = getTable("surveys");
     var newObj = {
-      name: name,
+      id: '' + currentId++,
+      name: name || demoData.defaultName + " " + currentId,
       json: "{}"
     };
     table.push(newObj);
@@ -31,81 +39,69 @@ function InMemoryDBAdapter(session) {
 
   function postResults(postId, json, callback) {
     var table = getTable("results");
-    var newObj = {
-      postid: postId,
-      json: json
-    };
-    table.push(newObj);
-    callback(newObj);
+    var results = findById(table, postId);
+    if (!results) {
+      results = {
+        id: postId,
+        data: []
+      }
+      table.push(results);
+    }
+    results.data.push(json);
+    callback({});
   }
 
   function getResults(postId, callback) {
     var table = getTable("results");
-    var results = table
-      .filter(function(item) {
-        return item.postid === postId;
-      })
-      .map(function(item) {
-        return item.json;
-      });
+    var results = findById(table, postId);
     callback(results);
   }
 
   function deleteSurvey(surveyId, callback) {
     var table = getTable("surveys");
-    var result = table.filter(function(item) {
-      return item.name === surveyId;
-    })[0];
-    table.splice(table.indexOf(result), 1);
-    callback(result);
+    var survey = findById(table, surveyId);
+    table.splice(table.indexOf(survey), 1);
+    callback(survey);
   }
 
-  function storeSurvey(id, json, callback) {
+  function storeSurvey(id, name, json, callback) {
     var table = getTable("surveys");
-    var result = table.filter(function(item) {
-      return item.name === id;
-    })[0];
-    if (!!result) {
-      result.json = json;
+    var survey = findById(table, id);
+    if (!!survey) {
+      survey.json = json;
     } else {
-      result = {
-        name: id,
+      survey = {
+        id: id,
+        name: name || id,
         json: json
       };
-      table.push(result);
+      table.push(survey);
     }
-    callback && callback(result);
+    callback && callback(survey);
   }
 
   function changeName(id, name, callback) {
     var table = getTable("surveys");
-    var result = table.filter(function(item) {
-      return item.name === id;
-    })[0];
-    if (!!result) {
-      result.name = name;
+    var survey = findById(table, id);
+    if (!!survey) {
+      survey.name = name;
     }
-    callback && callback(result);
+    callback && callback(survey);
   }
 
   function getSurveys(callback) {
-    getObjectsFromStorage("surveys", function(objects) {
-      if (Object.keys(objects).length > 0) {
+    getObjectsFromStorage("surveys", function (objects) {
+      if (objects.length > 0) {
         callback(objects);
       } else {
-        var table = getTable("results");
-        Object.keys(demoData.surveys).forEach(function(surveyId) {
-          storeSurvey(surveyId, JSON.stringify(demoData.surveys[surveyId]));
-          table.push.apply(
-            table,
-            demoData.results[surveyId].map(function(item) {
-              return {
-                postid: surveyId,
-                json: item
-              };
-            })
-          );
-        });
+        var surveys = getTable("surveys");
+        demoData.surveys.forEach(function (survey) {
+          surveys.push(JSON.parse(JSON.stringify(survey)));
+        })
+        var results = getTable("results");
+        demoData.results.forEach(function (result) {
+          results.push(JSON.parse(JSON.stringify(result)));
+        })
         getObjectsFromStorage("surveys", callback);
       }
     });
@@ -113,9 +109,9 @@ function InMemoryDBAdapter(session) {
 
   return {
     addSurvey: addSurvey,
-    getSurvey: function(surveyId, callback) {
-      getSurveys(function(result) {
-        callback(JSON.parse(result[surveyId].json));
+    getSurvey: function (surveyId, callback) {
+      getSurveys(function (surveys) {
+        callback(findById(surveys, surveyId));
       });
     },
     storeSurvey: storeSurvey,
