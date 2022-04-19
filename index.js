@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var session = require("express-session");
 var dbadapter = require("./dbadapter");
 var inmemorydbadapter = require("./inmemorydbadapter");
+var apiBaseAddress = "/api";
 
 var app = express();
 app.use(
@@ -27,74 +28,78 @@ function sendJsonResult(res, obj) {
   res.send(JSON.stringify(obj));
 }
 
-app.get("/getActive", function(req, res) {
+app.get(apiBaseAddress + "/getActive", function (req, res) {
   var db = getDBAdapter(req);
-  db.getSurveys(function(result) {
+  db.getSurveys(function (result) {
     sendJsonResult(res, result);
   });
 });
 
-app.get("/getSurvey", function(req, res) {
+app.get(apiBaseAddress + "/getSurvey", function (req, res) {
   var db = getDBAdapter(req);
   var surveyId = req.query["surveyId"];
-  db.getSurvey(surveyId, function(result) {
+  db.getSurvey(surveyId, function (result) {
     sendJsonResult(res, result);
   });
 });
 
-app.get("/changeName", function(req, res) {
+app.get(apiBaseAddress + "/changeName", function (req, res) {
   var db = getDBAdapter(req);
   var id = req.query["id"];
   var name = req.query["name"];
-  db.changeName(id, name, function(result) {
+  db.changeName(id, name, function (result) {
     sendJsonResult(res, result);
   });
 });
 
-app.get("/create", function(req, res) {
+app.get(apiBaseAddress + "/create", function (req, res) {
   var db = getDBAdapter(req);
   var name = req.query["name"];
-  db.addSurvey(name, function(result) {
-    sendJsonResult(res, { Name: result.name, Id: result.name });
+  db.addSurvey(name, function (survey) {
+    sendJsonResult(res, survey);
   });
 });
 
-app.post("/changeJson", function(req, res) {
+app.post(apiBaseAddress + "/changeJson", function (req, res) {
   var db = getDBAdapter(req);
-  var id = req.body.Id;
-  var json = req.body.Json;
-  db.storeSurvey(id, json, function(result) {
-    sendJsonResult(res, result.json);
+  var id = req.body.id;
+  var json = req.body.json;
+  db.storeSurvey(id, null, json, function (survey) {
+    sendJsonResult(res, survey);
   });
 });
 
-app.post("/post", function(req, res) {
+app.post(apiBaseAddress + "/post", function (req, res) {
   var db = getDBAdapter(req);
   var postId = req.body.postId;
   var surveyResult = req.body.surveyResult;
-  db.postResults(postId, surveyResult, function(result) {
+  db.postResults(postId, surveyResult, function (result) {
     sendJsonResult(res, result.json);
   });
 });
 
-app.get("/delete", function(req, res) {
+app.get(apiBaseAddress + "/delete", function (req, res) {
   var db = getDBAdapter(req);
-  var surveyId = req.query["id"];
-  db.deleteSurvey(surveyId, function(result) {
+  var id = req.query["id"];
+  db.deleteSurvey(id, function (result) {
     sendJsonResult(res, {});
   });
 });
 
-app.get("/results", function(req, res) {
+app.get(apiBaseAddress + "/results", function (req, res) {
   var db = getDBAdapter(req);
   var postId = req.query["postId"];
-  db.getResults(postId, function(result) {
+  db.getResults(postId, function (result) {
     sendJsonResult(res, result);
   });
 });
 
+app.get(["/", "/about", "/run/*", "/edit/*", "/results/*"], function (req, res, next) {
+  res.sendFile("index.html", { root: __dirname + "/public" });
+});
+
 app.use(express.static(__dirname + "/public"));
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 3000, function () {
   console.log("Listening!");
 });
