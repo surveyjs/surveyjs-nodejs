@@ -1,7 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
-var dbadapter = require("./dbadapter");
 var inmemorydbadapter = require("./inmemorydbadapter");
 var apiBaseAddress = "/api";
 
