@@ -22,9 +22,3 @@ If everything is ok, you should see the project home page with a list of availab
 - Saved survey results are available via the `Results` link.
 
 
-### Adding Postgresql database to the backend
-- Install [docker](https://www.docker.com/) on your computer.
-- Build a postgresql-db docker container via the `docker build -t postgresql-db .` command in the `docker/postgresql-db` folder.
-- Start the docker container via the `docker run --name dbsrv -p 5432:5432 -d postgresql-db` command.
-#### Note: if you are familliar with docker and docker-compose, just run `docker-compose up` from the `docker` folder instead of above commands.
-- Change db adapter from InMemoryDBAdapter to Postgresql one.
