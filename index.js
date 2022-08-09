@@ -1,7 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
-var dbadapter = require("./dbadapter");
 var inmemorydbadapter = require("./inmemorydbadapter");
 var apiBaseAddress = "/api";
 
@@ -81,7 +80,7 @@ app.get(apiBaseAddress + "/delete", function (req, res) {
   var db = getDBAdapter(req);
   var id = req.query["id"];
   db.deleteSurvey(id, function (result) {
-    sendJsonResult(res, {});
+    sendJsonResult(res, { id: id });
   });
 });
 
