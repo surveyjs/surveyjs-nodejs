@@ -1,24 +1,26 @@
-# Sample NodeJS backend for SurveyJS: Survey library and Survey Creator
+# SurveyJS + NodeJS Demo Example
 
+This demo shows how to integrate [SurveyJS](https://surveyjs.io/) components with a NodeJS backend.
 
-### Disclaimer
-This demo illustrates how to integrate SurveyJS libraries with NodeJS backend. This demo doesn't cover all of real survey service application aspects, such as authentication, authorization, user management, access levels and different security issues. These aspects are covered by backend-specific articles, forums and documentation. This demo is just a sample of intergration and can't be used as a real service.
+[View Demo Online](https://surveyjs-nodejs.herokuapp.com/)
 
-## [SurveyJS Home Page](https://surveyjs.io/Examples/Service/)
+## Disclaimer
 
-## [Live Online Survey and Survey Creator Demo](https://surveyjs-nodejs.herokuapp.com/)
+This demo must not be used as a real service as it doesn't cover such real-world survey service aspects as authentication, authorization, user management, access levels, and different security issues. These aspects are covered by backend-specific articles, forums, and documentation.
 
+## Run the Application
 
-### Getting started
-- Install NodeJS.
-- Clone this repository into the `surveyjs-nodejs` folder (and make it the current directory via `cd surveyjs-nodejs`).
-- Install npm packages via the `npm i` command.
-- Run the server via the `npm start` command.
+Install [NodeJS](https://nodejs.org/) on your machine. After that, run the following commands:
 
-At this point, the surveyjs-nodejs demo service will be available at `http://localhost:3000`.
-If everything is ok, you should see the project home page with a list of available surveys and links to `Survey` and `Survey Creator` pages.
-- You can continue with a survey via the `Run` page, go through the survey and post results to the custom service.
-- You can continue with Survey Creator via the `Edit` page, change the survey and store survey JSON to the custom service.
-- Saved survey results are available via the `Results` link.
+```bash
+git clone https://github.com/surveyjs/surveyjs-nodejs.git
+cd surveyjs-nodejs
+npm i
+npm start
+```
 
+Open http://localhost:3000 in your web browser.
 
+## Client-Side App
+
+The client-side part is the `surveyjs-react-client` React application. The current project includes only the application's build artifacts. Refer to the [surveyjs-react-client](https://github.com/surveyjs/surveyjs-react-client) repo for full code and information about the application.
