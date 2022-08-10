@@ -1,7 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
-var dbadapter = require("./dbadapter");
 var inmemorydbadapter = require("./inmemorydbadapter");
 var apiBaseAddress = "/api";
 
@@ -18,7 +17,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 function getDBAdapter(req) {
-  //var db = new dbadapter();
   var db = new inmemorydbadapter(req.session);
   return db;
 }
@@ -82,7 +80,7 @@ app.get(apiBaseAddress + "/delete", function (req, res) {
   var db = getDBAdapter(req);
   var id = req.query["id"];
   db.deleteSurvey(id, function (result) {
-    sendJsonResult(res, {});
+    sendJsonResult(res, { id: id });
   });
 });
 
