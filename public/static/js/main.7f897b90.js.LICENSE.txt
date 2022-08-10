@@ -1,0 +1,3816 @@
+/* @license
+        Papa Parse
+        v5.3.2
+        https://github.com/mholt/PapaParse
+        License: MIT
+        */
+
+/*!
+         * Signature Pad v2.3.2
+         * https://github.com/szimek/signature_pad
+         *
+         * Copyright 2017 Szymon Nowak
+         * Released under the MIT license
+         *
+         * The main idea and some parts of the code (e.g. drawing variable width Bézier curve) are taken from:
+         * http://corner.squareup.com/2012/07/smoother-signatures.html
+         *
+         * Implementation of interpolation using cubic Bézier curves is taken from:
+         * http://benknowscode.wordpress.com/2012/09/14/path-interpolation-using-cubic-bezier-and-control-point-estimation-in-javascript
+         *
+         * Algorithm for approximated length of a Bézier curve is taken from:
+         * http://www.lemoda.net/maths/bezier-length/index.html
+         *
+         */
+
+/*!
+ * SurveyJS Creator React v1.9.43
+ * (c) 2015-2022 Devsoft Baltic OÜ - http://surveyjs.io/
+ * Github: https://github.com/surveyjs/survey-creator
+ * License: https://surveyjs.io/Licenses#SurveyCreator
+ */
+
+/*!
+ * SurveyJS Creator v1.9.43
+ * (c) 2015-2022 Devsoft Baltic OÜ - http://surveyjs.io/
+ * Github: https://github.com/surveyjs/survey-creator
+ * License: https://surveyjs.io/Licenses#SurveyCreator
+ */
+
+/*!
+ * surveyjs - Survey JavaScript library v1.9.43
+ * Copyright (c) 2015-2022 Devsoft Baltic OÜ  - http://surveyjs.io/
+ * License: MIT (http://www.opensource.org/licenses/mit-license.php)
+ */
+
+/*!
+ * surveyjs - SurveyJS Analytics library v1.9.43
+ * Copyright (c) 2015-2022 Devsoft Baltic OÜ  - http://surveyjs.io/
+ * License: MIT (http://www.opensource.org/licenses/mit-license.php)
+ */
+
+/*! ../../../element-factory */
+
+/*! ../../../reactquestion_element */
+
+/*! ../../base */
+
+/*! ../../calculatedValue */
+
+/*! ../../choicesRestful */
+
+/*! ../../conditionProcessValue */
+
+/*! ../../conditions */
+
+/*! ../../conditionsParser */
+
+/*! ../../creator-base */
+
+/*! ../../defaultCss/cssstandard */
+
+/*! ../../defaultTitle */
+
+/*! ../../dragdrop/choices */
+
+/*! ../../dragdrop/survey-elements */
+
+/*! ../../dropdownListModel */
+
+/*! ../../dropdownMultiSelectListModel */
+
+/*! ../../dxSurveyService */
+
+/*! ../../editable-object */
+
+/*! ../../editorLocalization */
+
+/*! ../../element-factory */
+
+/*! ../../error */
+
+/*! ../../expressionItems */
+
+/*! ../../expressionToDisplayText */
+
+/*! ../../expressions/expressions */
+
+/*! ../../flowpanel */
+
+/*! ../../functionsfactory */
+
+/*! ../../helpers */
+
+/*! ../../itemvalue */
+
+/*! ../../jsonobject */
+
+/*! ../../list */
+
+/*! ../../localizablestring */
+
+/*! ../../localization/english */
+
+/*! ../../localizationManager */
+
+/*! ../../multiSelectListModel */
+
+/*! ../../page */
+
+/*! ../../pages-controller */
+
+/*! ../../panel */
+
+/*! ../../popup */
+
+/*! ../../property-grid */
+
+/*! ../../property-grid-theme/property-grid */
+
+/*! ../../property-grid/condition-survey */
+
+/*! ../../property-grid/index */
+
+/*! ../../property-grid/property-grid-view-model */
+
+/*! ../../question */
+
+/*! ../../questionCustomWidgets */
+
+/*! ../../question_baseselect */
+
+/*! ../../question_boolean */
+
+/*! ../../question_buttongroup */
+
+/*! ../../question_checkbox */
+
+/*! ../../question_comment */
+
+/*! ../../question_custom */
+
+/*! ../../question_dropdown */
+
+/*! ../../question_empty */
+
+/*! ../../question_expression */
+
+/*! ../../question_file */
+
+/*! ../../question_html */
+
+/*! ../../question_image */
+
+/*! ../../question_imagepicker */
+
+/*! ../../question_matrix */
+
+/*! ../../question_matrixdropdown */
+
+/*! ../../question_matrixdropdownbase */
+
+/*! ../../question_matrixdropdowncolumn */
+
+/*! ../../question_matrixdropdownrendered */
+
+/*! ../../question_matrixdynamic */
+
+/*! ../../question_multipletext */
+
+/*! ../../question_paneldynamic */
+
+/*! ../../question_radiogroup */
+
+/*! ../../question_ranking */
+
+/*! ../../question_rating */
+
+/*! ../../question_signaturepad */
+
+/*! ../../question_tagbox */
+
+/*! ../../question_text */
+
+/*! ../../questionfactory */
+
+/*! ../../questionnonvalue */
+
+/*! ../../reactSurvey */
+
+/*! ../../reactquestion_element */
+
+/*! ../../settings */
+
+/*! ../../stylesmanager */
+
+/*! ../../survey */
+
+/*! ../../survey-element */
+
+/*! ../../survey-error */
+
+/*! ../../survey-helper */
+
+/*! ../../surveyProgress */
+
+/*! ../../surveyProgressButtons */
+
+/*! ../../surveyStrings */
+
+/*! ../../surveyTimerModel */
+
+/*! ../../surveyWindow */
+
+/*! ../../surveytimer */
+
+/*! ../../svg-icon/svg-icon */
+
+/*! ../../template-renderer */
+
+/*! ../../textPreProcessor */
+
+/*! ../../textWorker */
+
+/*! ../../trigger */
+
+/*! ../../utils */
+
+/*! ../../utils/actions */
+
+/*! ../../utils/cssClassBuilder */
+
+/*! ../../utils/devices */
+
+/*! ../../utils/resizer */
+
+/*! ../../utils/utils */
+
+/*! ../../validator */
+
+/*! ../ActionButton */
+
+/*! ../ImageItemValueWrapper */
+
+/*! ../ItemValueWrapper */
+
+/*! ../LogoImage */
+
+/*! ../MatrixCellWrapper */
+
+/*! ../ModelElement */
+
+/*! ../Navigation */
+
+/*! ../Notifier */
+
+/*! ../ObjectSelector */
+
+/*! ../PageNavigator */
+
+/*! ../PropertyGrid */
+
+/*! ../QuestionEditorContent */
+
+/*! ../QuestionEmbeddedSurvey */
+
+/*! ../QuestionLinkValue */
+
+/*! ../Results */
+
+/*! ../SideBar */
+
+/*! ../StringEditor */
+
+/*! ../SurveyCreator */
+
+/*! ../TabbedMenu */
+
+/*! ../action-bar/action-bar */
+
+/*! ../actions/action */
+
+/*! ../actions/adaptive-container */
+
+/*! ../actions/container */
+
+/*! ../adorners/CellQuestion */
+
+/*! ../adorners/CellQuestionDropdown */
+
+/*! ../adorners/Page */
+
+/*! ../adorners/Panel */
+
+/*! ../adorners/Question */
+
+/*! ../adorners/QuestionDropdown */
+
+/*! ../adorners/QuestionFooter */
+
+/*! ../adorners/QuestionHeader */
+
+/*! ../adorners/QuestionImage */
+
+/*! ../adorners/QuestionRating */
+
+/*! ../adorners/QuestionWidget */
+
+/*! ../adorners/Row */
+
+/*! ../base */
+
+/*! ../components/embedded-survey */
+
+/*! ../components/header/logo-image */
+
+/*! ../components/image-item-value */
+
+/*! ../components/item-value */
+
+/*! ../components/link-value */
+
+/*! ../components/matrix-cell */
+
+/*! ../components/notifier */
+
+/*! ../components/page */
+
+/*! ../components/page-navigator/page-navigator */
+
+/*! ../components/property-panel/property-panel-item.scss */
+
+/*! ../components/property-panel/property-panel.scss */
+
+/*! ../components/question */
+
+/*! ../components/question-dropdown */
+
+/*! ../components/question-dropdown.scss */
+
+/*! ../components/question-image */
+
+/*! ../components/question-rating */
+
+/*! ../components/results */
+
+/*! ../components/row */
+
+/*! ../components/side-bar/side-bar-model */
+
+/*! ../components/side-bar/side-bar-tab-model */
+
+/*! ../components/side-bar/side-bar.scss */
+
+/*! ../components/simulator */
+
+/*! ../components/string-editor */
+
+/*! ../components/tabbed-menu/tabbed-menu-item.scss */
+
+/*! ../components/tabbed-menu/tabbed-menu.scss */
+
+/*! ../components/tabs/designer */
+
+/*! ../components/tabs/designer-plugin */
+
+/*! ../components/tabs/embed */
+
+/*! ../components/tabs/json-editor-ace */
+
+/*! ../components/tabs/json-editor-plugin */
+
+/*! ../components/tabs/json-editor-textarea */
+
+/*! ../components/tabs/logic */
+
+/*! ../components/tabs/logic-plugin */
+
+/*! ../components/tabs/logic-theme */
+
+/*! ../components/tabs/logic-ui */
+
+/*! ../components/tabs/test */
+
+/*! ../components/tabs/test-plugin */
+
+/*! ../components/tabs/translation */
+
+/*! ../components/tabs/translation-plugin */
+
+/*! ../components/tabs/translation-theme */
+
+/*! ../components/toolbox/toolbox-tool */
+
+/*! ../components/toolbox/toolbox-tool.scss */
+
+/*! ../components/toolbox/toolbox.scss */
+
+/*! ../conditionProcessValue */
+
+/*! ../config */
+
+/*! ../creator-base */
+
+/*! ../creator-responsivity-manager */
+
+/*! ../defaultCss/cssbootstrap */
+
+/*! ../defaultCss/cssbootstrapmaterial */
+
+/*! ../defaultCss/cssmodern */
+
+/*! ../defaultCss/cssstandard */
+
+/*! ../defaultCss/defaultV2Css */
+
+/*! ../editable-object */
+
+/*! ../editorLocalization */
+
+/*! ../element-factory */
+
+/*! ../events */
+
+/*! ../functionsfactory */
+
+/*! ../helpers */
+
+/*! ../json5 */
+
+/*! ../jsonobject */
+
+/*! ../list */
+
+/*! ../localization/dutch */
+
+/*! ../localization/english */
+
+/*! ../localization/farsi */
+
+/*! ../localization/french */
+
+/*! ../localization/norwegian */
+
+/*! ../localization/portuguese */
+
+/*! ../localization/russian */
+
+/*! ../localizationManager */
+
+/*! ../plugins/undo-redo */
+
+/*! ../plugins/undo-redo/undo-redo-manager */
+
+/*! ../popup */
+
+/*! ../popup/popup */
+
+/*! ../property-grid */
+
+/*! ../property-grid-theme/property-grid */
+
+/*! ../property-grid-theme/property-grid.scss */
+
+/*! ../property-grid/condition */
+
+/*! ../property-grid/matrices */
+
+/*! ../property-grid/object-selector */
+
+/*! ../property-grid/property-grid-view-model */
+
+/*! ../property-grid/restfull */
+
+/*! ../property-grid/values */
+
+/*! ../question-editor/definition */
+
+/*! ../question-editor/properties */
+
+/*! ../questionconverter */
+
+/*! ../react/boolean */
+
+/*! ../react/boolean-checkbox */
+
+/*! ../react/boolean-radio */
+
+/*! ../react/components/action-bar/action-bar */
+
+/*! ../react/components/list/list */
+
+/*! ../react/components/matrix-actions/detail-button/detail-button */
+
+/*! ../react/components/matrix-actions/drag-drop-icon/drag-drop-icon */
+
+/*! ../react/components/matrix-actions/remove-button/remove-button */
+
+/*! ../react/components/matrix/row */
+
+/*! ../react/components/paneldynamic-actions/paneldynamic-add-btn */
+
+/*! ../react/components/paneldynamic-actions/paneldynamic-next-btn */
+
+/*! ../react/components/paneldynamic-actions/paneldynamic-prev-btn */
+
+/*! ../react/components/paneldynamic-actions/paneldynamic-progress-text */
+
+/*! ../react/components/paneldynamic-actions/paneldynamic-remove-btn */
+
+/*! ../react/components/popup/popup */
+
+/*! ../react/components/skeleton */
+
+/*! ../react/components/survey-actions/survey-nav-button */
+
+/*! ../react/components/survey-header/logo-image */
+
+/*! ../react/components/survey-header/survey-header */
+
+/*! ../react/components/svg-icon/svg-icon */
+
+/*! ../react/components/title/title-actions */
+
+/*! ../react/components/title/title-element */
+
+/*! ../react/dropdown-base */
+
+/*! ../react/dropdown-item */
+
+/*! ../react/dropdown-select */
+
+/*! ../react/element-factory */
+
+/*! ../react/flow-panel */
+
+/*! ../react/image */
+
+/*! ../react/imagepicker */
+
+/*! ../react/page */
+
+/*! ../react/panel */
+
+/*! ../react/rating-dropdown */
+
+/*! ../react/reactSurvey */
+
+/*! ../react/reactSurveyNavigationBase */
+
+/*! ../react/reactSurveyProgress */
+
+/*! ../react/reactSurveyProgressButtons */
+
+/*! ../react/reactSurveyWindow */
+
+/*! ../react/reactquestion */
+
+/*! ../react/reactquestion_buttongroup */
+
+/*! ../react/reactquestion_checkbox */
+
+/*! ../react/reactquestion_comment */
+
+/*! ../react/reactquestion_custom */
+
+/*! ../react/reactquestion_dropdown */
+
+/*! ../react/reactquestion_element */
+
+/*! ../react/reactquestion_empty */
+
+/*! ../react/reactquestion_expression */
+
+/*! ../react/reactquestion_factory */
+
+/*! ../react/reactquestion_file */
+
+/*! ../react/reactquestion_html */
+
+/*! ../react/reactquestion_matrix */
+
+/*! ../react/reactquestion_matrixdropdown */
+
+/*! ../react/reactquestion_matrixdropdownbase */
+
+/*! ../react/reactquestion_matrixdynamic */
+
+/*! ../react/reactquestion_multipletext */
+
+/*! ../react/reactquestion_paneldynamic */
+
+/*! ../react/reactquestion_radiogroup */
+
+/*! ../react/reactquestion_ranking */
+
+/*! ../react/reactquestion_rating */
+
+/*! ../react/reactquestion_tagbox */
+
+/*! ../react/reactquestion_text */
+
+/*! ../react/reactsurveymodel */
+
+/*! ../react/reacttimerpanel */
+
+/*! ../react/row */
+
+/*! ../react/signaturepad */
+
+/*! ../react/string-editor */
+
+/*! ../react/string-viewer */
+
+/*! ../react/tagbox-item */
+
+/*! ../rendererFactory */
+
+/*! ../settings */
+
+/*! ../simulator */
+
+/*! ../survey-element */
+
+/*! ../survey-helper */
+
+/*! ../svg-icon/svg-icon */
+
+/*! ../svgbundle */
+
+/*! ../tables/extensions/columnextensions */
+
+/*! ../tables/extensions/detailsextensions */
+
+/*! ../tables/extensions/headerextensions */
+
+/*! ../tables/extensions/rowextensions */
+
+/*! ../tables/extensions/tableextensions */
+
+/*! ../tables/table */
+
+/*! ../tables/tabulator */
+
+/*! ../tabs/Designer */
+
+/*! ../tabs/Embed */
+
+/*! ../tabs/JsonEditorAce */
+
+/*! ../tabs/JsonEditorTextarea */
+
+/*! ../tabs/Logic */
+
+/*! ../tabs/Preview */
+
+/*! ../tabs/SurveySimulator */
+
+/*! ../tabs/Translation */
+
+/*! ../tabs/TranslationLineSkeleton */
+
+/*! ../textWorker */
+
+/*! ../title/title-element */
+
+/*! ../toolbox */
+
+/*! ../toolbox/AdaptiveToolbox */
+
+/*! ../toolbox/Toolbox */
+
+/*! ../toolbox/ToolboxCategory */
+
+/*! ../toolbox/ToolboxItem */
+
+/*! ../utils */
+
+/*! ../utils/actions */
+
+/*! ../utils/cssClassBuilder */
+
+/*! ../utils/design.scss */
+
+/*! ../utils/devices */
+
+/*! ../utils/dragOrClickHelper */
+
+/*! ../utils/events */
+
+/*! ../utils/index */
+
+/*! ../utils/layout.scss */
+
+/*! ../utils/resizer */
+
+/*! ../utils/responsivity-manager */
+
+/*! ../utils/tooltip */
+
+/*! ../utils/utils */
+
+/*! ./../process/browser.js */
+
+/*! ./../settings */
+
+/*! ./../webpack/buildin/global.js */
+
+/*! ./ActionButton */
+
+/*! ./ModelElement */
+
+/*! ./Notifier */
+
+/*! ./Question */
+
+/*! ./SurveySimulator */
+
+/*! ./SvgBundle */
+
+/*! ./TabbedMenu */
+
+/*! ./Toolbox */
+
+/*! ./ToolboxCategory */
+
+/*! ./ToolboxItem */
+
+/*! ./action */
+
+/*! ./action-bar-item */
+
+/*! ./action-bar-item-dropdown */
+
+/*! ./action-bar-separator */
+
+/*! ./action-container-view-model */
+
+/*! ./actions/action */
+
+/*! ./actions/adaptive-container */
+
+/*! ./actions/container */
+
+/*! ./base */
+
+/*! ./boolean */
+
+/*! ./cells-survey */
+
+/*! ./choices */
+
+/*! ./choicesRestful */
+
+/*! ./chunks/model */
+
+/*! ./columnbuilder */
+
+/*! ./columns */
+
+/*! ./components/action-bar/action-bar */
+
+/*! ./components/brand-info */
+
+/*! ./components/creator.scss */
+
+/*! ./components/matrix-actions/drag-drop-icon/drag-drop-icon */
+
+/*! ./components/matrix/row */
+
+/*! ./components/notifier */
+
+/*! ./components/paneldynamic-actions/paneldynamic-next-btn */
+
+/*! ./components/paneldynamic-actions/paneldynamic-prev-btn */
+
+/*! ./components/paneldynamic-actions/paneldynamic-progress-text */
+
+/*! ./components/popup/popup */
+
+/*! ./components/side-bar/side-bar-model */
+
+/*! ./components/string-editor.scss */
+
+/*! ./components/survey-header/survey-header */
+
+/*! ./components/svg-icon/svg-icon */
+
+/*! ./components/tabs/designer-plugin */
+
+/*! ./components/tabs/embed */
+
+/*! ./components/tabs/json-editor-ace */
+
+/*! ./components/tabs/json-editor-textarea */
+
+/*! ./components/tabs/logic */
+
+/*! ./components/tabs/logic-plugin */
+
+/*! ./components/tabs/test-plugin */
+
+/*! ./components/tabs/translation-plugin */
+
+/*! ./components/title/title-content */
+
+/*! ./components/title/title-element */
+
+/*! ./condition-survey */
+
+/*! ./conditionProcessValue */
+
+/*! ./conditions */
+
+/*! ./conditionsParser */
+
+/*! ./config */
+
+/*! ./container */
+
+/*! ./core */
+
+/*! ./core-export */
+
+/*! ./creator-responsivity-manager */
+
+/*! ./creator-theme/creator.scss */
+
+/*! ./cssstandard */
+
+/*! ./custom-widget */
+
+/*! ./custom_jspdf_font */
+
+/*! ./defaultCss/cssstandard */
+
+/*! ./definition */
+
+/*! ./description-parser */
+
+/*! ./designer */
+
+/*! ./designer.scss */
+
+/*! ./dragdrop/matrix-rows */
+
+/*! ./dragdrop/ranking-choices */
+
+/*! ./dropdown-base */
+
+/*! ./dropdown-item */
+
+/*! ./dropdownListModel */
+
+/*! ./dropdownMultiSelectListModel */
+
+/*! ./dxSurveyService */
+
+/*! ./editorLocalization */
+
+/*! ./element-factory */
+
+/*! ./element-header */
+
+/*! ./element-helper */
+
+/*! ./embed-json */
+
+/*! ./embed.scss */
+
+/*! ./error */
+
+/*! ./expressions */
+
+/*! ./expressions/expressionParser */
+
+/*! ./expressions/expressions */
+
+/*! ./extensions/detailsextensions */
+
+/*! ./extensions/tableextensions */
+
+/*! ./fast-entry */
+
+/*! ./functionsfactory */
+
+/*! ./helpers */
+
+/*! ./image-item-value.scss */
+
+/*! ./index */
+
+/*! ./item-value */
+
+/*! ./item-value.scss */
+
+/*! ./itemvalue */
+
+/*! ./json-editor-ace.scss */
+
+/*! ./json-editor-plugin */
+
+/*! ./json-editor-textarea.scss */
+
+/*! ./json5 */
+
+/*! ./jsonobject */
+
+/*! ./link-value.scss */
+
+/*! ./list */
+
+/*! ./list-item */
+
+/*! ./localizablestring */
+
+/*! ./localization/english */
+
+/*! ./logic */
+
+/*! ./logic-actions-model */
+
+/*! ./logic-expression */
+
+/*! ./logic-item-editor */
+
+/*! ./logic-items */
+
+/*! ./logic-theme */
+
+/*! ./logic-types */
+
+/*! ./logic-ui */
+
+/*! ./logic-ui.scss */
+
+/*! ./logic.scss */
+
+/*! ./logo-image.scss */
+
+/*! ./martixBase */
+
+/*! ./matrix-cell.scss */
+
+/*! ./multiSelectListModel */
+
+/*! ./notifier.scss */
+
+/*! ./object-selector */
+
+/*! ./page */
+
+/*! ./page-navigator-item.scss */
+
+/*! ./page-navigator.scss */
+
+/*! ./page.scss */
+
+/*! ./panel */
+
+/*! ./panel-base */
+
+/*! ./paneldynamic-add-btn */
+
+/*! ./plugins/undo-redo */
+
+/*! ./popup */
+
+/*! ./question */
+
+/*! ./question-dropdown.scss */
+
+/*! ./question-image.scss */
+
+/*! ./question-rating.scss */
+
+/*! ./question.scss */
+
+/*! ./questionCustomWidgets */
+
+/*! ./question_baseselect */
+
+/*! ./question_checkbox */
+
+/*! ./question_dropdown */
+
+/*! ./question_expression */
+
+/*! ./question_matrixdropdownbase */
+
+/*! ./question_matrixdropdowncolumn */
+
+/*! ./question_matrixdropdownrendered */
+
+/*! ./question_text */
+
+/*! ./question_textbase */
+
+/*! ./questionconverter */
+
+/*! ./questionfactory */
+
+/*! ./questionnonvalue */
+
+/*! ./react-ui-model */
+
+/*! ./reactSurvey */
+
+/*! ./reactSurveyNavigationBase */
+
+/*! ./reactquestion */
+
+/*! ./reactquestion_checkbox */
+
+/*! ./reactquestion_comment */
+
+/*! ./reactquestion_dropdown */
+
+/*! ./reactquestion_element */
+
+/*! ./reactquestion_factory */
+
+/*! ./reactquestion_matrixdropdownbase */
+
+/*! ./reactquestion_radiogroup */
+
+/*! ./reactsurveymodel */
+
+/*! ./reacttimerpanel */
+
+/*! ./rendererFactory */
+
+/*! ./responsivity.scss */
+
+/*! ./results.scss */
+
+/*! ./row */
+
+/*! ./row.scss */
+
+/*! ./selection-history */
+
+/*! ./settings */
+
+/*! ./side-bar-tab-model */
+
+/*! ./simulator.scss */
+
+/*! ./string-viewer */
+
+/*! ./stylesmanager */
+
+/*! ./survey */
+
+/*! ./survey-element */
+
+/*! ./survey-error */
+
+/*! ./survey-helper */
+
+/*! ./surveyStrings */
+
+/*! ./surveyTimerModel */
+
+/*! ./surveytimer */
+
+/*! ./table */
+
+/*! ./tableextensions */
+
+/*! ./tabulator.scss */
+
+/*! ./tagbox-item */
+
+/*! ./test */
+
+/*! ./test.scss */
+
+/*! ./textPreProcessor */
+
+/*! ./textWorker */
+
+/*! ./title-actions */
+
+/*! ./title-content */
+
+/*! ./toolbox */
+
+/*! ./translation */
+
+/*! ./translation-theme */
+
+/*! ./translation.scss */
+
+/*! ./undo-redo-controller */
+
+/*! ./undo-redo-manager */
+
+/*! ./utils */
+
+/*! ./utils/cssClassBuilder */
+
+/*! ./utils/devices */
+
+/*! ./utils/dragOrClickHelper */
+
+/*! ./utils/popup */
+
+/*! ./utils/utils */
+
+/*! ./validator */
+
+/*! ./values-survey */
+
+/*! exports provided: ARIAL_FONT */
+
+/*! exports provided: AceJsonEditorModel, TabJsonEditorAcePlugin */
+
+/*! exports provided: Action, ActionDropdownViewModel */
+
+/*! exports provided: ActionButton */
+
+/*! exports provided: AdaptiveActionContainer */
+
+/*! exports provided: AdaptiveToolbox */
+
+/*! exports provided: AnswerRequiredError, OneAnswerRequiredError, RequreNumericError, ExceedSizeError, WebRequestError, WebRequestEmptyError, OtherEmptyError, UploadingFileError, RequiredInAllRowsError, MinRowCountError, KeyDuplicationError, CustomError */
+
+/*! exports provided: BaseColumn, DefaultColumn, CommentColumn, MatrixColumn, ImageColumn, FileColumn, MatrixDropdownColumn, CustomQuestionColumn, CompositeQuestionColumn */
+
+/*! exports provided: Bindings, Dependencies, ComputedUpdater, Base, ArrayChanges, Event, EventBase */
+
+/*! exports provided: BrandInfo */
+
+/*! exports provided: ButtonGroupItemValue, QuestionButtonGroupModel, ButtonGroupItemModel */
+
+/*! exports provided: CalculatedValue */
+
+/*! exports provided: CellQuestionAdornerComponent */
+
+/*! exports provided: CellQuestionDropdownAdornerComponent */
+
+/*! exports provided: CellsEditor */
+
+/*! exports provided: ChoicesRestful, ChoicesRestfull */
+
+/*! exports provided: ComponentQuestionJSON, ComponentCollection, QuestionCustomModelBase, QuestionCustomModel, QuestionCompositeModel */
+
+/*! exports provided: ConditionEditorItem, SurveyConditionEditorItem, ConditionEditorItemsBuilder, ConditionEditor */
+
+/*! exports provided: ConditionsParserError, ConditionsParser */
+
+/*! exports provided: CreatorAction, TabbedMenuItem, TabbedMenuContainer, ToolbarActionContainer, CreatorBase, StylesManager, DesignTimeSurveyModel, editableStringRendererName, getElementWrapperComponentName, getQuestionContentWrapperComponentName, getElementWrapperComponentData, getItemValueWrapperComponentName, getItemValueWrapperComponentData, isStringEditable, isTextInput, registerAdorner, removeAdorners */
+
+/*! exports provided: CreatorModelElement */
+
+/*! exports provided: CreatorResponsivityManager */
+
+/*! exports provided: CreatorSurveyPageComponent */
+
+/*! exports provided: CssClassBuilder */
+
+/*! exports provided: DefaultColumnsBuilder, ColumnsBuilderFactory, MatrixColumnsBuilder, ImageColumnsBuilder, FileColumnsBuilder, MatrixDropdownColumnBuilder, CustomColumnsBuilder, CompositeColumnsBuilder */
+
+/*! exports provided: DefaultTitleModel */
+
+/*! exports provided: DefaultValueEditor, DefaultArrayValueEditor, DefaultMatrixRowValueEditor, DefaultPanelDynamicPanelValueEditor, TriggerValueEditor */
+
+/*! exports provided: DescriptionMardownParser, parsePropertyDescription */
+
+/*! exports provided: Details */
+
+/*! exports provided: DocumentHelper, options, allowDomRendering, createCommercialLicenseLink, DataHelper, createLinksContainer, createImagesContainer */
+
+/*! exports provided: DragDropChoices */
+
+/*! exports provided: DragDropCore */
+
+/*! exports provided: DragDropInfo, QuestionRowModel, PanelModelBase, PanelModel */
+
+/*! exports provided: DragDropMatrixRows */
+
+/*! exports provided: DragDropRankingChoices */
+
+/*! exports provided: DragDropSurveyElements */
+
+/*! exports provided: DragOrClickHelper */
+
+/*! exports provided: DropdownListModel */
+
+/*! exports provided: DropdownMultiSelectListModel */
+
+/*! exports provided: EditableObject */
+
+/*! exports provided: EditorLocalization, editorLocalization, getLocString, defaultStrings */
+
+/*! exports provided: ElementHelper */
+
+/*! exports provided: EmbedModel, TabEmbedPlugin */
+
+/*! exports provided: ExpressionExecutor, ExpressionRunnerBase, ConditionRunner, ExpressionRunner */
+
+/*! exports provided: ExpressionItem, HtmlConditionItem, UrlConditionItem */
+
+/*! exports provided: ExpressionToDisplayText, ExpressionRemoveVariable */
+
+/*! exports provided: FastEntryEditorBase, FastEntryEditor */
+
+/*! exports provided: FlowPanelModel */
+
+/*! exports provided: FunctionFactory, registerFunction */
+
+/*! exports provided: Helpers */
+
+/*! exports provided: ImageItemValue, QuestionImagePickerModel */
+
+/*! exports provided: ImageItemValueAdornerComponent */
+
+/*! exports provided: ImageItemValueWrapperViewModel */
+
+/*! exports provided: IsMobile, IsTouch */
+
+/*! exports provided: ItemValue */
+
+/*! exports provided: ItemValueAdornerComponent */
+
+/*! exports provided: ItemValueWrapperViewModel */
+
+/*! exports provided: JsonEditorBaseModel, TabJsonEditorBasePlugin */
+
+/*! exports provided: List */
+
+/*! exports provided: ListItem */
+
+/*! exports provided: ListModel */
+
+/*! exports provided: LocalizableString, LocalizableStrings */
+
+/*! exports provided: LogicActionModelBase, LogicActionModel, LogicActionTriggerModel */
+
+/*! exports provided: LogicItemEditor */
+
+/*! exports provided: LogoImage */
+
+/*! exports provided: LogoImageComponent */
+
+/*! exports provided: LogoImageViewModel */
+
+/*! exports provided: MatrixCellAdornerComponent */
+
+/*! exports provided: MatrixCellWrapperViewModel */
+
+/*! exports provided: MatrixDropdownCell, MatrixDropdownTotalCell, MatrixDropdownRowModelBase, MatrixDropdownTotalRowModel, QuestionMatrixDropdownModelBase */
+
+/*! exports provided: MatrixDropdownRowModel, QuestionMatrixDropdownModel */
+
+/*! exports provided: MatrixDynamicRowModel, QuestionMatrixDynamicModel */
+
+/*! exports provided: MatrixRow */
+
+/*! exports provided: MatrixRowModel, MatrixCells, QuestionMatrixModel */
+
+/*! exports provided: MultiSelectListModel */
+
+/*! exports provided: MultipleTextItemModel, QuestionMultipleTextModel */
+
+/*! exports provided: Notifier */
+
+/*! exports provided: NotifierComponent */
+
+/*! exports provided: ObjType, SurveyHelper */
+
+/*! exports provided: ObjectSelectorItem, ObjectSelector, ObjectSelectorModel */
+
+/*! exports provided: Operand, BinaryOperand, UnaryOperand, ArrayOperand, Const, Variable, FunctionOperand, OperandMaker */
+
+/*! exports provided: PageAdorner */
+
+/*! exports provided: PageModel */
+
+/*! exports provided: PageNavigatorViewModel */
+
+/*! exports provided: PagesController */
+
+/*! exports provided: PanelAdornerComponent */
+
+/*! exports provided: Popup, PopupContainer, showModal, showDialog */
+
+/*! exports provided: PopupModel, createDialogOptions, createPopupModalViewModel, PopupBaseViewModel */
+
+/*! exports provided: PopupUtils */
+
+/*! exports provided: ProcessValue */
+
+/*! exports provided: PropertyGridComponent, default */
+
+/*! exports provided: PropertyGridEditorExpression, PropertyGridEditorCondition */
+
+/*! exports provided: PropertyGridEditorMatrix, PropertyGridEditorMatrixItemValues, PropertyGridEditorMatrixColumns, PropertyGridEditorMatrixPages, PropertyGridEditorMatrixCalculatedValues, PropertyGridEditorMatrixHtmlConditions, PropertyGridEditorMatrixUrlConditions, PropertyGridEditorMatrixMutlipleTextItems, PropertyGridEditorMatrixMultipleTypes, PropertyGridEditorMatrixValidators, PropertyGridEditorMatrixTriggers, PropertyGridEditorBindings */
+
+/*! exports provided: PropertyGridEditorQuestionRestfull */
+
+/*! exports provided: PropertyGridValueEditorBase, PropertyGridCellsEditor, PropertyGridValueEditor, PropertyGridRowValueEditor, PropertyGridPanelValueEditor, PropertyGridTriggerValueEditor, PropertyGridTriggerValueInLogicEditor */
+
+/*! exports provided: PropertyGridViewModel */
+
+/*! exports provided: Question */
+
+/*! exports provided: QuestionAdornerComponent */
+
+/*! exports provided: QuestionAdornerViewModel */
+
+/*! exports provided: QuestionBooleanModel */
+
+/*! exports provided: QuestionCheckboxModel */
+
+/*! exports provided: QuestionCommentModel */
+
+/*! exports provided: QuestionConvertMode, settings, EmptySurveyCreatorOptions */
+
+/*! exports provided: QuestionConverter */
+
+/*! exports provided: QuestionCustomWidget, CustomWidgetCollection */
+
+/*! exports provided: QuestionDropdownAdornerComponent */
+
+/*! exports provided: QuestionDropdownAdornerViewModel */
+
+/*! exports provided: QuestionDropdownModel */
+
+/*! exports provided: QuestionEditorContentComponent */
+
+/*! exports provided: QuestionEmbeddedSurveyModel */
+
+/*! exports provided: QuestionEmptyModel */
+
+/*! exports provided: QuestionExpressionModel, getCurrecyCodes */
+
+/*! exports provided: QuestionFactory, ElementFactory */
+
+/*! exports provided: QuestionFileModel */
+
+/*! exports provided: QuestionHtmlModel */
+
+/*! exports provided: QuestionImageAdornerComponent */
+
+/*! exports provided: QuestionImageAdornerViewModel */
+
+/*! exports provided: QuestionImageModel */
+
+/*! exports provided: QuestionLinkValueModel */
+
+/*! exports provided: QuestionLocation, ColumnDataType */
+
+/*! exports provided: QuestionMatrixBaseModel */
+
+/*! exports provided: QuestionMatrixDropdownRenderedCell, QuestionMatrixDropdownRenderedRow, QuestionMatrixDropdownRenderedTable */
+
+/*! exports provided: QuestionNonValue */
+
+/*! exports provided: QuestionPanelDynamicItem, QuestionPanelDynamicTemplateSurveyImpl, QuestionPanelDynamicModel */
+
+/*! exports provided: QuestionRadiogroupModel */
+
+/*! exports provided: QuestionRankingModel */
+
+/*! exports provided: QuestionRatingAdornerComponent */
+
+/*! exports provided: QuestionRatingAdornerViewModel */
+
+/*! exports provided: QuestionSelectBase, QuestionCheckboxBase */
+
+/*! exports provided: QuestionSignaturePadModel */
+
+/*! exports provided: QuestionTagboxModel */
+
+/*! exports provided: QuestionTextBase */
+
+/*! exports provided: QuestionTextModel */
+
+/*! exports provided: QuestionToolboxCategory, QuestionToolboxItem, QuestionToolbox */
+
+/*! exports provided: QuestionWidgetAdornerComponent */
+
+/*! exports provided: QuestionWrapperFooter */
+
+/*! exports provided: QuestionWrapperHeader */
+
+/*! exports provided: ReactElementFactory */
+
+/*! exports provided: ReactMouseEvent, ReactDragEvent */
+
+/*! exports provided: ReactQuestionFactory */
+
+/*! exports provided: ReactSurveyElementsWrapper */
+
+/*! exports provided: RenderedRatingItem, QuestionRatingModel */
+
+/*! exports provided: RendererFactory */
+
+/*! exports provided: ResizeManager */
+
+/*! exports provided: ResponsivityManager, VerticalResponsivityManager */
+
+/*! exports provided: RowViewModel */
+
+/*! exports provided: RowWrapper */
+
+/*! exports provided: SelectionHistory */
+
+/*! exports provided: SidebarComponent, default */
+
+/*! exports provided: SidebarModel */
+
+/*! exports provided: SidebarTabModel */
+
+/*! exports provided: Skeleton */
+
+/*! exports provided: StringEditorViewModelBase */
+
+/*! exports provided: StylesManager */
+
+/*! exports provided: Survey, attachKey2click */
+
+/*! exports provided: Survey, attachKey2click, ReactSurveyElementsWrapper, SurveyNavigationBase, SurveyTimerPanel, SurveyPage, SurveyRow, SurveyPanel, SurveyFlowPanel, SurveyQuestion, SurveyElementErrors, SurveyQuestionAndErrorsCell, ReactSurveyElement, SurveyElementBase, SurveyQuestionElementBase, SurveyQuestionCommentItem, SurveyQuestionComment, SurveyQuestionCheckbox, SurveyQuestionCheckboxItem, SurveyQuestionRanking, SurveyQuestionRankingItem, SurveyQuestionOptionItem, SurveyQuestionDropdownBase, SurveyQuestionDropdown, SurveyQuestionTagboxItem, SurveyQuestionTagbox, SurveyQuestionDropdownSelect, SurveyQuestionMatrix, SurveyQuestionMatrixRow, SurveyQuestionHtml, SurveyQuestionFile, SurveyQuestionMultipleText, SurveyQuestionRadiogroup, SurveyQuestionText, SurveyQuestionBoolean, SurveyQuestionBooleanCheckbox, SurveyQuestionBooleanRadio, SurveyQuestionEmpty, SurveyQuestionMatrixDropdownCell, SurveyQuestionMatrixDropdown, SurveyQuestionMatrixDynamic, SurveyQuestionMatrixDynamicAddButton, SurveyQuestionPanelDynamic, SurveyProgress, SurveyProgressButtons, SurveyQuestionRating, SurveyQuestionRatingDropdown, SurveyQuestionExpression, SurveyWindow, ReactQuestionFactory, ReactElementFactory, SurveyQuestionImagePicker, SurveyQuestionImage, SurveyQuestionSignaturePad, SurveyQuestionButtonGroup, SurveyQuestionCustom, SurveyQuestionComposite, Popup, List, TitleActions, TitleElement, SurveyActionBar, LogoImage, SurveyHeader, SvgIcon, SurveyQuestionMatrixDynamicRemoveButton, SurveyQuestionMatrixDetailButton, SurveyQuestionMatrixDynamicDragDropIcon, SurveyQuestionPanelDynamicAddButton, SurveyQuestionPanelDynamicRemoveButton, SurveyQuestionPanelDynamicPrevButton, SurveyQuestionPanelDynamicNextButton, SurveyQuestionPanelDynamicProgressText, SurveyNavigationButton, MatrixRow, Skeleton, SurveyLocStringViewer, SurveyLocStringEditor, ResponsivityManager, VerticalResponsivityManager, unwrap */
+
+/*! exports provided: Survey, attachKey2click, ReactSurveyElementsWrapper, SurveyNavigationBase, SurveyTimerPanel, SurveyPage, SurveyRow, SurveyPanel, SurveyFlowPanel, SurveyQuestion, SurveyElementErrors, SurveyQuestionAndErrorsCell, ReactSurveyElement, SurveyElementBase, SurveyQuestionElementBase, SurveyQuestionCommentItem, SurveyQuestionComment, SurveyQuestionCheckbox, SurveyQuestionCheckboxItem, SurveyQuestionRanking, SurveyQuestionRankingItem, SurveyQuestionOptionItem, SurveyQuestionDropdownBase, SurveyQuestionDropdown, SurveyQuestionTagboxItem, SurveyQuestionTagbox, SurveyQuestionDropdownSelect, SurveyQuestionMatrix, SurveyQuestionMatrixRow, SurveyQuestionHtml, SurveyQuestionFile, SurveyQuestionMultipleText, SurveyQuestionRadiogroup, SurveyQuestionText, SurveyQuestionBoolean, SurveyQuestionBooleanCheckbox, SurveyQuestionBooleanRadio, SurveyQuestionEmpty, SurveyQuestionMatrixDropdownCell, SurveyQuestionMatrixDropdown, SurveyQuestionMatrixDynamic, SurveyQuestionMatrixDynamicAddButton, SurveyQuestionPanelDynamic, SurveyProgress, SurveyProgressButtons, SurveyQuestionRating, SurveyQuestionRatingDropdown, SurveyQuestionExpression, SurveyWindow, ReactQuestionFactory, ReactElementFactory, SurveyQuestionImagePicker, SurveyQuestionImage, SurveyQuestionSignaturePad, SurveyQuestionButtonGroup, SurveyQuestionCustom, SurveyQuestionComposite, Popup, List, TitleActions, TitleElement, SurveyActionBar, LogoImage, SurveyHeader, SvgIcon, SurveyQuestionMatrixDynamicRemoveButton, SurveyQuestionMatrixDetailButton, SurveyQuestionMatrixDynamicDragDropIcon, SurveyQuestionPanelDynamicAddButton, SurveyQuestionPanelDynamicRemoveButton, SurveyQuestionPanelDynamicPrevButton, SurveyQuestionPanelDynamicNextButton, SurveyQuestionPanelDynamicProgressText, SurveyNavigationButton, MatrixRow, Skeleton, SurveyLocStringViewer, SurveyLocStringEditor, ResponsivityManager, VerticalResponsivityManager, unwrap, SurveyModel, Model, SurveyWindowModel, settings, surveyLocalization, surveyStrings */
+
+/*! exports provided: SurveyAction, SurveyActionBarItem */
+
+/*! exports provided: SurveyActionBarItemDropdown */
+
+/*! exports provided: SurveyActionBarItemDropdown, SurveyActionBarSeparator, SurveyActionBar */
+
+/*! exports provided: SurveyActionBarSeparator */
+
+/*! exports provided: SurveyCreatorComponent, SurveyCreator */
+
+/*! exports provided: SurveyCreatorToolboxCategory */
+
+/*! exports provided: SurveyCreatorToolboxTool, SurveyCreatorToolboxItem */
+
+/*! exports provided: SurveyCustomWidget */
+
+/*! exports provided: SurveyElementAdornerBase */
+
+/*! exports provided: SurveyElementBase, ReactSurveyElement, SurveyQuestionElementBase, SurveyQuestionUncontrolledElement */
+
+/*! exports provided: SurveyElementCore, DragTypeOverMeEnum, SurveyElement */
+
+/*! exports provided: SurveyElementEmbeddedSurvey */
+
+/*! exports provided: SurveyElementHeader */
+
+/*! exports provided: SurveyError */
+
+/*! exports provided: SurveyFlowPanel */
+
+/*! exports provided: SurveyHeader */
+
+/*! exports provided: SurveyJSON5 */
+
+/*! exports provided: SurveyLocStringEditor */
+
+/*! exports provided: SurveyLocStringViewer */
+
+/*! exports provided: SurveyLogic */
+
+/*! exports provided: SurveyLogicAction, SurveyLogicItem */
+
+/*! exports provided: SurveyLogicExpressionUpdater, updateLogicExpression */
+
+/*! exports provided: SurveyLogicUI */
+
+/*! exports provided: SurveyModel */
+
+/*! exports provided: SurveyModel, Model, SurveyWindowModel, settings, surveyLocalization, surveyStrings */
+
+/*! exports provided: SurveyNavigation */
+
+/*! exports provided: SurveyNavigationBase */
+
+/*! exports provided: SurveyNavigationButton */
+
+/*! exports provided: SurveyPage */
+
+/*! exports provided: SurveyPageNavigator, SurveyPageNavigatorItem */
+
+/*! exports provided: SurveyPanel */
+
+/*! exports provided: SurveyPanelBase */
+
+/*! exports provided: SurveyProgress */
+
+/*! exports provided: SurveyProgressButtons */
+
+/*! exports provided: SurveyProgressButtonsModel */
+
+/*! exports provided: SurveyProgressModel */
+
+/*! exports provided: SurveyQuestion, SurveyElementErrors, SurveyQuestionAndErrorsWrapped, SurveyQuestionAndErrorsCell */
+
+/*! exports provided: SurveyQuestionBoolean */
+
+/*! exports provided: SurveyQuestionBooleanCheckbox */
+
+/*! exports provided: SurveyQuestionBooleanRadio */
+
+/*! exports provided: SurveyQuestionButtonGroup, SurveyButtonGroupItem */
+
+/*! exports provided: SurveyQuestionCheckbox, SurveyQuestionCheckboxItem */
+
+/*! exports provided: SurveyQuestionComment, SurveyQuestionCommentItem */
+
+/*! exports provided: SurveyQuestionCustom, SurveyQuestionComposite */
+
+/*! exports provided: SurveyQuestionDropdown */
+
+/*! exports provided: SurveyQuestionDropdownBase */
+
+/*! exports provided: SurveyQuestionDropdownSelect */
+
+/*! exports provided: SurveyQuestionEditorDefinition */
+
+/*! exports provided: SurveyQuestionEditorPropertyDefinition, SurveyQuestionEditorTabDefinition, SurveyQuestionProperties */
+
+/*! exports provided: SurveyQuestionEmpty */
+
+/*! exports provided: SurveyQuestionExpression */
+
+/*! exports provided: SurveyQuestionFile */
+
+/*! exports provided: SurveyQuestionHtml */
+
+/*! exports provided: SurveyQuestionImage */
+
+/*! exports provided: SurveyQuestionImagePicker, SurveyQuestionImagePickerItem */
+
+/*! exports provided: SurveyQuestionLinkValue */
+
+/*! exports provided: SurveyQuestionMatrix, SurveyQuestionMatrixRow */
+
+/*! exports provided: SurveyQuestionMatrixDetailButton */
+
+/*! exports provided: SurveyQuestionMatrixDropdown */
+
+/*! exports provided: SurveyQuestionMatrixDropdownBase, SurveyQuestionMatrixDropdownCell */
+
+/*! exports provided: SurveyQuestionMatrixDynamic, SurveyQuestionMatrixDynamicAddButton */
+
+/*! exports provided: SurveyQuestionMatrixDynamicDragDropIcon */
+
+/*! exports provided: SurveyQuestionMatrixDynamicRemoveButton */
+
+/*! exports provided: SurveyQuestionMultipleText, SurveyMultipleTextItem, SurveyMultipleTextItemEditor */
+
+/*! exports provided: SurveyQuestionOptionItem */
+
+/*! exports provided: SurveyQuestionPanelDynamic, SurveyQuestionPanelDynamicItem */
+
+/*! exports provided: SurveyQuestionPanelDynamicAction, SurveyQuestionPanelDynamicAddButton */
+
+/*! exports provided: SurveyQuestionPanelDynamicNextButton */
+
+/*! exports provided: SurveyQuestionPanelDynamicPrevButton */
+
+/*! exports provided: SurveyQuestionPanelDynamicProgressText */
+
+/*! exports provided: SurveyQuestionPanelDynamicRemoveButton */
+
+/*! exports provided: SurveyQuestionRadiogroup, SurveyQuestionRadioItem */
+
+/*! exports provided: SurveyQuestionRanking, SurveyQuestionRankingItem */
+
+/*! exports provided: SurveyQuestionRating */
+
+/*! exports provided: SurveyQuestionRatingDropdown */
+
+/*! exports provided: SurveyQuestionSignaturePad */
+
+/*! exports provided: SurveyQuestionTagbox */
+
+/*! exports provided: SurveyQuestionTagboxItem */
+
+/*! exports provided: SurveyQuestionText */
+
+/*! exports provided: SurveyResults, SurveyResultsByRow */
+
+/*! exports provided: SurveyResultsItemModel, SurveyResultsModel */
+
+/*! exports provided: SurveyRow */
+
+/*! exports provided: SurveySimulator */
+
+/*! exports provided: SurveySimulatorModel, DEFAULT_MONITOR_DPI, simulatorDevices */
+
+/*! exports provided: SurveyTextWorker */
+
+/*! exports provided: SurveyTimerModel */
+
+/*! exports provided: SurveyTimerPanel */
+
+/*! exports provided: SurveyWindow */
+
+/*! exports provided: SurveyWindowModel */
+
+/*! exports provided: SvgBundleComponent */
+
+/*! exports provided: SvgIcon */
+
+/*! exports provided: SvgIconRegistry, SvgRegistry, SvgBundleViewModel */
+
+/*! exports provided: SyntaxError, parse */
+
+/*! exports provided: TabDesignerComponent */
+
+/*! exports provided: TabDesignerPlugin */
+
+/*! exports provided: TabEmbedComponent */
+
+/*! exports provided: TabJsonEditorAceComponent */
+
+/*! exports provided: TabJsonEditorTextareaComponent */
+
+/*! exports provided: TabLogicAddButtonComponent, TabLogicComponent */
+
+/*! exports provided: TabLogicPlugin */
+
+/*! exports provided: TabPreviewTestSurveyAgainComponent, TabPreviewSurveyComponent */
+
+/*! exports provided: TabTestPlugin */
+
+/*! exports provided: TabTranslationComponent */
+
+/*! exports provided: TabTranslationPlugin */
+
+/*! exports provided: TabbedMenuComponent, TabbedMenuItemComponent, default */
+
+/*! exports provided: Table, TableRow */
+
+/*! exports provided: TableExtensions */
+
+/*! exports provided: Tabulator, TabulatorRow */
+
+/*! exports provided: TestSurveyTabViewModel */
+
+/*! exports provided: TextPreProcessorItem, TextPreProcessorValue, TextPreProcessor, QuestionTextProcessor */
+
+/*! exports provided: TextareaJsonEditorModel, TabJsonEditorTextareaPlugin */
+
+/*! exports provided: TitleActions */
+
+/*! exports provided: TitleContent */
+
+/*! exports provided: TitleElement */
+
+/*! exports provided: Toolbox */
+
+/*! exports provided: ToolboxToolViewModel */
+
+/*! exports provided: TooltipManager */
+
+/*! exports provided: TranslationItemBase, TranslationItemString, TranslationItem, TranslationGroup, Translation */
+
+/*! exports provided: TranslationLineSkeleton */
+
+/*! exports provided: Trigger, SurveyTrigger, SurveyTriggerVisible, SurveyTriggerComplete, SurveyTriggerSetValue, SurveyTriggerSkip, SurveyTriggerRunExpression, SurveyTriggerCopyValue */
+
+/*! exports provided: UndoRedoController */
+
+/*! exports provided: UndoRedoManager, Transaction, UndoRedoAction, UndoRedoArrayAction */
+
+/*! exports provided: UndoRedoPlugin, undoRedoTransaction, ignoreUndoRedo */
+
+/*! exports provided: ValidatorResult, SurveyValidator, ValidatorRunner, NumericValidator, TextValidator, AnswerCountValidator, RegexValidator, EmailValidator, ExpressionValidator */
+
+/*! exports provided: Version, SurveyCreatorComponent, SurveyCreator, RowWrapper, QuestionAdornerComponent, QuestionWrapperHeader, QuestionWrapperFooter, QuestionDropdownAdornerComponent, QuestionImageAdornerComponent, QuestionRatingAdornerComponent, QuestionWidgetAdornerComponent, CellQuestionAdornerComponent, CellQuestionDropdownAdornerComponent, CreatorSurveyPageComponent, PanelAdornerComponent, LogoImageComponent, SurveyQuestionLinkValue, SurveyElementEmbeddedSurvey, QuestionEditorContentComponent, ItemValueAdornerComponent, ImageItemValueAdornerComponent, MatrixCellAdornerComponent, SurveyResults, SurveyResultsByRow, SurveyCreatorToolboxTool, SurveyCreatorToolboxItem, SurveyCreatorToolboxCategory, Toolbox, AdaptiveToolbox, TabbedMenuComponent, TabbedMenuItemComponent, NotifierComponent, SurveyNavigation, SidebarComponent, TranslationLineSkeleton, ActionButton, SurveyLocStringEditor, TabDesignerComponent, TabEmbedComponent, TabJsonEditorAceComponent, TabJsonEditorTextareaComponent, TabLogicAddButtonComponent, TabLogicComponent, TabPreviewTestSurveyAgainComponent, TabPreviewSurveyComponent, TabTranslationComponent, SurveySimulator, ReactMouseEvent, ReactDragEvent, PropertyGridComponent, editorLocalization, localization, settings, svgBundle, SurveyLogic, SurveyLogicUI, SurveyQuestionEditorDefinition, ToolboxToolViewModel, PropertyGridEditorCollection, StylesManager */
+
+/*! exports provided: Version, enStrings, editorLocalization, defaultStrings, localization, QuestionConvertMode, settings, EmptySurveyCreatorOptions, CreatorAction, TabbedMenuItem, TabbedMenuContainer, ToolbarActionContainer, CreatorBase, StylesManager, DesignTimeSurveyModel, editableStringRendererName, getElementWrapperComponentName, getQuestionContentWrapperComponentName, getElementWrapperComponentData, getItemValueWrapperComponentName, getItemValueWrapperComponentData, isStringEditable, isTextInput, registerAdorner, removeAdorners, CreatorResponsivityManager, EmbedModel, TabEmbedPlugin, AceJsonEditorModel, TabJsonEditorAcePlugin, JsonEditorBaseModel, TabJsonEditorBasePlugin, TextareaJsonEditorModel, TabJsonEditorTextareaPlugin, TestSurveyTabViewModel, TabTestPlugin, SurveyLogic, TranslationItemBase, TranslationItemString, TranslationItem, TranslationGroup, Translation, translationCss, TabTranslationPlugin, initialSettingsAllowShowEmptyTitleInDesignMode, TabDesignerViewModel, TabDesignerPlugin, SurveyLogicUI, TabLogicPlugin, logicCss, ToolboxToolViewModel, PageNavigatorViewModel, PageAdorner, RowViewModel, QuestionAdornerViewModel, QuestionDropdownAdornerViewModel, QuestionImageAdornerViewModel, QuestionRatingAdornerViewModel, ItemValueWrapperViewModel, ImageItemValueWrapperViewModel, MatrixCellWrapperViewModel, SurveySimulatorModel, DEFAULT_MONITOR_DPI, simulatorDevices, SurveyResultsItemModel, SurveyResultsModel, LogoImageViewModel, StringEditorViewModelBase, QuestionEmbeddedSurveyModel, QuestionLinkValueModel, EditorLocalization, getLocString, SurveyJSON5, setSurveyJSONForPropertyGrid, PropertyEditorSetupValue, PropertyGridEditorCollection, PropertyGridTitleActionsCreator, PropertyJSONGenerator, PropertyGridModel, PropertyGridEditor, PropertyGridEditorBoolean, PropertyGridEditorStringBase, PropertyGridEditorString, PropertyGridEditorNumber, PropertyGridEditorImageSize, PropertyGridEditorText, PropertyGridEditorHtml, PropertyGridEditorColor, PropertyGridEditorStringArray, PropertyGridEditorDropdown, PropertyGridEditorSet, PropertyGridEditorPage, PropertyGridEditorQuestion, PropertyGridEditorQuestionSelectBase, PropertyGridEditorQuestionValue, PropertyGridEditorExpression, PropertyGridEditorCondition, PropertyGridEditorMatrix, PropertyGridEditorMatrixItemValues, PropertyGridEditorMatrixColumns, PropertyGridEditorMatrixPages, PropertyGridEditorMatrixCalculatedValues, PropertyGridEditorMatrixHtmlConditions, PropertyGridEditorMatrixUrlConditions, PropertyGridEditorMatrixMutlipleTextItems, PropertyGridEditorMatrixMultipleTypes, PropertyGridEditorMatrixValidators, PropertyGridEditorMatrixTriggers, PropertyGridEditorBindings, PropertyGridViewModel, ObjectSelectorItem, ObjectSelector, ObjectSelectorModel, PropertyGridEditorQuestionRestfull, PropertyGridValueEditorBase, PropertyGridCellsEditor, PropertyGridValueEditor, PropertyGridRowValueEditor, PropertyGridPanelValueEditor, PropertyGridTriggerValueEditor, PropertyGridTriggerValueInLogicEditor, propertyGridCss, QuestionConverter, svgBundle, SurveyTextWorker, QuestionToolboxCategory, QuestionToolboxItem, QuestionToolbox, SidebarModel, SidebarTabModel, getNextValue, findParentNode, focusFirstControl, getFirstNonTextElement, getNodesFromKoComponentInfo, propertyExists, isPropertyVisible, toggleHovered, clearNewLines, select, copyObject, copyCssClasses, assignDefaultV2Classes, wrapTextByCurlyBraces, capitalize, SurveyQuestionEditorDefinition, ObjType, SurveyHelper, Notifier, ResizeManager, UndoRedoPlugin, undoRedoTransaction, ignoreUndoRedo, UndoRedoManager, Transaction, UndoRedoAction, UndoRedoArrayAction */
+
+/*! exports provided: Version, settings, Helpers, AnswerCountValidator, EmailValidator, NumericValidator, RegexValidator, SurveyValidator, TextValidator, ValidatorResult, ExpressionValidator, ValidatorRunner, ItemValue, Base, Event, ArrayChanges, ComputedUpdater, SurveyError, SurveyElementCore, SurveyElement, DragTypeOverMeEnum, CalculatedValue, CustomError, AnswerRequiredError, OneAnswerRequiredError, RequreNumericError, ExceedSizeError, LocalizableString, LocalizableStrings, HtmlConditionItem, UrlConditionItem, ChoicesRestful, ChoicesRestfull, FunctionFactory, registerFunction, ConditionRunner, ExpressionRunner, ExpressionExecutor, Operand, Const, BinaryOperand, Variable, FunctionOperand, ArrayOperand, ConditionsParser, ProcessValue, JsonError, JsonIncorrectTypeError, JsonMetadata, JsonMetadataClass, JsonMissingTypeError, JsonMissingTypeErrorBase, JsonObject, JsonObjectProperty, JsonRequiredPropertyError, JsonUnknownPropertyError, Serializer, property, propertyArray, MatrixDropdownCell, MatrixDropdownRowModelBase, QuestionMatrixDropdownModelBase, MatrixDropdownColumn, matrixDropdownColumnTypes, QuestionMatrixDropdownRenderedCell, QuestionMatrixDropdownRenderedRow, QuestionMatrixDropdownRenderedTable, MatrixDropdownRowModel, QuestionMatrixDropdownModel, MatrixDynamicRowModel, QuestionMatrixDynamicModel, MatrixRowModel, MatrixCells, QuestionMatrixModel, MultipleTextItemModel, QuestionMultipleTextModel, PanelModel, PanelModelBase, QuestionRowModel, FlowPanelModel, PageModel, DefaultTitleModel, Question, QuestionNonValue, QuestionEmptyModel, QuestionCheckboxBase, QuestionSelectBase, QuestionCheckboxModel, QuestionTagboxModel, QuestionRankingModel, QuestionCommentModel, QuestionDropdownModel, QuestionFactory, ElementFactory, QuestionFileModel, QuestionHtmlModel, QuestionRadiogroupModel, QuestionRatingModel, RenderedRatingItem, QuestionExpressionModel, QuestionTextModel, QuestionBooleanModel, QuestionImagePickerModel, ImageItemValue, QuestionImageModel, QuestionSignaturePadModel, QuestionPanelDynamicModel, QuestionPanelDynamicItem, SurveyTimer, SurveyTimerModel, SurveyProgressModel, SurveyProgressButtonsModel, SurveyModel, Model, SurveyTrigger, SurveyTriggerComplete, SurveyTriggerSetValue, SurveyTriggerVisible, SurveyTriggerCopyValue, SurveyTriggerRunExpression, Trigger, SurveyWindowModel, TextPreProcessor, dxSurveyService, englishStrings, surveyLocalization, surveyStrings, QuestionCustomWidget, CustomWidgetCollection, QuestionCustomModel, QuestionCompositeModel, ComponentQuestionJSON, ComponentCollection, StylesManager, ListModel, MultiSelectListModel, PopupModel, PopupBaseViewModel, createPopupModalViewModel, createDialogOptions, DropdownListModel, DropdownMultiSelectListModel, QuestionButtonGroupModel, ButtonGroupItemModel, ButtonGroupItemValue, IsMobile, IsTouch, confirmAction, detectIEOrEdge, doKey2ClickUp, doKey2ClickDown, doKey2ClickBlur, loadFileFromBase64, increaseHeightByContent, createSvg, sanitizeEditableContent, CssClassBuilder, surveyCss, DragDropSurveyElements, DragDropChoices */
+
+/*! exports provided: Version, settings, Helpers, AnswerCountValidator, EmailValidator, NumericValidator, RegexValidator, SurveyValidator, TextValidator, ValidatorResult, ExpressionValidator, ValidatorRunner, ItemValue, Base, Event, ArrayChanges, ComputedUpdater, SurveyError, SurveyElementCore, SurveyElement, DragTypeOverMeEnum, CalculatedValue, CustomError, AnswerRequiredError, OneAnswerRequiredError, RequreNumericError, ExceedSizeError, LocalizableString, LocalizableStrings, HtmlConditionItem, UrlConditionItem, ChoicesRestful, ChoicesRestfull, FunctionFactory, registerFunction, ConditionRunner, ExpressionRunner, ExpressionExecutor, Operand, Const, BinaryOperand, Variable, FunctionOperand, ArrayOperand, ConditionsParser, ProcessValue, JsonError, JsonIncorrectTypeError, JsonMetadata, JsonMetadataClass, JsonMissingTypeError, JsonMissingTypeErrorBase, JsonObject, JsonObjectProperty, JsonRequiredPropertyError, JsonUnknownPropertyError, Serializer, property, propertyArray, MatrixDropdownCell, MatrixDropdownRowModelBase, QuestionMatrixDropdownModelBase, MatrixDropdownColumn, matrixDropdownColumnTypes, QuestionMatrixDropdownRenderedCell, QuestionMatrixDropdownRenderedRow, QuestionMatrixDropdownRenderedTable, MatrixDropdownRowModel, QuestionMatrixDropdownModel, MatrixDynamicRowModel, QuestionMatrixDynamicModel, MatrixRowModel, MatrixCells, QuestionMatrixModel, MultipleTextItemModel, QuestionMultipleTextModel, PanelModel, PanelModelBase, QuestionRowModel, FlowPanelModel, PageModel, DefaultTitleModel, Question, QuestionNonValue, QuestionEmptyModel, QuestionCheckboxBase, QuestionSelectBase, QuestionCheckboxModel, QuestionTagboxModel, QuestionRankingModel, QuestionCommentModel, QuestionDropdownModel, QuestionFactory, ElementFactory, QuestionFileModel, QuestionHtmlModel, QuestionRadiogroupModel, QuestionRatingModel, RenderedRatingItem, QuestionExpressionModel, QuestionTextModel, QuestionBooleanModel, QuestionImagePickerModel, ImageItemValue, QuestionImageModel, QuestionSignaturePadModel, QuestionPanelDynamicModel, QuestionPanelDynamicItem, SurveyTimer, SurveyTimerModel, SurveyProgressModel, SurveyProgressButtonsModel, SurveyModel, Model, SurveyTrigger, SurveyTriggerComplete, SurveyTriggerSetValue, SurveyTriggerVisible, SurveyTriggerCopyValue, SurveyTriggerRunExpression, Trigger, SurveyWindowModel, TextPreProcessor, dxSurveyService, englishStrings, surveyLocalization, surveyStrings, QuestionCustomWidget, CustomWidgetCollection, QuestionCustomModel, QuestionCompositeModel, ComponentQuestionJSON, ComponentCollection, StylesManager, ListModel, MultiSelectListModel, PopupModel, PopupBaseViewModel, createPopupModalViewModel, createDialogOptions, DropdownListModel, DropdownMultiSelectListModel, QuestionButtonGroupModel, ButtonGroupItemModel, ButtonGroupItemValue, IsMobile, IsTouch, confirmAction, detectIEOrEdge, doKey2ClickUp, doKey2ClickDown, doKey2ClickBlur, loadFileFromBase64, increaseHeightByContent, createSvg, sanitizeEditableContent, CssClassBuilder, surveyCss, DragDropSurveyElements, DragDropChoices, defaultStandardCss, defaultBootstrapCss, defaultBootstrapMaterialCss, defaultV2Css, modernCss, SvgIconRegistry, SvgRegistry, SvgBundleViewModel, RendererFactory, ResponsivityManager, VerticalResponsivityManager, unwrap, Action, ActionDropdownViewModel, AdaptiveActionContainer, defaultActionBarCss, ActionContainer, TooltipManager, DragOrClickHelper */
+
+/*! exports provided: __assign, __extends, __rest, __decorate */
+
+/*! exports provided: __decorate, __assign, __extends, __spreadArrays */
+
+/*! exports provided: __decorate, __assign, __extends, __spreadArrays, __spreadArray */
+
+/*! exports provided: default */
+
+/*! exports provided: defaultActionBarCss, ActionContainer */
+
+/*! exports provided: defaultBootstrapCss */
+
+/*! exports provided: defaultBootstrapMaterialCss */
+
+/*! exports provided: defaultV2Css */
+
+/*! exports provided: dutchStrings */
+
+/*! exports provided: dxSurveyService */
+
+/*! exports provided: enStrings */
+
+/*! exports provided: englishStrings */
+
+/*! exports provided: farsiStrings */
+
+/*! exports provided: findAction, updateMatrixLogicExpandAction, updateMatrixLogicRemoveAction, updateMatrixRemoveAction */
+
+/*! exports provided: frenchStrings */
+
+/*! exports provided: getLogicString, SurveyLogicType, SurveyLogicTypes */
+
+/*! exports provided: getNextValue, findParentNode, focusFirstControl, getFirstNonTextElement, getNodesFromKoComponentInfo, propertyExists, isPropertyVisible, toggleHovered, clearNewLines, select, copyObject, copyCssClasses, assignDefaultV2Classes, wrapTextByCurlyBraces, capitalize */
+
+/*! exports provided: initialSettingsAllowShowEmptyTitleInDesignMode, TabDesignerViewModel */
+
+/*! exports provided: json */
+
+/*! exports provided: localization, surveyStrings */
+
+/*! exports provided: localization, surveyStrings, Table, TableRow, Tabulator, TabulatorRow, TableExtensions, DocumentHelper */
+
+/*! exports provided: logicCss */
+
+/*! exports provided: matrixDropdownColumnTypes, MatrixDropdownColumn */
+
+/*! exports provided: modernCss */
+
+/*! exports provided: norwegianStrings */
+
+/*! exports provided: portugueseStrings */
+
+/*! exports provided: property, propertyArray, JsonObjectProperty, CustomPropertiesCollection, JsonMetadataClass, JsonMetadata, JsonError, JsonUnknownPropertyError, JsonMissingTypeErrorBase, JsonMissingTypeError, JsonIncorrectTypeError, JsonRequiredPropertyError, JsonObject, Serializer */
+
+/*! exports provided: propertyGridCss */
+
+/*! exports provided: russianStrings */
+
+/*! exports provided: setSurveyJSONForPropertyGrid, PropertyEditorSetupValue, PropertyGridEditorCollection, PropertyGridTitleActionsCreator, PropertyJSONGenerator, PropertyGridModel, PropertyGridEditor, PropertyGridEditorBoolean, PropertyGridEditorStringBase, PropertyGridEditorString, PropertyGridEditorNumber, PropertyGridEditorImageSize, PropertyGridEditorText, PropertyGridEditorHtml, PropertyGridEditorColor, PropertyGridEditorStringArray, PropertyGridEditorDropdown, PropertyGridEditorSet, PropertyGridEditorPage, PropertyGridEditorQuestion, PropertyGridEditorQuestionSelectBase, PropertyGridEditorQuestionValue */
+
+/*! exports provided: settings */
+
+/*! exports provided: surveyCss, defaultStandardCss */
+
+/*! exports provided: surveyLocalization, surveyStrings */
+
+/*! exports provided: surveyTimerFunctions, SurveyTimer */
+
+/*! exports provided: svgBundle */
+
+/*! exports provided: translationCss */
+
+/*! exports provided: unwrap, getSize, doKey2ClickBlur, doKey2ClickUp, doKey2ClickDown, sanitizeEditableContent, getElementWidth, isContainerVisible, classesToSelector, compareVersions, confirmAction, detectIEOrEdge, detectIEBrowser, loadFileFromBase64, isMobile, isElementVisible, findScrollableParent, scrollElementByChildId, createSvg, getIconNameFromProxy, increaseHeightByContent, getOriginalEvent, preventDefaults, findParentByClassNames */
+
+/*! html-loader?interpolate!val-loader!../svgbundle.html */
+
+/*! no exports provided */
+
+/*! no static exports found */
+
+/*! papaparse */
+
+/*! react */
+
+/*! react-dom */
+
+/*! setimmediate */
+
+/*! signature_pad */
+
+/*! src/surveyStrings */
+
+/*! survey-core */
+
+/*! survey-creator-core */
+
+/*! survey-react-ui */
+
+/*! tabulator-tables */
+
+/*! timers */
+
+/*! tslib */
+
+/*!*********************!*\
+        !*** ./src/base.ts ***!
+        \*********************/
+
+/*!*********************!*\
+        !*** ./src/list.ts ***!
+        \*********************/
+
+/*!*********************!*\
+        !*** ./src/page.ts ***!
+        \*********************/
+
+/*!**********************!*\
+        !*** ./src/error.ts ***!
+        \**********************/
+
+/*!**********************!*\
+        !*** ./src/json5.ts ***!
+        \**********************/
+
+/*!**********************!*\
+        !*** ./src/panel.ts ***!
+        \**********************/
+
+/*!**********************!*\
+        !*** ./src/popup.ts ***!
+        \**********************/
+
+/*!***********************!*\
+        !*** ./src/events.ts ***!
+        \***********************/
+
+/*!***********************!*\
+        !*** ./src/survey.ts ***!
+        \***********************/
+
+/*!************************!*\
+        !*** ./src/helpers.ts ***!
+        \************************/
+
+/*!************************!*\
+        !*** ./src/toolbox.ts ***!
+        \************************/
+
+/*!************************!*\
+        !*** ./src/trigger.ts ***!
+        \************************/
+
+/*!*************************!*\
+        !*** ./src/Results.tsx ***!
+        \*************************/
+
+/*!*************************!*\
+        !*** ./src/SideBar.tsx ***!
+        \*************************/
+
+/*!*************************!*\
+        !*** ./src/question.ts ***!
+        \*************************/
+
+/*!*************************!*\
+        !*** ./src/settings.ts ***!
+        \*************************/
+
+/*!**************************!*\
+        !*** ./src/Notifier.tsx ***!
+        \**************************/
+
+/*!**************************!*\
+        !*** ./src/flowpanel.ts ***!
+        \**************************/
+
+/*!**************************!*\
+        !*** ./src/itemvalue.ts ***!
+        \**************************/
+
+/*!**************************!*\
+        !*** ./src/svgbundle.ts ***!
+        \**************************/
+
+/*!**************************!*\
+        !*** ./src/validator.ts ***!
+        \**************************/
+
+/*!***************************!*\
+        !*** ./src/LogoImage.tsx ***!
+        \***************************/
+
+/*!***************************!*\
+        !*** ./src/SvgBundle.tsx ***!
+        \***************************/
+
+/*!***************************!*\
+        !*** ./src/conditions.ts ***!
+        \***************************/
+
+/*!***************************!*\
+        !*** ./src/jsonobject.ts ***!
+        \***************************/
+
+/*!***************************!*\
+        !*** ./src/martixBase.ts ***!
+        \***************************/
+
+/*!***************************!*\
+        !*** ./src/react/row.tsx ***!
+        \***************************/
+
+/*!***************************!*\
+        !*** ./src/textWorker.ts ***!
+        \***************************/
+
+/*!****************************!*\
+        !*** ./src/Navigation.tsx ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/TabbedMenu.tsx ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/images/add.svg ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/react/page.tsx ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/surveytimer.ts ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/tabs/Embed.tsx ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/tabs/Logic.tsx ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/utils/index.ts ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/utils/popup.ts ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/utils/utils.ts ***!
+        \****************************/
+
+/*!*****************************!*\
+        !*** ./src/creator-base.ts ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/defaultTitle.ts ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/entries/core.ts ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/Left.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/More.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/edit.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/file.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/html.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/load.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/logo.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/redo.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/save.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/text.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/images/undo.svg ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/react/image.tsx ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/react/panel.tsx ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/survey-error.ts ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/surveyWindow.ts ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/tables/table.ts ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/utils/events.ts ***!
+        \*****************************/
+
+/*!******************************!*\
+        !*** ./src/ActionButton.tsx ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/ModelElement.tsx ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/PropertyGrid.tsx ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/StringEditor.tsx ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/adorners/Row.tsx ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/dragdrop/core.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/entries/index.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/images/Clear.svg ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/images/Right.svg ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/images/apply.svg ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/images/clear.svg ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/images/image.svg ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/images/panel.svg ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/images/theme.svg ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/question_file.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/question_html.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/question_text.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/stylesmanager.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/survey-helper.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/surveyStrings.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/tables/config.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/tabs/Preview.tsx ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/utils/actions.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/utils/devices.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/utils/helpers.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/utils/resizer.ts ***!
+        \******************************/
+
+/*!******************************!*\
+        !*** ./src/utils/tooltip.ts ***!
+        \******************************/
+
+/*!*******************************!*\
+        !*** ./src/PageNavigator.tsx ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/SurveyCreator.tsx ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/actions/action.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/adorners/Page.tsx ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/choicesRestful.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/components/row.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/element-helper.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/Delete.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/add-lg.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/export.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/import.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/matrix.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/rating.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/search.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/images/wizard.svg ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/question_empty.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/question_image.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/react/boolean.tsx ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/responsivity.scss ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/survey-element.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/surveyProgress.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/tables/columns.ts ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/tabs/Designer.tsx ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/utils/design.scss ***!
+        \*******************************/
+
+/*!*******************************!*\
+        !*** ./src/utils/layout.scss ***!
+        \*******************************/
+
+/*!********************************!*\
+        !*** ./src/ObjectSelector.tsx ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/adorners/Panel.tsx ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/calculatedValue.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/components/page.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/dxSurveyService.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/editable-object.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/entries/helpers.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/expressionItems.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/V2Check.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/boolean.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/checked.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/comment.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/default.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/preview.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/ranking.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/toolbox.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/images/visible.svg ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/question_custom.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/question_matrix.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/question_rating.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/question_tagbox.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/questionfactory.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/rendererFactory.ts ***!
+        \********************************/
+
+/*!*********************************!*\
+        !*** ./src/components/row.scss ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/conditionsParser.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/dragdrop/choices.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/entries/react-ui.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/functionsfactory.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/images/arrow-up.svg ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/images/checkbox.svg ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/images/download.svg ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/images/dropdown.svg ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/images/language.svg ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/images/no-image.svg ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/images/settings.svg ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/pages-controller.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/question_boolean.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/question_comment.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/question_ranking.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/questionnonvalue.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/surveyTimerModel.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/tables/tabulator.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/textPreProcessor.ts ***!
+        \*********************************/
+
+/*!*********************************!*\
+        !*** ./src/toolbox/Toolbox.tsx ***!
+        \*********************************/
+
+/*!**********************************!*\
+        !*** ./src/ItemValueWrapper.tsx ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/actions/container.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/components/page.scss ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/dropdownListModel.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/entries/tabulator.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/images/ArrowLeft.svg ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/images/add_16x16.svg ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/localizablestring.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/question_checkbox.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/question_dropdown.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/question_textbase.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/questionconverter.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/react/flow-panel.tsx ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/react/panel-base.tsx ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/selection-history.ts ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/tabs/Translation.tsx ***!
+        \**********************************/
+
+/*!**********************************!*\
+        !*** ./src/template-renderer.ts ***!
+        \**********************************/
+
+/*!***********************************!*\
+        !*** (webpack)/buildin/global.js ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/MatrixCellWrapper.tsx ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/QuestionLinkValue.tsx ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/adorners/Question.tsx ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/components/results.ts ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/editorLocalization.ts ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/ArrowRight.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/ChooseFile.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/Down_34x34.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/RemoveFile.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/arrow-down.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/arrow-left.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/edit_16x16.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/expression.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/fast-entry.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/next_16x16.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/images/radiogroup.svg ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/localization/dutch.ts ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/localization/farsi.ts ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/react/imagepicker.tsx ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/react/reactSurvey.tsx ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/react/tagbox-item.tsx ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** ./src/tables/tabulator.scss ***!
+        \***********************************/
+
+/*!************************************!*\
+        !*** ./src/components/notifier.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/components/question.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/entries/core-export.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/DefaultFile.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/ModernCheck.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/ModernRadio.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/arrow-right.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/clear_16x16.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/description.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/imagepicker.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/images/select-page.svg ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/localization/french.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/localizationManager.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/property-grid/index.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/question_baseselect.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/question_expression.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/question_radiogroup.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/react/signaturepad.tsx ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/tabs/JsonEditorAce.tsx ***!
+        \************************************/
+
+/*!*************************************!*\
+        !*** ./src/components/creator.scss ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/components/results.scss ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/components/simulator.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/components/tabs/test.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/defaultCss/cssmodern.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/dragdrop/matrix-rows.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/entries/chunks/model.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/delete_16x16.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/device-phone.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/expand-panel.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/expandDetail.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/expand_16x16.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/logic-expand.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/multipletext.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/paneldynamic.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/remove_16x16.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/images/signaturepad.svg ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/localization/english.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/localization/russian.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/multiSelectListModel.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/property-grid/values.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/question_buttongroup.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/question_imagepicker.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/react/boolean-radio.tsx ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/react/custom-widget.tsx ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/react/dropdown-base.tsx ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/react/dropdown-item.tsx ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/react/reactquestion.tsx ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/react/string-editor.tsx ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/react/string-viewer.tsx ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/tables/columnbuilder.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/toolbox/ToolboxItem.tsx ***!
+        \*************************************/
+
+/*!**************************************!*\
+        !*** ./src/components/item-value.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/components/link-value.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/components/notifier.scss ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/components/question.scss ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/components/tabs/embed.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/components/tabs/logic.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/conditionProcessValue.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/images/device-rotate.svg ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/images/device-tablet.svg ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/images/matrixdynamic.svg ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/questionCustomWidgets.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/question_multipletext.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/question_paneldynamic.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/question_signaturepad.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/react/element-header.tsx ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/surveyProgressButtons.ts ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/tabs/SurveySimulator.tsx ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./src/utils/cssClassBuilder.ts ***!
+        \**************************************/
+
+/*!***************************************!*\
+        !*** ./src/ImageItemValueWrapper.tsx ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/QuestionEditorContent.tsx ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/adorners/CellQuestion.tsx ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/components/matrix-cell.ts ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/components/simulator.scss ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/components/tabs/test.scss ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/defaultCss/cssstandard.ts ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/entries/react-ui-model.ts ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/ProgressButton.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/collapse-panel.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/collapseDetail.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/collapse_16x16.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/device-desktop.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/editing-finish.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/logic-collapse.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/matrixdropdown.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/previous_16x16.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/images/settings_16x16.svg ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/localization/norwegian.ts ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/property-grid/matrices.ts ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/property-grid/restfull.ts ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/question_matrixdynamic.ts ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/react/dropdown-select.tsx ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/react/element-factory.tsx ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/react/rating-dropdown.tsx ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/react/reacttimerpanel.tsx ***!
+        \***************************************/
+
+/*!****************************************!*\
+        !*** ./src/QuestionEmbeddedSurvey.tsx ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/adorners/QuestionImage.tsx ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/components/item-value.scss ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/components/link-value.scss ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/components/tabs/embed.scss ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/components/tabs/logic.scss ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/creator-theme/creator.scss ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/defaultCss/cssbootstrap.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/defaultCss/defaultV2Css.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/expressionToDisplayText.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/expressions/expressions.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/images/ArrowDown_34x34.svg ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/images/drop-down-arrow.svg ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/images/duplicate_16x16.svg ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/images/invisible-items.svg ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/localization/portuguese.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/plugins/undo-redo/index.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/property-grid/condition.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/question_matrixdropdown.ts ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/react/boolean-checkbox.tsx ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/react/reactsurveymodel.tsx ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/utils/dragOrClickHelper.ts ***!
+        \****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/process/browser.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/adorners/QuestionFooter.tsx ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/adorners/QuestionHeader.tsx ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/adorners/QuestionRating.tsx ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/adorners/QuestionWidget.tsx ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/components/matrix-cell.scss ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/components/string-editor.ts ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/components/tabs/designer.ts ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/components/tabs/logic-ui.ts ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/dragdrop/ranking-choices.ts ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/dragdrop/survey-elements.ts ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/images/ProgressButtonV2.svg ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/images/arrow-left_16x16.svg ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/images/description-hide.svg ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/property-grid/fast-entry.ts ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/react/reactSurveyWindow.tsx ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/tables/custom_jspdf_font.ts ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/tabs/JsonEditorTextarea.tsx ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/toolbox/AdaptiveToolbox.tsx ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/toolbox/ToolboxCategory.tsx ***!
+        \*****************************************/
+
+/*!******************************************!*\
+        !*** ./src/components/question-image.ts ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./src/images/arrow-right_16x16.svg ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./src/images/keyboard-dragging.svg ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./src/react/reactquestion_file.tsx ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./src/react/reactquestion_html.tsx ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./src/react/reactquestion_text.tsx ***!
+        \******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/actions/adaptive-container.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/adorners/QuestionDropdown.tsx ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/components/embedded-survey.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/components/question-rating.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/components/string-editor.scss ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/components/tabs/designer.scss ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/components/tabs/embed-json.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/components/tabs/logic-ui.scss ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/property-grid/cells-survey.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/question-editor/definition.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/question-editor/properties.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/react/components/skeleton.tsx ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/react/reactSurveyProgress.tsx ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/react/reactquestion_empty.tsx ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./src/utils/responsivity-manager.ts ***!
+        \*******************************************/
+
+/*!********************************************!*\
+        !*** ./src/components/image-item-value.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/components/question-image.scss ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/components/tabs/logic-items.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/components/tabs/logic-theme.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/components/tabs/logic-types.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/components/tabs/test-plugin.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/components/tabs/translation.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/images/V2DragElement_16x16.svg ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/images/drag-area-indicator.svg ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/images/expand-detail_16x16.svg ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/images/switch-active_16x16.svg ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/property-grid/values-survey.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/question_matrixdropdownbase.ts ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/react/components/list/list.tsx ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/react/reactquestion_custom.tsx ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/react/reactquestion_matrix.tsx ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/react/reactquestion_rating.tsx ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./src/react/reactquestion_tagbox.tsx ***!
+        \********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/components/header/logo-image.ts ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/components/question-dropdown.ts ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/components/question-rating.scss ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/components/tabs/logic-plugin.ts ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/components/toolbox/toolbox.scss ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/creator-responsivity-manager.ts ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/dropdownMultiSelectListModel.ts ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/expressions/expressionParser.ts ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/images sync nonrecursive \.svg$ ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/images/Arrow_downGREY_10x10.svg ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/react/components/brand-info.tsx ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/react/components/matrix/row.tsx ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/react/reactquestion_comment.tsx ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/react/reactquestion_element.tsx ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/react/reactquestion_factory.tsx ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./src/react/reactquestion_ranking.tsx ***!
+        \*********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/components/image-item-value.scss ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/components/tabs/translation.scss ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/images/ModernBooleanCheckInd.svg ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/images/collapse-detail_16x16.svg ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/images/drop-down-arrow_16x16.svg ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/images/switch-inactive_16x16.svg ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/property-grid/object-selector.ts ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/question_matrixdropdowncolumn.ts ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/react/components/popup/popup.tsx ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/react/reactquestion_checkbox.tsx ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/react/reactquestion_dropdown.tsx ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./src/tabs/TranslationLineSkeleton.tsx ***!
+        \**********************************************/
+
+/*!***********************************************!*\
+        !*** ./src/adorners/CellQuestionDropdown.tsx ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./src/components/header/logo-image.scss ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./src/components/question-dropdown.scss ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./src/components/side-bar/side-bar.scss ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./src/property-grid/condition-survey.ts ***!
+        \***********************************************/
+
+/*!************************************************!*\
+        !*** ./node_modules/timers-browserify/main.js ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/components/tabs/designer-plugin.ts ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/components/tabs/json-editor-ace.ts ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/components/toolbox/toolbox-tool.ts ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/defaultCss/cssbootstrapmaterial.ts ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/question_matrixdropdownrendered.ts ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/react/reactquestion_expression.tsx ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/react/reactquestion_radiogroup.tsx ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./src/tables/extensions/rowextensions.ts ***!
+        \************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/papaparse/papaparse.min.js ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./src/components/tabs/logic-expression.ts ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./src/property-grid/description-parser.ts ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./src/react/components/list/list-item.tsx ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./src/react/reactSurveyNavigationBase.tsx ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./src/react/reactquestion_buttongroup.tsx ***!
+        \*************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/components/tabs/json-editor-ace.scss ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/components/tabs/logic-item-editor.ts ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/components/tabs/translation-theme.ts ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/components/toolbox/toolbox-tool.scss ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/images/ModernBooleanCheckChecked.svg ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/images/expand-detail-light_16x16.svg ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/property-grid-theme/property-grid.ts ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/react/reactSurveyProgressButtons.tsx ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/react/reactquestion_multipletext.tsx ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/react/reactquestion_paneldynamic.tsx ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./src/tables/extensions/tableextensions.ts ***!
+        \**************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/setimmediate/setImmediate.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./src/components/side-bar/side-bar-model.ts ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./src/components/tabs/json-editor-plugin.ts ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./src/components/tabs/translation-plugin.ts ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./src/images/change-question-type_16x16.svg ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./src/react/reactquestion_matrixdynamic.tsx ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./src/tables/extensions/columnextensions.ts ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./src/tables/extensions/headerextensions.ts ***!
+        \***************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/components/tabs/logic-actions-model.ts ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/images/ModernBooleanCheckUnchecked.svg ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/images/collapse-detail-light_16x16.svg ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/plugins/undo-redo/undo-redo-manager.ts ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/property-grid-theme/property-grid.scss ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/react/components/svg-icon/svg-icon.tsx ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/react/reactquestion_matrixdropdown.tsx ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./src/tables/extensions/detailsextensions.ts ***!
+        \****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./src/components/tabbed-menu/tabbed-menu.scss ***!
+        \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./src/components/tabs/json-editor-textarea.ts ***!
+        \*****************************************************/
+
+/*!******************************************************!*\
+        !*** ./src/react/components/title/title-actions.tsx ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./src/react/components/title/title-content.tsx ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./src/react/components/title/title-element.tsx ***!
+        \******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./src/components/action-container-view-model.ts ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./src/components/side-bar/side-bar-tab-model.ts ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./src/components/tabs/json-editor-textarea.scss ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./src/plugins/undo-redo/undo-redo-controller.ts ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./src/property-grid/property-grid-view-model.ts ***!
+        \*******************************************************/
+
+/*!********************************************************!*\
+        !*** ./src/react/components/action-bar/action-bar.tsx ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./src/react/reactquestion_matrixdropdownbase.tsx ***!
+        \********************************************************/
+
+/*!*********************************************************!*\
+        !*** ./src/components/page-navigator/page-navigator.ts ***!
+        \*********************************************************/
+
+/*!**********************************************************!*\
+        !*** ./src/components/tabbed-menu/tabbed-menu-item.scss ***!
+        \**********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/signature_pad/dist/signature_pad.mjs ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./src/components/page-navigator/page-navigator.scss ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./src/components/property-panel/property-panel.scss ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./src/react/components/survey-header/logo-image.tsx ***!
+        \***********************************************************/
+
+/*!*************************************************************!*\
+        !*** ./src/react/components/action-bar/action-bar-item.tsx ***!
+        \*************************************************************/
+
+/*!**************************************************************!*\
+        !*** ./src/react/components/survey-header/survey-header.tsx ***!
+        \**************************************************************/
+
+/*!****************************************************************!*\
+        !*** ./src/components/page-navigator/page-navigator-item.scss ***!
+        \****************************************************************/
+
+/*!****************************************************************!*\
+        !*** ./src/components/property-panel/property-panel-item.scss ***!
+        \****************************************************************/
+
+/*!******************************************************************!*\
+        !*** ./src/react/components/action-bar/action-bar-separator.tsx ***!
+        \******************************************************************/
+
+/*!*******************************************************************!*\
+        !*** ./src/react/components/survey-actions/survey-nav-button.tsx ***!
+        \*******************************************************************/
+
+/*!**********************************************************************!*\
+        !*** ./src/react/components/action-bar/action-bar-item-dropdown.tsx ***!
+        \**********************************************************************/
+
+/*!****************************************************************************!*\
+        !*** ./src/react/components/paneldynamic-actions/paneldynamic-add-btn.tsx ***!
+        \****************************************************************************/
+
+/*!*****************************************************************************!*\
+        !*** ./src/react/components/matrix-actions/detail-button/detail-button.tsx ***!
+        \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+        !*** ./src/react/components/matrix-actions/remove-button/remove-button.tsx ***!
+        \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+        !*** ./src/react/components/paneldynamic-actions/paneldynamic-next-btn.tsx ***!
+        \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+        !*** ./src/react/components/paneldynamic-actions/paneldynamic-prev-btn.tsx ***!
+        \*****************************************************************************/
+
+/*!*******************************************************************************!*\
+        !*** ./src/react/components/matrix-actions/drag-drop-icon/drag-drop-icon.tsx ***!
+        \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+        !*** ./src/react/components/paneldynamic-actions/paneldynamic-remove-btn.tsx ***!
+        \*******************************************************************************/
+
+/*!**********************************************************************************!*\
+        !*** ./src/react/components/paneldynamic-actions/paneldynamic-progress-text.tsx ***!
+        \**********************************************************************************/
+
+/*!**************************************************************************************!*\
+        !*** external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"} ***!
+        \**************************************************************************************/
+
+/*!*********************************************************************************************!*\
+        !*** ./node_modules/html-loader?interpolate!./node_modules/val-loader!./src/svgbundle.html ***!
+        \*********************************************************************************************/
+
+/*!*****************************************************************************************************!*\
+        !*** external {"root":"ReactDOM","commonjs2":"react-dom","commonjs":"react-dom","amd":"react-dom"} ***!
+        \*****************************************************************************************************/
+
+/*!*********************************************************************************************************!*\
+        !*** external {"root":"Survey","commonjs2":"survey-core","commonjs":"survey-core","amd":"survey-core"} ***!
+        \*********************************************************************************************************/
+
+/*!**************************************************************************************************************************!*\
+        !*** external {"root":"SurveyReact","commonjs2":"survey-react-ui","commonjs":"survey-react-ui","amd":"survey-react-ui"} ***!
+        \**************************************************************************************************************************/
+
+/*!***************************************************************************************************************************!*\
+        !*** external {"root":"Tabulator","commonjs2":"tabulator-tables","commonjs":"tabulator-tables","amd":"tabulator-tables"} ***!
+        \***************************************************************************************************************************/
+
+/*!********************************************************************************************************************************************!*\
+        !*** external {"root":"SurveyCreatorCore","commonjs2":"survey-creator-core","commonjs":"survey-creator-core","amd":"survey-creator-core"} ***!
+        \********************************************************************************************************************************************/
+
+/**
+ * @license React
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * React Router DOM v6.3.0
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+
+/**
+ * React Router v6.3.0
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
