@@ -2,9 +2,9 @@
   "name": "surveyjs-nodejs",
   "version": "0.1.0",
   "description": "Sample NodeJS backend for SurveyJS: Survey Library and Survey Creator",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "devStart": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -28,8 +28,13 @@
   "homepage": "https://github.com/surveyjs/surveyjs-nodejs#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "pg-promise": "^7.3.2"
+    "mongoose": "^6.5.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.2",
+    "nodemon": "^2.0.19"
   }
 }
