@@ -2,7 +2,7 @@
 
 This demo shows how to integrate [SurveyJS](https://surveyjs.io/) components with a NodeJS backend.
 
-[View Demo Online](https://surveyjs-nodejs.herokuapp.com/)
+[View Demo Online](https://surveyjs-nodejs.azurewebsites.net/)
 
 ## Disclaimer
 
