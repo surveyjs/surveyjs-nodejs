@@ -1,6 +1,6 @@
 /* @license
 Papa Parse
-v5.5.2
+v5.5.3
 https://github.com/mholt/PapaParse
 License: MIT
 */
@@ -16,20 +16,20 @@ License: MIT
  */
 
 /*!
- * SurveyJS Creator React v2.0.0
+ * SurveyJS Creator React v2.3.2
  * (c) 2015-2025 Devsoft Baltic OÜ - http://surveyjs.io/
  * Github: https://github.com/surveyjs/survey-creator
  * License: https://surveyjs.io/Licenses#SurveyCreator
  */
 
 /*!
- * surveyjs - Survey JavaScript library v2.0.0
+ * surveyjs - Survey JavaScript library v2.3.2
  * Copyright (c) 2015-2025 Devsoft Baltic OÜ  - http://surveyjs.io/
  * License: MIT (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /*!
- * surveyjs - SurveyJS Dashboard library v2.0.0
+ * surveyjs - SurveyJS Dashboard library v2.3.2
  * Copyright (c) 2015-2025 Devsoft Baltic OÜ  - http://surveyjs.io/
  * License: MIT (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -147,6 +147,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../../src/questionCustomWidgets */
 
+/*! ../../src/questionSingleInputSummary */
+
 /*! ../../src/question_baseselect */
 
 /*! ../../src/question_boolean */
@@ -197,6 +199,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../../src/question_signaturepad */
 
+/*! ../../src/question_slider */
+
 /*! ../../src/question_tagbox */
 
 /*! ../../src/question_text */
@@ -208,6 +212,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../../src/questionnonvalue */
 
 /*! ../../src/rendererFactory */
+
+/*! ../../src/scroll */
 
 /*! ../../src/settings */
 
@@ -263,6 +269,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../analytics-localization/farsi */
 
+/*! ../analytics-localization/finnish */
+
 /*! ../analytics-localization/french */
 
 /*! ../analytics-localization/german */
@@ -280,6 +288,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../analytics-localization/russian */
 
 /*! ../analytics-localization/spanish */
+
+/*! ../analytics-localization/swedish */
 
 /*! ../base */
 
@@ -336,6 +346,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../utils/index */
 
 /*! ../utils/responsivity-manager */
+
+/*! ../utils/taskmanager */
 
 /*! ../utils/utils */
 
@@ -467,6 +479,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./questionCustomWidgets */
 
+/*! ./questionSingleInputSummary */
+
 /*! ./question_baseselect */
 
 /*! ./question_checkbox */
@@ -587,6 +601,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!***********************!*\
         !*** ./src/header.ts ***!
+        \***********************/
+
+/*!***********************!*\
+        !*** ./src/scroll.ts ***!
         \***********************/
 
 /*!***********************!*\
@@ -799,6 +817,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!********************************!*\
         !*** ./src/question_rating.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/question_slider.ts ***!
         \********************************/
 
 /*!********************************!*\
@@ -1090,6 +1112,10 @@ PERFORMANCE OF THIS SOFTWARE.
         \*******************************************/
 
 /*!*******************************************!*\
+        !*** ./src/questionSingleInputSummary.ts ***!
+        \*******************************************/
+
+/*!*******************************************!*\
         !*** ./src/utils/responsivity-manager.ts ***!
         \*******************************************/
 
@@ -1138,6 +1164,10 @@ PERFORMANCE OF THIS SOFTWARE.
         \***********************************************/
 
 /*!***********************************************!*\
+        !*** ./src/analytics-localization/finnish.ts ***!
+        \***********************************************/
+
+/*!***********************************************!*\
         !*** ./src/analytics-localization/italian.ts ***!
         \***********************************************/
 
@@ -1147,6 +1177,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!***********************************************!*\
         !*** ./src/analytics-localization/spanish.ts ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./src/analytics-localization/swedish.ts ***!
         \***********************************************/
 
 /*!************************************************!*\

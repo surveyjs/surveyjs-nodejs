@@ -1,1 +1,8 @@
-https://creativecommons.org/licenses/by-nc/3.0/
+This demo illustrates a basic integration setup between a Node.js backend and a sample React application that includes the SurveyJS Survey Creator and Form Library components.
+
+Please note that the Survey Creator component is proprietary software and requires a developer licence to be integrated and used in your own application.
+
+For full details, please refer to the SurveyJS Licensing FAQ and the SurveyJS End-User Licence Agreement (EULA):
+
+- https://surveyjs.io/faq#licensing
+- https://surveyjs.io/Developer-License-Agreement.pdf
