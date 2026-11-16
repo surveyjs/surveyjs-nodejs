@@ -1,5 +1,5 @@
 0c9231892584507184ff85d79d07ec6637d1d8150d3e83364e11b93b9d066275  CONTRACT
-26536eecc82ee040ccf1600518397311a206a6e96500a4dd620d622217ca33f3  browser-tests/ai-translation.spec.js
+4859bef1c1a8bc9a542f429178695e24ed3852b00d13d841ff915f927d41b653  browser-tests/ai-translation.spec.js
 957a40044c34a444e6723430599d63dbb21706f69c392c0fe8569f4eeb44dbf5  browser-tests/async-functions.spec.js
 f567d381ffaa1521da81432e67ced1ca08ab0eca0d808c225a23c04ef5f66363  browser-tests/choices-from-web.spec.js
 18f54888968a62f55565906d9e822a10be251db975b1ca55ad962848361c064e  browser-tests/creator-load-save.spec.js

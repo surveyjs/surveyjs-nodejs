@@ -11,9 +11,14 @@ async function openFrenchTranslation(page) {
     return page.locator('.st-translation-dialog');
 }
 
+// Below 1200px Creator shows the panel as a flyout and closes it itself when #creator resizes (an error line above it
+// appears or goes away), so the panel can close between isVisible() and click(): retry until it is hidden
 async function hideLanguages(page) {
     const hide = page.getByRole('button', { name: 'Hide Panel', exact: true });
-    if (await hide.isVisible()) await hide.click();
+    await expect(async () => {
+        if (await hide.isVisible()) await hide.click({ timeout: 1000 });
+        await expect(hide).toBeHidden({ timeout: 1000 });
+    }).toPass();
 }
 
 async function expectFrenchTranslation(dialog) {
