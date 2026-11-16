@@ -1,0 +1,47 @@
+{#- pages.js passes claims: the ten latest claim responses, each with its label and pretty-printed JSON #}
+{% extends "layouts/example.njk" %}
+{% set hasActions = true %}
+
+{% block description %}
+    <p>Generate PDFs on the server for archives, email attachments, or downloads. Use a form schema and optional saved answers to produce a document without opening a browser.</p>
+{% endblock %}
+
+{% block try %}
+    <li>Press <strong>Open PDF</strong> beside a claim to view the filled form in a new tab or <strong>Download PDF</strong> to save a copy.</li>
+    <li>The backend generates the PDF from the form schema and saved answers. Open <strong>Requests</strong> to inspect the PDF request.</li>
+    <li>Submit a claim in the <a href="/examples/relational-storage" target="_blank" rel="noopener">Use Relational Storage</a> demo, then reload this page to include it in the ten most recent claims.</li>
+{% endblock %}
+
+{% block actions %}
+    <p id="pdf-feedback" hidden role="status" aria-live="polite" class="m-0 text-sm text-gray-600 data-[kind=error]:text-red-700"></p>
+{% endblock %}
+
+{% block form %}
+    <ul class="m-0 list-none divide-y divide-gray-100 p-0">
+        {% for claim in claims %}
+            <li data-claim-row class="px-4 py-4 text-sm">
+                <div class="flex flex-wrap items-start justify-between gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_auto]">
+                    <details class="min-w-0 flex-1 basis-64 lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:grid lg:grid-cols-subgrid lg:[&::details-content]:col-span-2">
+                        <summary class="cursor-pointer break-words py-2 font-semibold lg:col-start-1">Claim #{{ claim.id }} · {{ claim.label }}</summary>
+                        <pre class="mt-3 max-h-56 overflow-auto rounded bg-gray-50 p-3 text-xs">{{ claim.json }}</pre>
+                    </details>
+                    <div class="flex flex-wrap gap-2 lg:col-start-2 lg:row-start-1">
+                        <button type="button" data-claim="{{ claim.id }}" data-action="open" class="box-border inline-flex h-9 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-sjs-dark bg-sjs-dark px-3 text-sm font-semibold whitespace-nowrap text-white [font-family:inherit] transition-colors enabled:hover:bg-sjs-dark/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sjs-dark disabled:cursor-wait disabled:opacity-50">
+                            Open PDF
+                            <svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                        </button>
+                        <button type="button" data-claim="{{ claim.id }}" data-action="download" class="box-border inline-flex h-9 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 text-sm font-semibold whitespace-nowrap text-gray-700 [font-family:inherit] transition-colors enabled:hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sjs-dark disabled:cursor-wait disabled:opacity-50">
+                            <svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4"/></svg>
+                            Download PDF
+                        </button>
+                    </div>
+                </div>
+            </li>
+        {% else %}
+            <li class="px-4 py-3 text-sm text-gray-500">
+                <span class="block">No claims</span>
+                <a href="/examples/relational-storage" class="mt-2 inline-block text-sjs-dark underline">Submit a claim</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,38 @@
+{
+  "title": {
+    "default": "Workshop registration",
+    "fr": "Inscription à l'atelier"
+  },
+  "description": "Choose a session and leave your contact details",
+  "elements": [
+    {
+      "type": "text",
+      "name": "full_name",
+      "title": "Full name",
+      "isRequired": true
+    },
+    {
+      "type": "text",
+      "name": "email",
+      "title": "Email address",
+      "inputType": "email",
+      "isRequired": true
+    },
+    {
+      "type": "radiogroup",
+      "name": "session",
+      "title": "Preferred session",
+      "isRequired": true,
+      "choices": [
+        {
+          "value": "morning",
+          "text": "Morning"
+        },
+        {
+          "value": "afternoon",
+          "text": "Afternoon"
+        }
+      ]
+    }
+  ]
+}

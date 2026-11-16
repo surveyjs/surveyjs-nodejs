@@ -1,0 +1,165 @@
+/* The page UI's design for every platform: the design tokens (a Tailwind v4 @theme static block), the base
+   rules, the scrollbars, the Code panel's highlights and the catalog's marquee. Each platform's Tailwind entry
+   imports tailwindcss/theme.css (layer(theme) theme(static)) and tailwindcss/utilities.css, then this file. */
+
+/* The SurveyJS site's design (Figma "General", page "Backend Integration examples page + demo"), for every page:
+   Lato, neutral grays and the SurveyJS colours. The forms take the same values through the adapter. */
+@theme static {
+    --font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Tailwind's gray scale, made neutral: the design's grays where it has one, Tailwind's neutral scale
+       between them. Pages styled with gray-* utilities take the design's grays with no markup change. */
+    --color-gray-50: #f7f7f7;   /* general/backcolor-gray */
+    --color-gray-100: #efefef;  /* general/backcolor-gray-2 */
+    --color-gray-200: #e5e5e5;  /* general/line */
+    --color-gray-300: #d4d4d4;  /* the SurveyJS border, sjs2/color/border/basic/secondary */
+    --color-gray-400: #a3a3a3;
+    --color-gray-500: #737373;  /* not general/forecolor-50 (#8a8a8a): 3.4:1 on white is too light for small text */
+    --color-gray-600: #505050;  /* general/forecolor-75 */
+    --color-gray-700: #404040;
+    --color-gray-800: #262626;
+    --color-gray-900: #161616;  /* general/forecolor */
+    --color-gray-950: #0a0a0a;
+
+    /* The design's own colours, under its names */
+    --color-sjs: #19b394;       /* primary/primary, special/green */
+    --color-sjs-dark: #12957a;
+    --color-sjs-10: #e7f7f4;    /* special/green-10 */
+    --color-sjs-dim: #169d81;   /* primary/primary-dim */
+    --color-sjs-15: #ddf4ef;    /* primary/primary-15 */
+    --color-sjs-15-dim: #d1f0e9; /* primary/primary-15-dim */
+    --color-sjs-fg: var(--color-gray-900);          /* general/forecolor */
+    --color-sjs-fg-75: var(--color-gray-600);       /* general/forecolor-75 */
+    --color-sjs-fg-50: #8a8a8a;                     /* general/forecolor-50: large text only (24px and up) */
+    --color-sjs-line: var(--color-gray-200);        /* general/line */
+    --color-sjs-back-gray: var(--color-gray-50);    /* general/backcolor-gray */
+    --color-sjs-back-gray-2: var(--color-gray-100); /* general/backcolor-gray-2 */
+    --color-sjs-border: #dedede;                    /* border-effect/default: the outline of white buttons */
+    --color-sjs-yellow: #ff9814;    /* special/yellow, secondary/secondary */
+    --color-sjs-yellow-10: #fff4e7; /* special/yellow-10 */
+    --color-sjs-violet: #8b76f9;    /* special/violet */
+    --color-sjs-violet-10: #f3f1fe; /* special/violet-10 */
+    --color-sjs-red: #e50a3e;       /* special/red */
+    --color-sjs-red-15: #fbdae2;    /* special/red-15 */
+    --color-sjs-scrollbar: rgb(17 16 20 / 0.15);    /* sjs2/color/utility/scrollbar: the thumb */
+
+    /* The design's type styles: article/titles/* and article/paragraphs/* */
+    --text-sjs-title-2xl: 4rem;     /* titles/xx-large, 64/72 */
+    --text-sjs-title-2xl--line-height: 4.5rem;
+    --text-sjs-title-xl: 3rem;      /* titles/x-large, 48/56 */
+    --text-sjs-title-xl--line-height: 3.5rem;
+    --text-sjs-title-lg: 2rem;      /* titles/large, 32/40 */
+    --text-sjs-title-lg--line-height: 2.5rem;
+    --text-sjs-title-sm: 1.25rem;   /* titles/small, 20/28 */
+    --text-sjs-title-sm--line-height: 1.75rem;
+    --text-sjs-para-lg: 1.5rem;     /* paragraphs/large, 24/36 */
+    --text-sjs-para-lg--line-height: 2.25rem;
+    --text-sjs-para-md: 1.25rem;    /* paragraphs/medium, 20/28 */
+    --text-sjs-para-md--line-height: 1.75rem;
+    --text-sjs-para-sm: 1rem;       /* paragraphs/small, 16/28 */
+    --text-sjs-para-sm--line-height: 1.75rem;
+    --text-sjs-para-xs: 0.875rem;   /* paragraphs/x-small, 14/24 */
+    --text-sjs-para-xs--line-height: 1.5rem;
+
+    /* The design's content column: 1080px between 160px gutters at 1400 */
+    --container-sjs-content: 67.5rem;
+
+    /* The catalog's logo row: the track holds the logos twice, so moving it by half loops without a jump */
+    --animate-sjs-marquee: sjs-marquee 40s linear infinite;
+    @keyframes sjs-marquee {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* The adapter's host contract (survey-core/themes/adapters/tailwind4.css): the form's brand, text and
+       error colour come from the values above. Muted text, borders and inputs follow the gray scale through
+       the adapter's Tailwind defaults (gray-500, gray-200, gray-300). */
+    --color-primary: var(--color-sjs);
+    --color-primary-hover: var(--color-sjs-dark);
+    --color-foreground: var(--color-gray-800);
+    --color-destructive: var(--color-sjs-red);
+}
+
+/* The few resets this app's own markup needs; SurveyJS markup is left alone */
+@layer base {
+    body {
+        margin: 0;
+    }
+    [hidden]:where(:not([hidden='until-found'])) {
+        display: none !important;
+    }
+    h1, h2, h3, figure, pre {
+        margin: 0;
+    }
+    /* The side panel as a full-screen sheet (below 768px) covers the page: the page doesn't scroll under it.
+       shared/ui/page-tabs.js sets the attribute on <html>. */
+    [data-sheet-open] {
+        overflow: hidden;
+    }
+}
+
+/* Figma "scrollbar" (General, node 6467:6435) on everything that scrolls in a step page's side panel: the
+   description, the requests log and its request and response bodies, the read-outs and the stored data.
+   12px across, a 4px round thumb 4px in from the edges (sjs2/color/utility/scrollbar), no track.
+   The tab row is left out: it hides its native scrollbar and draws its own thumb (shared/ui/page-tabs.js). */
+/* The page's own scrollbar (html) gets the same: the demo and code views scroll with the window. */
+html::-webkit-scrollbar,
+#side-panel :not(#panel-tabs)::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+html::-webkit-scrollbar-track,
+html::-webkit-scrollbar-corner,
+#side-panel :not(#panel-tabs)::-webkit-scrollbar-track,
+#side-panel :not(#panel-tabs)::-webkit-scrollbar-corner {
+    background: transparent;
+}
+html::-webkit-scrollbar-thumb,
+#side-panel :not(#panel-tabs)::-webkit-scrollbar-thumb {
+    border: 4px solid transparent;
+    border-radius: 9999px;
+    background: var(--color-sjs-scrollbar) padding-box;
+}
+/* Firefox has no ::-webkit-scrollbar: the closest it allows is a thin bar in the same colour.
+   Only there, since Chromium ignores the rules above once scrollbar-width or scrollbar-color is set. */
+@supports not selector(::-webkit-scrollbar) {
+    html,
+    #side-panel :not(#panel-tabs) {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-sjs-scrollbar) transparent;
+    }
+}
+
+/* Demo only: the highlights in a step page's Under the hood panel (shared/ui/page-tabs.js). Scoped to #hood: the catalog has none. */
+#hood [data-hood-current='true'] {
+    box-shadow: inset 3px 0 0 var(--color-sjs);
+    background-color: color-mix(in srgb, var(--color-sjs) 9%, white);
+}
+#hood [data-hood-current='true'][data-state='error'] {
+    box-shadow: inset 3px 0 0 var(--color-red-500);
+    background-color: var(--color-red-100);
+}
+#hood [data-hood-changed='true'] > pre {
+    box-shadow: inset 3px 0 0 var(--color-sjs);
+    background-color: color-mix(in srgb, var(--color-sjs) 9%, white);
+}
+#hood mark {
+    border-radius: 2px;
+    background-color: color-mix(in srgb, var(--color-sjs) 22%, transparent);
+    color: inherit;
+}
+#hood [data-hood-flash] {
+    animation: hood-flash 1.4s ease-out;
+}
+@keyframes hood-flash {
+    from {
+        background-color: color-mix(in srgb, var(--color-sjs) 38%, white);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #hood [data-hood-flash] {
+        animation: none;
+    }
+}

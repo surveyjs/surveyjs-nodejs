@@ -1,0 +1,31 @@
+{
+  "title": "Customer support",
+  "description": "Tell us how we can help",
+  "elements": [
+    {
+      "type": "image",
+      "name": "help_image",
+      "imageLink": "/shared/samples/support-help.svg",
+      "altText": "Support resources",
+      "imageHeight": "180",
+      "imageWidth": "100%"
+    },
+    {
+      "type": "dropdown",
+      "name": "product",
+      "title": "Product",
+      "choices": [
+        "Form Library",
+        "Survey Creator",
+        "Dashboard",
+        "PDF Generator"
+      ]
+    },
+    {
+      "type": "comment",
+      "name": "issue",
+      "title": "How can we help?",
+      "isRequired": true
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{#- Demo only: the frame around every example page (shared/ui/page-tabs.js). A sticky header, then two columns:
+     a side panel with Description (what to try), Requests and Data (what the server got and kept), and the main
+     column with Demo (the action row and the component) and Code (the code that ran). From 768px the panel is docked
+     on the left; narrower, it opens as a full-screen sheet. The explanation is in the docs; the integration code is
+     in the example's files.
+
+     Blade's @hasSection has no Nunjucks equivalent: a child template sets these at its top level instead.
+       theme       survey (default), creator or dashboard: which SurveyJS stylesheets the page loads
+       hasActions  the page fills the actions block (the action row also shows when the page offers a user switch)
+       hasAbout    the page fills the about block -#}
+{%- set theme = theme or "survey" -%}
+{%- set showActions = users.length > 1 or hasActions -%}
+{#- The tab buttons of both columns (design 02's header tabs) -#}
+{%- set tabClass = "flex h-11 shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap border-0 bg-transparent px-3.5 text-[15px] font-semibold text-gray-600 shadow-[inset_0_-3px_0_transparent] [font-family:inherit] hover:text-gray-900 aria-selected:text-gray-900 aria-selected:shadow-[inset_0_-3px_0_var(--color-sjs)]" -%}
+{%- set panelTabs = [["description", "Description"], ["requests", "Requests"], ["stored", "Data"]] -%}
+{%- set mainTabs = [["demo", "Demo"], ["code", "Code"]] -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ step.title }} · SurveyJS + Express</title>
+    <link rel="canonical" href="{{ canonical }}">
+    <script>window.SURVEYJS_PAGE = {{ page | script_json }};</script>
+    {% block head %}{% endblock %}
+    <script type="importmap">{{ importMap | script_json }}</script>
+    {% for font in fonts %}<link rel="preload" as="font" type="font/woff2" href="{{ font }}" crossorigin>
+    {% endfor %}<link rel="stylesheet" href="/shared/ui/fonts.css">
+    <link rel="stylesheet" href="/css/site.css">
+    {% for href in styles[theme] %}<link rel="stylesheet" href="{{ href }}">
+    {% endfor %}
+    {%- if theme == "dashboard" %}
+    {#- The adapter sets the font only inside .sjs-theme-overrides, which the Dashboard never gets: without this rule its
+        controls fall back to Open Sans and its chart labels to a serif font #}
+    <style>.sd-theme-root { --sjs2-typography-font-family-text: var(--font-sans); }</style>
+    {%- endif %}
+    <link rel="stylesheet" href="{{ highlightTheme }}">
+    <script type="module" src="/shared/ui/code-highlight.js"></script>
+    <script type="module" src="/shared/ui/page-tabs.js"></script>
+    <script type="module" src="/{{ step.files.client }}"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased">
+<header id="page-header" class="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="flex min-w-0 items-center gap-3 px-4 py-2.5 md:px-5 lg:px-6">
+        <a href="/" class="flex shrink-0 items-center gap-2 font-semibold text-gray-900 no-underline">
+            <span class="rounded bg-sjs px-1.5 py-0.5 text-sm font-bold text-white">SurveyJS</span>
+            <span class="max-lg:hidden">{{ title }}</span>
+        </a>
+        <span aria-hidden="true" class="text-gray-300 max-lg:hidden">/</span>
+        <div class="flex min-w-0 flex-1 flex-wrap items-center gap-x-3 gap-y-2">
+            <h1 class="min-w-0 max-w-full truncate text-base font-semibold text-gray-900">{{ step.title }}</h1>
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-lg px-2 py-1 text-xs font-semibold whitespace-nowrap {{ 'bg-sjs-yellow-10 text-sjs-yellow' if commercial else 'bg-sjs-10 text-sjs' }}">{{ 'Commercial' if commercial else 'MIT' }}</span>
+                {% if needsAi %}
+                    <span class="rounded-lg bg-sjs-violet-10 px-2 py-1 text-xs font-semibold whitespace-nowrap text-sjs-violet">AI Provider Required</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if joinFailed %}
+        <div class="border-t border-amber-200 bg-amber-50 px-4 py-1.5 text-center text-xs text-amber-900 sm:px-6">
+            <strong>That invite link has expired, so you have a fresh copy of the demo data.</strong>
+        </div>
+    {% endif %}
+</header>
+
+<div class="flex">
+    {#- THE SIDE PANEL: docked from 768px (open by default), a full-screen sheet below (closed by default).
+         Its three tab panels scroll inside it. #}
+    <aside id="side-panel" aria-label="Description, requests and stored data"
+           class="box-border flex flex-col bg-white max-md:fixed max-md:inset-0 max-md:z-50 max-md:hidden max-md:data-[sheet]:flex md:sticky md:top-[var(--header-h)] md:h-[calc(100dvh-var(--header-h))] md:w-[320px] md:shrink-0 md:self-start md:border-r md:border-gray-200 lg:w-[400px]">
+        <div class="flex h-10 shrink-0 items-center justify-end px-2 md:hidden">
+            <button type="button" id="panel-close" aria-label="Close the panel"
+                    class="flex h-8 cursor-pointer items-center gap-1 rounded-md border-0 bg-transparent px-2 text-sm font-semibold text-gray-600 [font-family:inherit] hover:bg-gray-100 hover:text-gray-900 aria-expanded:bg-gray-100">
+                <svg aria-hidden="true" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+            </button>
+        </div>
+
+        {#- The tabs never wrap: the row scrolls, and page-tabs.js sets data-fade-start / data-fade-end where tabs are cut
+             and shows the scrollbar's thumb #}
+        <div class="relative shrink-0 border-b border-gray-200">
+            <div id="panel-tabs" role="tablist" aria-label="Description, requests and stored data"
+                 class="flex scroll-px-4 items-stretch gap-3 overflow-x-auto px-4 py-2 [scrollbar-width:none] md:px-5 lg:px-6 data-[fade-start]:[mask-image:linear-gradient(to_right,transparent,#000_16px)] data-[fade-end]:[mask-image:linear-gradient(to_left,transparent,#000_16px)] data-[fade-start]:data-[fade-end]:[mask-image:linear-gradient(to_right,transparent,#000_16px,#000_calc(100%-16px),transparent)]">
+                {% for key, label in panelTabs %}
+                    <button type="button" role="tab" id="panel-tab-{{ key }}" data-panel-tab="{{ key }}" aria-controls="panel-{{ key }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}" class="{{ tabClass }}">
+                        {{ label }}
+                        {% if key == "requests" %}
+                            {#- Figma .counter, style=positive / style=negative #}
+                            <span id="requests-count" hidden data-kind="ok" class="box-border inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-sjs-15 px-[5px] py-px text-sm/4 font-semibold whitespace-nowrap text-sjs tabular-nums data-[kind=error]:bg-sjs-red-15 data-[kind=error]:text-sjs-red"></span>
+                        {% elif key == "stored" %}
+                            {#- Figma .counter, size=xsmall #}
+                            <span id="stored-dot" hidden class="size-1.5 rounded-full bg-sjs"></span>
+                        {% endif %}
+                    </button>
+                {% endfor %}
+            </div>
+            {#- Figma "scrollbar": a 4px round thumb 4px in from the sides, with no track. The native one is hidden: it
+                 would make the row taller when cut. The thumb fills the 8px under the tabs, which is the area you drag; page-tabs.js sizes and moves it. #}
+            <div id="panel-tabs-thumb" aria-hidden="true" hidden
+                 class="absolute bottom-0 left-1 h-2 cursor-pointer touch-none before:absolute before:inset-x-0 before:top-0.5 before:h-1 before:rounded-full before:bg-sjs-scrollbar before:content-['']"></div>
+        </div>
+
+        {#- shared/client/host.js fills #notes, #requests and #stored by id and by the templates below, also while hidden #}
+        <div id="hood" class="flex min-h-0 flex-1 flex-col">
+            {#- DESCRIPTION: the reading matter #}
+            <div id="panel-description" role="tabpanel" aria-labelledby="panel-tab-description" class="min-h-0 flex-1 space-y-6 overflow-y-auto px-4 pb-12 pt-8 md:px-5 lg:px-6">
+                <div class="space-y-2">
+                    <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">{{ step.title }}</h2>
+                    <div class="space-y-2">{% block description %}{% endblock %}</div>
+                    <p><a class="text-sjs-dark underline" href="{{ stepDocs }}" target="_blank">Documentation</a></p>
+                </div>
+
+                <section class="space-y-3 rounded-lg border border-gray-200 bg-white p-5">
+                    <h3 class="text-sm font-bold uppercase tracking-wide text-gray-600">Try this</h3>
+                    <ol id="try" class="m-0 list-decimal space-y-2 pl-5 text-[15px] [&_a]:text-sjs-dark [&_a]:underline [&_code]:rounded [&_code]:bg-gray-100 [&_code]:px-1 [&_code]:text-[13px]">
+                        {% block try %}{% endblock %}
+                    </ol>
+                </section>
+
+                {% if hasAbout %}
+                    <div class="space-y-2 text-sm text-gray-600">{% block about %}{% endblock %}</div>
+                {% endif %}
+
+                {% if commercial %}
+                    <p class="text-sm text-gray-600">SurveyJS commercial products require a developer license for production use. See <a class="text-sjs-dark underline" href="https://surveyjs.io/licensing" target="_blank" rel="noopener">SurveyJS Licensing</a> for details.</p>
+                {% endif %}
+
+                {#- Which checkout answered: from git at start, or SURVEYJS_BUILD at deploy (README: Run a branch or a PR) #}
+                {% if build %}
+                    <p class="text-xs text-gray-400">Running {{ build }}</p>
+                {% endif %}
+            </div>
+
+            {#- REQUESTS: read-outs and notes (bounded, the newest note on top), then the log, which scrolls #}
+            <section id="panel-requests" role="tabpanel" aria-labelledby="panel-tab-requests" hidden class="flex min-h-0 flex-1 flex-col text-sm">
+                {#- Hidden until the first note: page-tabs.js shows it then (lint-definition's findings come with one) #}
+                <div id="readouts" hidden class="max-h-[10rem] shrink-0 space-y-1.5 overflow-y-auto border-b border-gray-200 p-3 max-sm:max-h-[8rem]">
+                    {% block readouts %}{% endblock %}
+                    <ul id="notes" hidden class="m-0 list-none space-y-1 p-0 text-sm"></ul>
+                </div>
+                <div class="flex shrink-0 items-center justify-end gap-3 border-b border-gray-100 px-4 py-1.5 text-xs text-gray-500">
+                    <label class="flex items-center gap-1"><input id="show-demo-requests" type="checkbox">Show demo requests</label>
+                    <button id="clear-requests" type="button" class="cursor-pointer border-0 bg-transparent p-0 text-xs text-gray-500 underline [font-family:inherit]">Clear</button>
+                </div>
+                <p id="requests-empty" class="px-4 py-3 text-sm text-gray-400">No requests</p>
+                <ol id="requests" class="m-0 min-h-0 flex-1 list-none divide-y divide-gray-100 overflow-y-auto p-0 font-mono text-xs"></ol>
+            </section>
+
+            {#- DATA: what the server stored, which scrolls #}
+            <section id="panel-stored" role="tabpanel" aria-labelledby="panel-tab-stored" hidden class="flex min-h-0 flex-1 flex-col text-sm">
+                <div class="flex shrink-0 items-center justify-between gap-2 border-b border-gray-100 px-4 py-1.5 text-xs text-gray-500">
+                    <span>What the server stored</span>
+                    <span id="stored-updated" class="text-gray-400"></span>
+                </div>
+                <div id="stored" class="min-h-0 flex-1 space-y-3 overflow-y-auto p-4"></div>
+            </section>
+        </div>
+    </aside>
+
+    <main class="min-w-0 flex-1">
+        {#- The panel's toggle, then Demo and Code. Sticky under the header; the page scrolls under it. #}
+        <div id="main-tabs" class="sticky top-[var(--header-h)] z-30 flex items-center gap-6 border-b border-gray-200 bg-white/95 px-4 py-2 backdrop-blur lg:px-6">
+            {#- Figma "sidebar button", state=default / state=hovered, with its badge #}
+            <button type="button" id="panel-toggle" aria-controls="side-panel" aria-expanded="true" aria-label="Hide the panel"
+                    class="relative box-border inline-flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-lg border border-solid border-gray-200 bg-white p-2 hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-2 focus-visible:outline-sjs">
+                <svg aria-hidden="true" class="size-6" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" fill="#505050" d="M19 2.25C20.5188 2.25 21.75 3.48122 21.75 5V19C21.75 20.5188 20.5188 21.75 19 21.75H5C3.48122 21.75 2.25 20.5188 2.25 19V5C2.25 3.48122 3.48122 2.25 5 2.25H19ZM9.75 20.25H19C19.6904 20.25 20.25 19.6904 20.25 19V5C20.25 4.30964 19.6904 3.75 19 3.75H9.75V20.25ZM5 3.75C4.30964 3.75 3.75 4.30964 3.75 5V19C3.75 19.6904 4.30964 20.25 5 20.25H8.25V3.75H5Z"/></svg>
+                {#- At 36,0 of the button's outer box: the offsets are from inside its 1px border #}
+                <span id="panel-dot" hidden class="absolute -top-px left-[35px] size-1.5 rounded-full bg-sjs ring-2 ring-white"></span>
+            </button>
+            <div id="page-tabs" role="tablist" aria-label="Step views" class="flex min-w-0 items-stretch gap-3">
+                {% for key, label in mainTabs %}
+                    <button type="button" role="tab" id="tab-{{ key }}" data-tab="{{ key }}" aria-controls="panel-{{ key }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}" class="{{ tabClass }}">
+                        {{ label }}
+                    </button>
+                {% endfor %}
+            </div>
+        </div>
+
+        {#- DEMO: setup warnings, the action row and the component, the column's width minus the gutter #}
+        <div id="panel-demo" role="tabpanel" aria-labelledby="tab-demo" class="space-y-3 p-4 lg:p-6">
+            {% block banner %}{% endblock %}
+
+            {% if showActions %}
+                <div id="actions" class="flex flex-wrap items-center gap-2 text-sm">
+                    {% if users.length > 1 %}
+                        {% block demo_user_control %}
+                        <label class="flex items-center gap-2">
+                            <span class="text-gray-600">Demo user</span>
+                            <select id="demo-user" class="box-border h-9 rounded-md border border-gray-300 bg-white px-2 text-sm">
+                                {% for key in users %}
+                                    <option value="{{ key }}"{% if key == page.demoUser %} selected{% endif %}>{{ labels[key] }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                        {% endblock %}
+                    {% endif %}
+                    {% block actions %}{% endblock %}
+                </div>
+            {% endif %}
+
+            <div id="component" class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+                {#- The form's padding is the card's: shared/ui/survey-overrides.css zeroes SurveyJS's own side padding.
+                     Creator, the Dashboard and server-pdf's list replace this block and fill the card. #}
+                {% block form %}
+                    <div id="form" class="p-4 sm:p-6"></div>
+                {% endblock %}
+            </div>
+        </div>
+
+        {#- CODE: the example's regions at the column's width; it scrolls with the page #}
+        <div id="panel-code" role="tabpanel" aria-labelledby="tab-code" hidden class="p-4 text-sm lg:p-6">
+            <div class="grid gap-4">
+                {% for definition in codeDefinitions %}
+                    <details data-definition-code class="min-w-0 overflow-hidden rounded-lg border border-gray-800 bg-[#0d1117]">
+                        <summary class="cursor-pointer px-4 py-3 text-xs text-gray-300 hover:bg-gray-800/60 focus-visible:outline-2 focus-visible:outline-sjs">
+                            <span class="inline-flex w-[calc(100%_-_1rem)] flex-wrap items-center justify-between gap-2 align-middle">
+                                <span class="[overflow-wrap:anywhere]"><span class="font-semibold text-white">JSON definition</span> · <code>{{ definition.path }}</code></span>
+                                <a class="text-sjs underline" href="{{ definition.url }}" target="_blank">View on GitHub</a>
+                            </span>
+                        </summary>
+                        <pre class="m-0 overflow-x-auto border-t border-gray-800 p-0 text-[12.5px] leading-relaxed"><code class="language-json block !bg-transparent p-4">{{ definition.code }}</code></pre>
+                    </details>
+                {% endfor %}
+                {% for region in codePanel %}
+                    <details data-code-section open class="min-w-0 overflow-hidden rounded-lg border border-gray-800 bg-[#0d1117]">
+                        <summary class="cursor-pointer px-4 py-2 text-xs text-gray-300 hover:bg-gray-800/60 focus-visible:outline-2 focus-visible:outline-sjs">
+                            <span class="inline-flex w-[calc(100%_-_1rem)] flex-wrap items-center justify-between gap-2 align-middle">
+                                <span class="[overflow-wrap:anywhere]">
+                                    <span class="font-semibold text-white">{{ region.role | capitalize }}</span> · <code>{{ region.path }}</code> · <code>sjs:{{ region.id }}</code>
+                                </span>
+                                <a class="text-sjs underline" href="{{ region.url }}" target="_blank">View on GitHub</a>
+                            </span>
+                        </summary>
+                        <pre class="m-0 overflow-x-auto border-t border-gray-800 p-0 text-[12.5px] leading-relaxed"><code class="language-{{ region.language }} block !bg-transparent p-4">{{ region.code }}</code></pre>
+                    </details>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</div>
+
+{#- Rows that shared/client/host.js clones and fills by data-field. The two body slots switch on its body capture. #}
+<template id="request-row">
+    <li class="data-[demo=true]:bg-gray-50 data-[demo=true]:text-gray-400 data-[state=error]:bg-red-50">
+        <button type="button" data-row-toggle aria-expanded="false"
+                class="group grid w-full cursor-pointer grid-cols-[0.875rem_3.5rem_minmax(0,1fr)_auto] items-center gap-x-2 border-0 bg-transparent px-4 py-1.5 text-left font-mono text-xs [color:inherit] hover:bg-black/[0.03]">
+            <svg aria-hidden="true" class="size-3.5 transition-transform group-aria-expanded:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+            <span data-field="method" class="font-semibold"></span>
+            <span data-field="url" class="truncate"></span>
+            <span class="text-right"><span data-field="status" class="font-semibold"></span> <span data-field="time" class="text-gray-400"></span></span>
+            <span data-field="headers" class="col-span-3 col-start-2 truncate text-[11px] text-sjs-dark empty:hidden"></span>
+        </button>
+        {#- One column: the panel is 320–400px wide, or a phone #}
+        <div data-row-bodies hidden class="grid gap-3 pb-3 pl-10 pr-4">
+            <div class="min-w-0">
+                <p class="mb-1 font-sans text-[11px] font-bold uppercase tracking-wide text-gray-500">Request body</p>
+                <pre data-field="request-body" class="m-0 max-h-80 overflow-auto rounded border border-gray-200 bg-white p-2 font-mono text-xs leading-snug text-gray-800 empty:before:text-gray-400 empty:before:content-['(none)']"></pre>
+            </div>
+            <div class="min-w-0">
+                <p class="mb-1 font-sans text-[11px] font-bold uppercase tracking-wide text-gray-500">Response</p>
+                <pre data-field="response-body" class="m-0 max-h-80 overflow-auto rounded border border-gray-200 bg-white p-2 font-mono text-xs leading-snug text-gray-800 empty:before:text-gray-400 empty:before:content-['(none)']"></pre>
+            </div>
+        </div>
+    </li>
+</template>
+<template id="stored-section">
+    <div>
+        <h3 data-field="title" class="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500"></h3>
+        <pre data-field="json" class="m-0 overflow-x-auto rounded bg-gray-50 p-2 font-mono text-[11.5px] leading-snug text-gray-800"></pre>
+    </div>
+</template>
+<template id="note">
+    <li data-field="text" class="rounded border px-3 py-1.5 data-[kind=error]:border-red-200 data-[kind=error]:bg-red-50 data-[kind=error]:text-red-800 data-[kind=info]:border-gray-200 data-[kind=info]:bg-white data-[kind=ok]:border-sjs/40 data-[kind=ok]:bg-emerald-50 data-[kind=ok]:text-emerald-900"></li>
+</template>
+{#- The example's own rows, cloned the same way (relational-storage's mapping, lint-definition's findings) #}
+{% block templates %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+/* Lato 2.0, Latin, the four weights surveyjs.io serves (SIL Open Font License: fonts/lato/OFL.txt).
+   For pages without a build step: <link rel="stylesheet" href="/shared/ui/fonts.css">, plus a
+   <link rel="preload" as="font" type="font/woff2" crossorigin> per file. The URLs are relative to this file. */
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("fonts/lato/LatoLatin-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("fonts/lato/LatoLatin-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("fonts/lato/LatoLatin-Semibold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("fonts/lato/LatoLatin-Bold.woff2") format("woff2");
+}

@@ -1,0 +1,51 @@
+{#- pages.js passes forms (the collaborative forms), formId (?form, validated: 400 "Invalid form ID") and known #}
+{% extends "layouts/example.njk" %}
+{% set theme = "creator" %}
+{% set hasActions = true %}
+{% set hasAbout = config.demoMode %}
+
+{% block description %}
+    <p>Let multiple authors work on the same form in real time. Participants see each other's edits and cursors, with elements locked during editing to prevent conflicting changes.</p>
+{% endblock %}
+
+{% block head %}
+    <script>window.SURVEYJS_PAGE.formId = {{ formId | script_json }};</script>
+{% endblock %}
+
+{% block try %}
+    <li>Select a form to edit, or choose <strong>New blank form</strong> to create one. Each form has its own collaboration session.</li>
+    <li>Press <strong>Open a second window</strong>. Change a question title in one window and select a different question in the other to see shared edits and each author's selection.</li>
+    <li>Open a third window to see the current form reconstructed from the saved schema and the session's edit log.</li>
+    <li>Open the <strong>Collaboration</strong> menu and choose <strong>Show Version History</strong> to inspect the session's changes.</li>
+    <li>Press <strong>Save Survey</strong> in either window to store the schema before switching forms. Shared edits are temporary until saved; after all windows close and the room expires, a new session starts from the saved version.</li>
+{% endblock %}
+
+{% block actions %}
+    <label class="flex items-center gap-2"><span class="text-gray-600">Form</span>
+        <select id="shared-form" class="box-border h-9 rounded-md border border-gray-300 bg-white px-2 text-sm disabled:opacity-50">
+            {% for form in forms %}
+                <option value="{{ form.id }}"{% if form.id == formId %} selected{% endif %}>{{ form.label }}</option>
+            {% endfor %}
+            <option value="">New blank form</option>
+            {% if not known %}
+                <option value="{{ formId }}" selected>New form</option>
+            {% endif %}
+        </select>
+    </label>
+    <a data-invite-link target="_blank" href="#" class="box-border inline-flex h-9 items-center gap-1.5 rounded-md border border-sjs-dark bg-sjs-dark px-3 text-sm font-semibold text-white no-underline hover:bg-sjs-dark/90">
+        Open a second window
+        <svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+    </a>
+    <button id="reconnect" type="button" hidden class="h-9 cursor-pointer rounded-md border border-gray-300 px-3 font-semibold">Reconnect</button>
+    <button id="retry-save" type="button" hidden class="h-9 cursor-pointer rounded-md border border-gray-300 px-3 font-semibold disabled:opacity-50">Try saving again</button>
+    <button id="download-local" type="button" hidden class="h-9 cursor-pointer rounded-md border border-gray-300 px-3 font-semibold">Download local copy</button>
+    <p id="creator-error" hidden role="alert" class="m-0 basis-full text-sm text-red-700"></p>
+{% endblock %}
+
+{% block about %}
+    <p>The invite link carries your sandbox ID: whoever opens it works in your copy of the demo data, in the same rooms.</p>
+{% endblock %}
+
+{% block form %}
+    <div id="creator" hidden inert class="h-[calc(100dvh_-_var(--header-h,3.5rem)_-_var(--tabs-h,3.5rem)_-_var(--demo-above,1rem)_-_1.5rem)] min-h-[640px]"></div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{#- Demo only: shown when a Run Server-Side Workflows switch is off. The page sets `switch` and `on` before including it. #}
+{% if switch and not on %}
+    <p class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+        <strong>{{ 'Response validation is disabled.' if switch == 'VALIDATE_RESPONSES' else 'Form schema checking is disabled.' }}</strong>
+        Set <code>{{ switch }}=true</code> in <code>.env</code> and restart the app.
+    </p>
+{% endif %}

@@ -1,0 +1,58 @@
+{% extends "layouts/example.njk" %}
+{% set hasActions = true %}
+{% set hasAbout = true %}
+
+{% block description %}
+    <p>Extract answers from completed work orders using a predefined form schema. Review the extracted answers alongside the source document, correct any mistakes, and save the response.</p>
+{% endblock %}
+
+{% block banner %}
+    {% if not (config.extraction.provider or config.extraction.openaiApiKey or config.extraction.anthropicApiKey) %}
+        <p class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+            <strong>Document extraction is unavailable.</strong> Configure <code>SURVEYJS_AI_PROVIDER</code> (<code>openai</code>, <code>anthropic</code> or <code>ollama</code>) and its key
+            (<code>OPENAI_API_KEY</code> or <code>ANTHROPIC_API_KEY</code>) or <code>SURVEYJS_OLLAMA_BASE_URL</code> in <code>.env</code>, then restart the app.
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block try %}
+    <li>Press <strong>Use the sample scan</strong> to extract answers from a completed work order.</li>
+    <li>To try your own work order, press <strong>Download blank work order</strong> and complete the PDF, or print it and fill it in by hand. Choose <strong>Upload completed work order</strong> to upload the PDF or a scan or photo. PDF, PNG, JPEG, WebP, and GIF files up to 5 MB are supported.</li>
+    <li>Compare the answers with the document preview and correct any mistakes. Low-confidence answers are marked <strong>Review this answer</strong>; blank fields remain unanswered.</li>
+    <li>Select <strong>I have reviewed these answers</strong>, then press <strong>Save reviewed response</strong>. Extraction creates a draft; saving sends the reviewed answers to your backend and confirms the response ID.</li>
+    <li>If extraction is unavailable, enter the answers directly in the form. Press <strong>Start over</strong> to clear the draft or cancel extraction.</li>
+{% endblock %}
+
+{% block form %}
+    <div id="extract-details" hidden class="border-b border-gray-200 p-4 sm:p-6">
+        <dl class="m-0 grid gap-3 text-sm sm:grid-cols-3">
+            <div><dt class="text-gray-600">Source file</dt><dd data-show="extract-source" class="m-0 mt-1 break-words font-semibold"></dd></div>
+            <div><dt class="text-gray-600">Document ID</dt><dd data-show="extract-id" class="m-0 mt-1 break-words font-semibold"></dd></div>
+            <div><dt class="text-gray-600">Answers to review</dt><dd data-show="extract-review-count" class="m-0 mt-1 font-semibold"></dd></div>
+        </dl>
+        <p class="m-0 mt-3 text-sm text-gray-600">Review the draft before submitting.</p>
+    </div>
+    <div id="review-layout" data-preview="false" class="grid min-w-0 data-[preview=true]:xl:grid-cols-2">
+        <div id="scan-preview" hidden class="min-w-0 border-b border-gray-200 p-4 xl:border-b-0 xl:border-r">
+            <p class="m-0 mb-3 text-sm font-semibold">Source document · <a id="open-document" target="_blank" rel="noopener" class="text-sjs-dark underline">Open document</a></p>
+            <img id="scan-image" alt="Uploaded work order" hidden class="h-auto w-full rounded border border-gray-200">
+            <iframe id="scan-pdf" title="Uploaded work order PDF" hidden class="h-[640px] w-full rounded border border-gray-200"></iframe>
+        </div>
+        <div id="form" class="min-w-0 p-4 sm:p-6"></div>
+    </div>
+{% endblock %}
+
+{% block actions %}
+    <button id="sample-scan" type="button" class="box-border inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-md border border-sjs-dark bg-sjs-dark px-3 text-sm font-semibold text-white [font-family:inherit] hover:bg-sjs-dark/90">Use the sample scan</button>
+    <button id="download-work-order" type="button" class="box-border inline-flex h-9 cursor-pointer items-center rounded-md border border-gray-300 bg-white px-3 text-sm font-semibold text-gray-700 [font-family:inherit] hover:bg-gray-100 disabled:cursor-wait disabled:opacity-50">Download blank work order</button>
+    <label class="box-border inline-flex h-9 cursor-pointer items-center rounded-md border border-gray-300 bg-white px-3 text-sm font-semibold text-gray-700 hover:bg-gray-100 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-sjs has-[:disabled]:cursor-wait has-[:disabled]:opacity-50">
+        Upload completed work order<input id="own-scan" type="file" accept="image/png,image/jpeg,image/webp,image/gif,application/pdf" class="sr-only">
+    </label>
+    {% include "examples/partials/start-over.njk" %}
+    <span data-show="extract-status" hidden role="status" aria-live="polite" class="text-gray-700"></span>
+    <p id="work-order-download-error" hidden role="alert" class="m-0 basis-full text-red-700"></p>
+{% endblock %}
+
+{% block about %}
+    <p>OpenAI and Anthropic configurations send the document to that provider for extraction. Ollama processes it on the configured Ollama server.</p>
+{% endblock %}

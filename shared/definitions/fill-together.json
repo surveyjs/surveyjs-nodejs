@@ -1,0 +1,77 @@
+{
+  "title": "Job sheet",
+  "completeText": "Finish job sheet",
+  "description": "Filled together by the dispatcher and the technician",
+  "elements": [
+    {
+      "type": "panel",
+      "name": "dispatch",
+      "title": "Dispatcher",
+      "elements": [
+        {
+          "type": "text",
+          "name": "customer",
+          "title": "Customer",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "address",
+          "title": "Site address"
+        },
+        {
+          "type": "dropdown",
+          "name": "job_type",
+          "title": "Job type",
+          "choices": [
+            "Installation",
+            "Repair",
+            "Inspection"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "dispatch_notes",
+          "title": "Notes for the technician"
+        }
+      ]
+    },
+    {
+      "type": "panel",
+      "name": "onsite",
+      "title": "Technician",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "findings",
+          "title": "What did you find?"
+        },
+        {
+          "type": "checkbox",
+          "name": "parts",
+          "title": "Parts used",
+          "choices": [
+            "Filter",
+            "Valve",
+            "Pump",
+            "Sensor"
+          ],
+          "showOtherItem": true
+        },
+        {
+          "type": "text",
+          "name": "hours",
+          "title": "Hours on site",
+          "inputType": "number",
+          "min": 0,
+          "step": 0.25
+        },
+        {
+          "type": "boolean",
+          "name": "resolved",
+          "title": "Issue resolved?"
+        }
+      ]
+    }
+  ]
+}

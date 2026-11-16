@@ -1,0 +1,31 @@
+{% extends "layouts/example.njk" %}
+{% set theme = "survey" if formMode else "creator" %}
+{% set hasActions = true %}
+
+{% block description %}
+    <p>Upload logos and images from Survey Creator to your server. Store the files separately and save only their URLs in the form's JSON schema to keep it small.</p>
+{% endblock %}
+
+{% block try %}
+    <li>In the Designer, click <strong>Add logo</strong> above the form title and choose an image. PNG, JPEG, WebP, and GIF files up to 5 MB are supported.</li>
+    <li>Select the image above the <strong>Product</strong> question and upload a replacement using its image controls.</li>
+    <li>Open <strong>Data</strong> to see the image URLs saved in the JSON schema as <code>logo</code> and <code>imageLink</code>. <strong>Requests</strong> shows the upload and save requests.</li>
+    <li>Press <strong>Open saved form</strong> to view the form with its saved images.</li>
+    <li>Press <strong>Restore sample</strong> to restore and save the original form schema.</li>
+{% endblock %}
+
+{% block actions %}
+    {% if formMode %}
+        <a id="back-to-editor" href="?" class="text-sjs-dark underline">Back to editor</a>
+    {% else %}
+        <a id="open-saved-form" href="?form" target="_blank" aria-disabled="true" class="inline-flex h-9 items-center rounded-md border border-gray-300 bg-white px-3 text-sm font-semibold text-gray-700 no-underline hover:bg-gray-100 aria-disabled:opacity-50">Open saved form</a>
+        <button id="restore-sample" type="button" disabled class="h-9 cursor-pointer rounded-md border border-gray-300 bg-white px-3 text-sm font-semibold hover:bg-gray-100 disabled:opacity-50">Restore sample</button>
+    {% endif %}
+    <button id="retry-load" type="button" hidden class="h-9 cursor-pointer rounded-md border border-gray-300 bg-white px-3 font-semibold hover:bg-gray-100">Retry loading</button>
+    <button id="retry-save" type="button" hidden class="h-9 cursor-pointer rounded-md border border-gray-300 bg-white px-3 font-semibold hover:bg-gray-100 disabled:opacity-50">Try saving again</button>
+    <p id="creator-error" hidden role="alert" class="m-0 basis-full text-sm text-red-700"></p>
+{% endblock %}
+
+{% block form %}
+    <div id="creator" hidden inert class="{{ 'p-4 sm:p-6' if formMode else 'h-[calc(100dvh_-_var(--header-h,3.5rem)_-_var(--tabs-h,3.5rem)_-_var(--demo-above,1rem)_-_1.5rem)] min-h-[640px]' }}"></div>
+{% endblock %}

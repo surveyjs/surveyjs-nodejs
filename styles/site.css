@@ -1,0 +1,16 @@
+/* The site stylesheet: Tailwind CSS v4 without its Preflight reset. SurveyJS styles its own markup (the forms through
+   the Tailwind adapter, Creator and the Dashboard with their own themes), and Preflight would restyle it.
+   The theme is static: the SurveyJS Tailwind adapter reads these variables and no utility does, so plain @theme
+   would drop them and the form would silently fall back to the adapter's literals.
+   `npm run css` builds public/css/site.css, which is committed: `npm start` never builds CSS. */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme) theme(static);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* The SurveyJS site's design, the same on every platform: the design tokens, base rules, scrollbars and highlights */
+@import '../shared/ui/theme.css';
+
+/* The templates, and the shared modules, which set classes too */
+@source '../views/**/*.njk';
+@source '../shared/client/*.js';
+@source '../shared/ui/*.js';

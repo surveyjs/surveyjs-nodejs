@@ -1,0 +1,46 @@
+{
+  "title": "Product feedback",
+  "elements": [
+    {
+      "type": "rating",
+      "name": "satisfaction",
+      "title": "How satisfied are you with the product?",
+      "rateMin": 1,
+      "rateMax": 5
+    },
+    {
+      "type": "rating",
+      "name": "recommend",
+      "title": "How likely are you to recommend us?",
+      "rateMin": 0,
+      "rateMax": 10
+    },
+    {
+      "type": "radiogroup",
+      "name": "channel",
+      "title": "Where did you hear about us?",
+      "choices": [
+        "Search",
+        "Social media",
+        "A colleague",
+        "Conference"
+      ]
+    },
+    {
+      "type": "checkbox",
+      "name": "features",
+      "title": "Which features do you use?",
+      "choices": [
+        "Forms",
+        "Dashboard",
+        "Creator",
+        "PDF export"
+      ]
+    },
+    {
+      "type": "comment",
+      "name": "improve",
+      "title": "What should we improve?"
+    }
+  ]
+}

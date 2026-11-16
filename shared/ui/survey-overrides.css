@@ -1,0 +1,12 @@
+/* Demo only, loaded after the SurveyJS Tailwind adapter on the pages that run a form.
+   The step page pads the form inside its card (#form, p-4 sm:p-6 in the example layout),
+   so the survey title, page titles, fields and navigation buttons all start at the card's padding edge.
+   Panels keep their own 16px inner padding (the adapter's --sjs2-spacing-large-horizontal). */
+.sjs-theme-overrides {
+    /* SurveyJS 3.2.3: leave space inside the scroll area for navigation hover and focus outlines. */
+    --sjs2-layout-component-survey-footer-padding-bottom: 4px;
+    --sjs2-layout-component-page-content-area-padding-horizontal: 0px;
+    --sjs2-layout-component-survey-footer-padding-horizontal: 0px;
+    --sjs2-layout-component-survey-header-padding-horizontal: 0px;
+    --sjs2-layout-component-page-header-padding-horizontal: 0px;
+}

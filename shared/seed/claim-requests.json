@@ -1,0 +1,15 @@
+[
+  {
+    "customer_email": "alice@example.com",
+    "amount": 1840.5,
+    "incident": "collision",
+    "details": "My rear bumper and tail light were damaged in a collision.",
+    "priority_handling": true
+  },
+  {
+    "customer_email": "bob@example.com",
+    "amount": 3150.75,
+    "incident": "weather",
+    "details": "A storm damaged my roof and garden fence."
+  }
+]
