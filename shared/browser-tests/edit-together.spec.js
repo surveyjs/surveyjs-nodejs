@@ -182,7 +182,7 @@ test('Version History lists each change of the room once, for the author, a peer
     await expect(title(late)).toHaveText('Two');
     for (const page of [author, peer, late]) {
         await page.getByRole('button', { name: 'Collaboration' }).first().click();
-        await page.getByText('Show Version History', { exact: true }).locator('visible=true').first().click();
+        await page.getByRole('menuitem', { name: 'Show Version History', exact: true }).click();
         const changes = page.locator('.svc-version-history__row--change');
         await expect(changes).toHaveCount(1);
         await expect(changes).toContainText('Title of the survey changed to "Two"');

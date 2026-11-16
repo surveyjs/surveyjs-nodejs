@@ -109,8 +109,13 @@ test('5. when capture fails, the request still resolves and the slot says (body 
     await page.addInitScript(() => {
         window.__unhandled = [];
         addEventListener('unhandledrejection', (e) => window.__unhandled.push(String(e.reason)));
-        ReadableStream.prototype.getReader = () => {
-            throw new Error('getReader is broken');
+        // Break only the reads of cloned responses (the log's capture), not every stream: a framework
+        // that streams its page data, such as Next.js, still has to hydrate the form
+        const clone = Response.prototype.clone;
+        Response.prototype.clone = function (...args) {
+            const copy = clone.apply(this, args);
+            if (copy.body) copy.body.getReader = () => { throw new Error('getReader is broken'); };
+            return copy;
         };
     });
     await page.goto('/examples/save-response');
