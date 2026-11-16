@@ -1,0 +1,5 @@
+# LF everywhere, also on Windows checkouts: npm run check hashes shared/ byte for byte against shared/SHA256SUMS
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.woff2 binary
