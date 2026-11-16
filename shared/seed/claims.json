@@ -1,0 +1,17 @@
+[
+  {
+    "definitionVersion": "v1",
+    "daysAgo": 12,
+    "data": { "customer_email": "dana.reyes@example.com", "amount": 1840.5, "incident": "collision", "details": "Rear-ended at a junction on Main Street; bumper and tail light." }
+  },
+  {
+    "definitionVersion": "v1",
+    "daysAgo": 6,
+    "data": { "customer_email": "li.wei@example.com", "amount": 420, "incident": "theft", "details": "Bicycle taken from the garage overnight." }
+  },
+  {
+    "definitionVersion": "v2",
+    "daysAgo": 2,
+    "data": { "customer_email": "sam.osei@example.com", "amount": 3150.75, "incident": "weather", "details": "Storm damage to the roof and the garden fence." }
+  }
+]

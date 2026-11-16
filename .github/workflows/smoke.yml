@@ -1,0 +1,110 @@
+# Two quick checks per example (shared/smoke/run.mjs): the example page loads, and its main endpoint answers with the
+# expected status. Weekly against a fresh local app, on demand, and from a release pipeline after a deploy:
+#
+#   jobs:
+#     smoke:
+#       needs: deploy
+#       uses: surveyjs/surveyjs-nodejs/.github/workflows/smoke.yml@master
+#       with:
+#         base-url: https://surveyjs-nodejs.demos.surveyjs.io
+#         relay-url: wss://surveyjs-nodejs.demos.surveyjs.io
+#         edit-relay-url: wss://surveyjs-nodejs.demos.surveyjs.io
+#
+# For a deployed URL, ai, validate-responses and lint-definitions must match the deployment: the expected statuses of
+# save-response, creator-load-save, validate-response, lint-definition and the AI examples depend on them. Run
+# Server-Side Workflows run in this app, so service is in-process here.
+name: Smoke
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      base-url:
+        description: "A deployed app to check; empty: run this repository locally (npm run contract -- --smoke)"
+        type: string
+        default: ""
+      service:
+        description: "SurveyJS service: off | on | in-process (this platform runs in-process)"
+        type: string
+        default: "in-process"
+      ai:
+        description: "ai-translation and extract-from-paper: off | stub"
+        type: string
+        default: "off"
+      validate-responses:
+        description: "The app runs validate-response in place of save-response"
+        type: boolean
+        default: false
+      lint-definitions:
+        description: "The app runs lint-definition in place of the creator-load-save PUT"
+        type: boolean
+        default: false
+      relay-url:
+        description: "ws(s):// origin of the fill-together relay (empty: skip its check; a local run uses the app's)"
+        type: string
+        default: ""
+      edit-relay-url:
+        description: "ws(s):// origin of the edit-together relay (empty: skip its check; a local run uses the app's)"
+        type: string
+        default: ""
+  workflow_call:
+    inputs:
+      base-url:
+        type: string
+        default: ""
+      service:
+        type: string
+        default: "in-process"
+      ai:
+        type: string
+        default: "off"
+      validate-responses:
+        type: boolean
+        default: false
+      lint-definitions:
+        type: boolean
+        default: false
+      relay-url:
+        type: string
+        default: ""
+      edit-relay-url:
+        type: string
+        default: ""
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    name: Smoke ${{ inputs.base-url || 'local app' }}
+    # A scheduled run has no inputs: each falls back to its default here
+    env:
+      BASE_URL: ${{ inputs.base-url || '' }}
+      SERVICE: ${{ inputs.service || 'in-process' }}
+      AI: ${{ inputs.ai || 'off' }}
+      VALIDATE_RESPONSES: ${{ inputs.validate-responses && 'true' || 'false' }}
+      LINT_DEFINITIONS: ${{ inputs.lint-definitions && 'true' || 'false' }}
+      RELAY_URL: ${{ inputs.relay-url || '' }}
+      EDIT_RELAY_URL: ${{ inputs.edit-relay-url || '' }}
+    steps:
+      # Called from another repository's pipeline, check out this one (its default branch)
+      - uses: actions/checkout@v4
+        with:
+          repository: surveyjs/surveyjs-nodejs
+          ref: ${{ github.repository == 'surveyjs/surveyjs-nodejs' && github.sha || '' }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "26"
+
+      - name: Install
+        if: env.BASE_URL == ''
+        run: npm ci
+
+      # npm run contract -- --smoke starts a fresh app (relays included) and sets BASE_URL, RELAY_URL and EDIT_RELAY_URL
+      - name: Smoke test against a fresh local app
+        if: env.BASE_URL == ''
+        run: npm run contract -- --smoke
+
+      - name: Smoke test against ${{ env.BASE_URL }}
+        if: env.BASE_URL != ''
+        run: node shared/smoke/run.mjs

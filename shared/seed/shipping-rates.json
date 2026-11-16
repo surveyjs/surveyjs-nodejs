@@ -1,0 +1,7 @@
+[
+  { "postcode_prefix": "1", "price": 6.9 },
+  { "postcode_prefix": "10", "price": 4.9 },
+  { "postcode_prefix": "109", "price": 3.5 },
+  { "postcode_prefix": "8", "price": 5.9 },
+  { "postcode_prefix": "SW1", "price": 9.5 }
+]

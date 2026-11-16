@@ -1,0 +1,32 @@
+{% extends "layouts/example.njk" %}
+{% set theme = "creator" %}
+{% set hasActions = true %}
+
+{% block description %}
+    <p>Translate form text with AI and let authors review the results. Your backend sends titles, choices, and other text to your chosen provider, keeping its API key on the server.</p>
+{% endblock %}
+
+{% block banner %}
+    {% if not config.ai.apiKey %}
+        <p class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+            <strong>AI translation is unavailable.</strong> Configure <code>AI_API_KEY</code> in <code>.env</code> to enable it, then restart the app.
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block try %}
+    <li>In the <strong>Translations</strong> tab, use <strong>Add Language</strong> to add another language. Click <strong>Auto-translate All</strong> beside a language, then again in the dialog to translate missing text.</li>
+    <li>Review and edit the generated translations in the dialog, then click <strong>Apply</strong> to add them to the form. The sample already has a French title to demonstrate keeping existing translations.</li>
+    <li>Changes are saved automatically after you click <strong>Apply</strong>. Reload the page to confirm the translations were saved.</li>
+    <li>Open the <strong>Preview</strong> tab and use its language selector to view the translated form or compare it with the original.</li>
+    <li>Open <strong>Requests</strong> to inspect the translation request and schema save.</li>
+{% endblock %}
+
+{% block actions %}
+    <button id="retry-load" type="button" hidden class="h-9 cursor-pointer rounded-md border border-gray-300 bg-white px-3 font-semibold hover:bg-gray-100">Retry loading</button>
+    <p id="creator-error" hidden role="alert" class="m-0 basis-full text-sm text-red-700"></p>
+{% endblock %}
+
+{% block form %}
+    <div id="creator" hidden inert class="h-[calc(100dvh_-_var(--header-h,3.5rem)_-_var(--tabs-h,3.5rem)_-_var(--demo-above,1rem)_-_1.5rem)] min-h-[640px]"></div>
+{% endblock %}

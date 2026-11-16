@@ -1,0 +1,51 @@
+{
+  "title": "Account and delivery details",
+  "completeText": "Check details",
+  "completedHtml": "<h3>Your details passed validation.</h3><p>The email is available and delivery is supported.</p>",
+  "checkErrorsMode": "onValueChanged",
+  "calculatedValues": [
+    {
+      "name": "shipping",
+      "expression": "shippingCost({postcode})"
+    }
+  ],
+  "elements": [
+    {
+      "type": "text",
+      "name": "email",
+      "title": "Email",
+      "inputType": "email",
+      "isRequired": true,
+      "validators": [
+        {
+          "type": "expression",
+          "expression": "emailExists({email}) = false",
+          "text": "This email is already registered"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "postcode",
+      "title": "Postcode",
+      "isRequired": true,
+      "description": "Try 10115, 10999, 80331 or SW1A 1AA",
+      "validators": [
+        {
+          "type": "expression",
+          "expression": "shippingCost({postcode}) > 0",
+          "text": "We don't deliver to this postcode."
+        }
+      ]
+    },
+    {
+      "type": "expression",
+      "name": "shipping_price",
+      "title": "Shipping",
+      "visible": false,
+      "expression": "{shipping}",
+      "displayStyle": "currency",
+      "currency": "EUR"
+    }
+  ]
+}

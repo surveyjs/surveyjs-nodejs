@@ -1,0 +1,11 @@
+{
+  "customer_name": "Harbor View Dental",
+  "site_address": "14 Quay Street, Bristol",
+  "visit_date": "2026-09-14",
+  "work_type": "repair",
+  "parts": ["valve", "sensor"],
+  "hours": 2.5,
+  "resolved": true,
+  "technician": "M. Okafor",
+  "notes": "Replaced leaking valve under unit 2. Sensor recalibrated; recheck in 3 months."
+}

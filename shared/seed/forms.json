@@ -1,0 +1,18 @@
+{
+  "contact": "save-response.json",
+  "claim": "relational-storage.v1.json",
+  "claim-request": "load-definition-variables-data.json",
+  "onboarding": "resume-progress.json",
+  "expenses": "store-files.json",
+  "visit": "choices-from-web.json",
+  "signup": "async-functions.json",
+  "job-sheet": "fill-together.json",
+  "feedback": "dashboard.json",
+  "support": "creator-load-save.json",
+  "support-assets": "creator-uploads.json",
+  "support-translations": "ai-translation.json",
+  "support-team": "creator-load-save.json",
+  "contact-team": "save-response.json",
+  "support-lint": "creator-load-save.json",
+  "work-order": "extract-from-paper.json"
+}

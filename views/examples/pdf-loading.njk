@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Generating PDF · SurveyJS</title>
+    <link rel="canonical" href="{{ canonical }}">
+    {% for font in fonts %}<link rel="preload" as="font" type="font/woff2" href="{{ font }}" crossorigin>
+    {% endfor %}<link rel="stylesheet" href="/shared/ui/fonts.css">
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased">
+    <main class="box-border flex min-h-screen items-center justify-center p-6">
+        <section role="status" aria-live="polite" class="box-border w-full max-w-sm rounded-xl border border-gray-200 bg-white p-8 text-center shadow-sm">
+            <span class="inline-block rounded bg-sjs px-2 py-1 text-base font-bold text-white">SurveyJS</span>
+            <svg aria-hidden="true" class="mx-auto mt-8 block size-10 animate-spin text-sjs-dark motion-reduce:animate-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle class="opacity-20" cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9" stroke-linecap="round"/></svg>
+            <h1 class="mt-5 text-xl font-semibold">Generating the PDF...</h1>
+            <p class="mb-0 mt-3 text-sm leading-6 text-gray-600">Your document will open here when it's ready.</p>
+        </section>
+    </main>
+</body>
+</html>

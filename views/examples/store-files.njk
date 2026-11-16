@@ -1,0 +1,25 @@
+{% extends "layouts/example.njk" %}
+{% set hasActions = true %}
+
+{% block description %}
+    <p>Store uploaded files separately from form responses and save only file references with the answers. This keeps response documents small while allowing the form to retrieve uploaded files from the server for previews.</p>
+{% endblock %}
+
+{% block try %}
+    <li>Enter the purpose of an expense and add an image or PDF to <strong>Receipts</strong>. Each file can be up to 5 MB. The comparison above the form shows how file references reduce the response size.</li>
+    <li>Press <strong>Submit expense report</strong>. The confirmation shows the saved response ID. Open <strong>Data</strong> to inspect the response's file references and the separate file records.</li>
+    <li>Open <strong>Requests</strong> to inspect the upload and the preview requests. File previews are retrieved through a download endpoint that checks access.</li>
+    <li>Press <strong>Start over</strong> to fill out another expense report.</li>
+{% endblock %}
+
+{% block actions %}
+    {% include "examples/partials/start-over.njk" %}
+{% endblock %}
+
+{% block form %}
+    <div class="space-y-1 border-b border-gray-200 px-4 py-3 text-sm sm:px-6">
+        <p data-show="sizes" class="m-0 text-gray-700">Upload a file to compare response sizes.</p>
+        <p data-show="file-status" role="status" aria-live="polite" class="m-0 text-gray-700"></p>
+    </div>
+    <div id="form" class="p-4 sm:p-6"></div>
+{% endblock %}

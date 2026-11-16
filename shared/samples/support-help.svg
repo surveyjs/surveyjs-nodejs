@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="180" viewBox="0 0 720 180" role="img" aria-label="Support resources">
+  <rect width="720" height="180" rx="16" fill="#edf9f6"/>
+  <rect x="24" y="24" width="320" height="132" rx="12" fill="white"/>
+  <rect x="376" y="24" width="320" height="132" rx="12" fill="white"/>
+  <g fill="none" stroke="#12957a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 52h28v32H48zM55 61h14M55 69h14M55 77h9"/>
+    <path d="M400 68a16 16 0 0 1 32 0v12h-7V68h7M400 68v12h7V68h-7M432 80v7h-12"/>
+  </g>
+  <g fill="#222" font-family="Arial,sans-serif" font-size="20" font-weight="600">
+    <text x="48" y="122">Getting started</text><text x="400" y="122">Contact support</text>
+  </g>
+</svg>

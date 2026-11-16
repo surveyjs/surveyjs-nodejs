@@ -1,0 +1,11 @@
+[
+  { "id": "ber", "name": "Berlin", "region": "europe" },
+  { "id": "lis", "name": "Lisbon", "region": "europe" },
+  { "id": "war", "name": "Warsaw", "region": "europe" },
+  { "id": "aus", "name": "Austin", "region": "americas" },
+  { "id": "sao", "name": "São Paulo", "region": "americas" },
+  { "id": "tor", "name": "Toronto", "region": "americas" },
+  { "id": "sin", "name": "Singapore", "region": "asia-pacific" },
+  { "id": "syd", "name": "Sydney", "region": "asia-pacific" },
+  { "id": "tyo", "name": "Tokyo", "region": "asia-pacific" }
+]

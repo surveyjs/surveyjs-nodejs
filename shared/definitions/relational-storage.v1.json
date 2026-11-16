@@ -1,0 +1,52 @@
+{
+  "title": "Insurance claim",
+  "elements": [
+    {
+      "type": "text",
+      "name": "q_email",
+      "valueName": "customer_email",
+      "dbColumn": "claims.customer_email",
+      "title": "Email",
+      "inputType": "email",
+      "isRequired": true
+    },
+    {
+      "type": "text",
+      "name": "q_amount",
+      "valueName": "amount",
+      "dbColumn": "claims.amount",
+      "title": "Amount claimed",
+      "inputType": "number",
+      "min": 0
+    },
+    {
+      "type": "dropdown",
+      "name": "incident",
+      "title": "What happened?",
+      "choices": [
+        {
+          "value": "collision",
+          "text": "Collision"
+        },
+        {
+          "value": "theft",
+          "text": "Theft"
+        },
+        {
+          "value": "weather",
+          "text": "Storm or flood"
+        }
+      ]
+    },
+    {
+      "type": "comment",
+      "name": "details",
+      "title": "Details"
+    },
+    {
+      "type": "boolean",
+      "name": "priority_handling",
+      "title": "Priority handling"
+    }
+  ]
+}

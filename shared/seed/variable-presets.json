@@ -1,0 +1,6 @@
+{
+  "support": [
+    { "name": "Basic", "description": "A customer on the basic plan", "variables": { "customerTier": "basic" } },
+    { "name": "Premium", "description": "A customer on the premium plan", "variables": { "customerTier": "premium" } }
+  ]
+}

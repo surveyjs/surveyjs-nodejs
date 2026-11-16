@@ -1,0 +1,37 @@
+{
+  "title": "Support request",
+  "elements": [
+    {
+      "type": "dropdown",
+      "name": "product",
+      "title": "Product",
+      "choices": [
+        "Form Library",
+        "Survey Creator",
+        "Dashboard",
+        "PDF Generator"
+      ]
+    },
+    {
+      "type": "comment",
+      "name": "issue",
+      "title": "Describe the issue",
+      "isRequired": true
+    },
+    {
+      "type": "radiogroup",
+      "name": "urgency",
+      "title": "How urgent is it?",
+      "choices": [
+        "Low",
+        "Normal",
+        "Blocking"
+      ]
+    },
+    {
+      "type": "boolean",
+      "name": "callback",
+      "title": "Call me back"
+    }
+  ]
+}

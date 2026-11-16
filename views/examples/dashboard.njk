@@ -1,0 +1,21 @@
+{% extends "layouts/example.njk" %}
+{% set theme = "dashboard" %}
+
+{% block description %}
+    <p>Load a form schema and collected responses from your backend to build an interactive Dashboard. Explore the results with built-in date filters, chart selection, and cross-filtering.</p>
+{% endblock %}
+
+{% block try %}
+    <li>Use Dashboard's date panel to choose a preset or enter a date range. The response count and charts update for the selected period.</li>
+    <li>Click a bar under <strong>Where did you hear about us?</strong> to filter the other charts to that group. Press <strong>Reset Filter</strong> to include everyone again.</li>
+    <li>Change a chart type or sort order to explore the same answers in a different way.</li>
+    <li>Open <strong>Requests</strong> to inspect the form schema and responses, including their submission dates. Date filtering happens in Dashboard after the responses are loaded. <strong>Data</strong> shows the total number of stored responses.</li>
+{% endblock %}
+
+{% block form %}
+    <div id="dashboard-notice" class="flex flex-wrap items-center gap-3 border-b border-gray-200 p-4 text-sm">
+        <p data-show="dashboard-status" role="status" aria-live="polite" class="m-0 flex-1 font-semibold">Loading responses...</p>
+        <button id="retry-dashboard" type="button" hidden class="h-9 cursor-pointer rounded-md border border-gray-300 bg-white px-3 font-semibold hover:bg-gray-100">Try again</button>
+    </div>
+    <div id="dashboard" hidden aria-busy="true" class="min-h-96 p-2"></div>
+{% endblock %}

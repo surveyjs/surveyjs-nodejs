@@ -1,0 +1,18 @@
+# `docker compose up --build`: the app on http://127.0.0.1:8000, with its data in the storage volume. The relays and
+# Run Server-Side Workflows run inside the app, so there is no other service. .env is optional.
+name: surveyjs-nodejs
+
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - storage:/app/storage
+    restart: unless-stopped
+
+volumes:
+  storage:

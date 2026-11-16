@@ -1,0 +1,467 @@
+{
+  "contract": "server-integration-v4",
+  "platform": "nodejs",
+  "framework": "express",
+  "repo": "surveyjs/surveyjs-nodejs",
+  "branch": "master",
+  "live": "https://surveyjs-nodejs.demos.surveyjs.io",
+  "surveyjsVersion": "3.2.3",
+  "serverSideWorkflows": "in-process",
+  "steps": [
+    {
+      "slug": "save-response",
+      "section": "Run Forms",
+      "anchor": "save-responses",
+      "title": "Save Responses",
+      "status": "done",
+      "page": "/examples/save-response",
+      "need": "Your form needs to collect and store submitted answers.",
+      "licence": "MIT",
+      "endpoints": [
+        "POST /api/responses"
+      ],
+      "files": {
+        "definition": "shared/definitions/save-response.json",
+        "client": "shared/client/save-response.js",
+        "server": "routes/save-response.js",
+        "page": "views/examples/save-response.njk"
+      },
+      "regions": [
+        "save-response.client",
+        "save-response.server"
+      ]
+    },
+    {
+      "slug": "load-definition-variables-data",
+      "section": "Run Forms",
+      "anchor": "load-json-schemas-variables-and-answers",
+      "title": "Load JSON Schemas, Variables, and Answers",
+      "status": "done",
+      "page": "/examples/load-definition-variables-data",
+      "need": "Your form needs user-specific data or previously saved answers.",
+      "licence": "MIT",
+      "endpoints": [
+        "GET /claim",
+        "GET /api/forms/:id"
+      ],
+      "files": {
+        "definition": "shared/definitions/load-definition-variables-data.json",
+        "client": "shared/client/load-definition-variables-data.js",
+        "server": "routes/load-definition-variables-data.js",
+        "page": "views/examples/load-definition-variables-data.njk"
+      },
+      "regions": [
+        "load-definition-variables-data.client",
+        "load-definition-variables-data.server"
+      ]
+    },
+    {
+      "slug": "resume-progress",
+      "section": "Run Forms",
+      "anchor": "resume-progress",
+      "title": "Resume Progress",
+      "status": "done",
+      "page": "/examples/resume-progress",
+      "need": "Respondents need to complete a form across multiple sessions.",
+      "licence": "MIT",
+      "endpoints": [
+        "GET /api/progress/:formId",
+        "PUT /api/progress/:formId",
+        "DELETE /api/progress/:formId",
+        "POST /api/responses"
+      ],
+      "files": {
+        "definition": "shared/definitions/resume-progress.json",
+        "client": "shared/client/resume-progress.js",
+        "server": "routes/resume-progress.js",
+        "page": "views/examples/resume-progress.njk"
+      },
+      "regions": [
+        "resume-progress.restore",
+        "resume-progress.save",
+        "resume-progress.client",
+        "resume-progress.server",
+        "resume-progress.delete"
+      ]
+    },
+    {
+      "slug": "store-files",
+      "section": "Run Forms",
+      "anchor": "store-files-separately",
+      "title": "Store Files Separately",
+      "status": "done",
+      "page": "/examples/store-files",
+      "need": "Your form allows respondents to upload files.",
+      "licence": "MIT",
+      "endpoints": [
+        "POST /api/files",
+        "GET /api/files/:id"
+      ],
+      "files": {
+        "definition": "shared/definitions/store-files.json",
+        "client": "shared/client/store-files.js",
+        "server": "routes/store-files.js",
+        "page": "views/examples/store-files.njk"
+      },
+      "regions": [
+        "store-files.client",
+        "store-files.preview",
+        "store-files.server",
+        "store-files.download"
+      ]
+    },
+    {
+      "slug": "choices-from-web",
+      "section": "Run Forms",
+      "anchor": "load-choices-from-web",
+      "title": "Load Choices from Web",
+      "status": "done",
+      "page": "/examples/choices-from-web",
+      "need": "Choice lists come from data such as products, users, or offices.",
+      "licence": "MIT",
+      "endpoints": [
+        "GET /api/offices",
+        "GET /api/countries",
+        "POST /api/responses"
+      ],
+      "files": {
+        "definition": "shared/definitions/choices-from-web.json",
+        "client": "shared/client/choices-from-web.js",
+        "server": "routes/choices-from-web.js",
+        "page": "views/examples/choices-from-web.njk"
+      },
+      "regions": [
+        "choices-from-web.client",
+        "choices-from-web.server"
+      ]
+    },
+    {
+      "slug": "async-functions",
+      "section": "Run Forms",
+      "anchor": "async-calculations-and-validation",
+      "title": "Async Calculations and Validation",
+      "status": "done",
+      "page": "/examples/async-functions",
+      "need": "Calculations or validation rules depend on data from your server.",
+      "licence": "MIT",
+      "endpoints": [
+        "GET /api/customers/exists",
+        "GET /api/shipping"
+      ],
+      "files": {
+        "definition": "shared/definitions/async-functions.json",
+        "client": "shared/client/async-functions.js",
+        "server": "routes/async-functions.js",
+        "page": "views/examples/async-functions.njk"
+      },
+      "regions": [
+        "async-functions.lookup",
+        "async-functions.client",
+        "async-functions.server"
+      ]
+    },
+    {
+      "slug": "relational-storage",
+      "section": "Run Forms",
+      "anchor": "use-relational-storage",
+      "title": "Use Relational Storage",
+      "status": "done",
+      "page": "/examples/relational-storage",
+      "need": "You need to query answers with SQL or join them with other application data.",
+      "licence": "MIT",
+      "endpoints": [
+        "POST /api/claims"
+      ],
+      "files": {
+        "definition": "shared/definitions/relational-storage.v1.json",
+        "client": "shared/client/relational-storage.js",
+        "server": "routes/relational-storage.js",
+        "page": "views/examples/relational-storage.njk",
+        "definitionV2": "shared/definitions/relational-storage.v2.json"
+      },
+      "regions": [
+        "relational-storage.client",
+        "relational-storage.save",
+        "relational-storage.server"
+      ]
+    },
+    {
+      "slug": "fill-together",
+      "section": "Run Forms",
+      "anchor": "fill-forms-together",
+      "title": "Fill Forms Together",
+      "status": "done",
+      "page": "/examples/fill-together",
+      "need": "Several people need to fill out the same record together.",
+      "licence": "MIT",
+      "endpoints": [
+        "WS /ws/rooms/:recordId"
+      ],
+      "files": {
+        "definition": "shared/definitions/fill-together.json",
+        "client": "shared/client/fill-together.js",
+        "server": "relay/fill-relay.js",
+        "page": "views/examples/fill-together.njk",
+        "room": "relay/fill-room.js"
+      },
+      "regions": [
+        "fill-together.client",
+        "fill-together.save",
+        "fill-together.server",
+        "fill-together.complete"
+      ],
+      "see": "https://github.com/surveyjs/collaborative-form-filling"
+    },
+    {
+      "slug": "dashboard",
+      "section": "Analyze Results with Dashboard",
+      "anchor": "analyze-results-with-dashboard",
+      "title": "Analyze Results with Dashboard",
+      "status": "done",
+      "page": "/examples/dashboard",
+      "need": "Users need to explore and analyze collected responses.",
+      "licence": "Commercial client",
+      "endpoints": [
+        "GET /api/responses"
+      ],
+      "files": {
+        "definition": "shared/definitions/dashboard.json",
+        "client": "shared/client/dashboard.js",
+        "server": "routes/dashboard.js",
+        "page": "views/examples/dashboard.njk"
+      },
+      "regions": [
+        "dashboard.client",
+        "dashboard.server"
+      ]
+    },
+    {
+      "slug": "creator-load-save",
+      "section": "Edit Forms in Survey Creator",
+      "anchor": "load-and-save-form-json-schemas",
+      "title": "Load and Save Form JSON Schemas",
+      "status": "done",
+      "page": "/examples/creator-load-save",
+      "need": "Users need to create or update forms in your application.",
+      "licence": "Commercial client",
+      "endpoints": [
+        "GET /api/forms/:id",
+        "PUT /api/forms/:id"
+      ],
+      "files": {
+        "definition": "shared/definitions/creator-load-save.json",
+        "client": "shared/client/creator-load-save.js",
+        "server": "routes/creator-load-save.js",
+        "page": "views/examples/creator-load-save.njk"
+      },
+      "regions": [
+        "creator-load-save.client",
+        "creator-load-save.load",
+        "creator-load-save.server"
+      ]
+    },
+    {
+      "slug": "creator-uploads",
+      "section": "Edit Forms in Survey Creator",
+      "anchor": "upload-files",
+      "title": "Upload Files",
+      "status": "done",
+      "page": "/examples/creator-uploads",
+      "need": "Form authors need to add logos, images, or other files.",
+      "licence": "Commercial client",
+      "endpoints": [
+        "POST /api/files",
+        "GET /api/files/:id",
+        "GET /api/forms/:id",
+        "PUT /api/forms/:id"
+      ],
+      "files": {
+        "definition": "shared/definitions/creator-uploads.json",
+        "client": "shared/client/creator-uploads.js",
+        "server": "routes/store-files.js",
+        "server_schema": "routes/creator-load-save.js",
+        "page": "views/examples/creator-uploads.njk"
+      },
+      "regions": [
+        "creator-uploads.client",
+        "store-files.server",
+        "creator-load-save.server"
+      ],
+      "note": "Reuses file uploads from store-files and schema saving from creator-load-save"
+    },
+    {
+      "slug": "ai-translation",
+      "section": "Edit Forms in Survey Creator",
+      "anchor": "translate-with-ai",
+      "title": "Translate with AI",
+      "status": "done",
+      "page": "/examples/ai-translation",
+      "need": "Authors need to translate forms into multiple languages quickly.",
+      "licence": "Commercial client, needs an AI provider",
+      "endpoints": [
+        "POST /api/translate",
+        "GET /api/forms/:id",
+        "PUT /api/forms/:id"
+      ],
+      "files": {
+        "definition": "shared/definitions/ai-translation.json",
+        "client": "shared/client/ai-translation.js",
+        "server": "routes/ai-translation.js",
+        "page": "views/examples/ai-translation.njk"
+      },
+      "regions": [
+        "ai-translation.client",
+        "ai-translation.server"
+      ]
+    },
+    {
+      "slug": "variable-presets",
+      "section": "Edit Forms in Survey Creator",
+      "anchor": "variable-presets",
+      "title": "Variable Presets",
+      "status": "done",
+      "page": "/examples/variable-presets",
+      "need": "Authors need to test form logic with sample variable values in the Preview tab.",
+      "licence": "Commercial client",
+      "endpoints": [
+        "GET /api/variable-presets/:formId",
+        "PUT /api/variable-presets/:formId"
+      ],
+      "files": {
+        "definition": "shared/definitions/variable-presets.json",
+        "client": "shared/client/variable-presets.js",
+        "server": "routes/variable-presets.js",
+        "page": "views/examples/variable-presets.njk"
+      },
+      "regions": [
+        "variable-presets.client",
+        "variable-presets.save",
+        "variable-presets.server"
+      ]
+    },
+    {
+      "slug": "edit-together",
+      "section": "Edit Forms in Survey Creator",
+      "anchor": "edit-forms-together",
+      "title": "Edit Forms Together",
+      "status": "done",
+      "page": "/examples/edit-together",
+      "need": "Multiple authors need to edit the same form in real time.",
+      "licence": "Commercial client",
+      "endpoints": [
+        "WS /ws/forms/:formId"
+      ],
+      "files": {
+        "definition": "shared/definitions/creator-load-save.json",
+        "client": "shared/client/edit-together.js",
+        "server": "relay/edit-relay.js",
+        "page": "views/examples/edit-together.njk",
+        "room": "relay/edit-room.js"
+      },
+      "regions": [
+        "edit-together.client",
+        "edit-together.save",
+        "edit-together.server"
+      ],
+      "see": "https://github.com/surveyjs/collaborative-form-editing"
+    },
+    {
+      "slug": "validate-response",
+      "section": "Run Server-Side Workflows",
+      "anchor": "validate-responses",
+      "title": "Validate Responses",
+      "status": "done",
+      "page": "/examples/validate-response",
+      "need": "Submitted answers must be checked on the server before they are saved.",
+      "licence": "MIT",
+      "endpoints": [
+        "POST /api/responses"
+      ],
+      "files": {
+        "definition": "shared/definitions/relational-storage.v1.json",
+        "client": "shared/client/validate-response.js",
+        "server": "routes/validate-response.js",
+        "page": "views/examples/validate-response.njk"
+      },
+      "regions": [
+        "validate-response.client",
+        "validate-response.request",
+        "validate-response.server"
+      ]
+    },
+    {
+      "slug": "lint-definition",
+      "section": "Run Server-Side Workflows",
+      "anchor": "lint-json-schemas",
+      "title": "Lint JSON Schemas",
+      "status": "done",
+      "page": "/examples/lint-definition",
+      "need": "You need to catch broken references and logic errors in form schemas.",
+      "licence": "MIT",
+      "endpoints": [
+        "PUT /api/forms/:id"
+      ],
+      "files": {
+        "definition": "shared/definitions/creator-load-save.json",
+        "client": "shared/client/lint-definition.js",
+        "server": "routes/lint-definition.js",
+        "page": "views/examples/lint-definition.njk"
+      },
+      "regions": [
+        "lint-definition.client",
+        "lint-definition.server"
+      ]
+    },
+    {
+      "slug": "server-pdf",
+      "section": "Run Server-Side Workflows",
+      "anchor": "generate-pdfs",
+      "title": "Generate PDFs",
+      "status": "done",
+      "page": "/examples/server-pdf",
+      "need": "Your backend needs PDFs for archiving, email attachments, or other workflows.",
+      "licence": "Commercial",
+      "endpoints": [
+        "GET /api/claims/:id/pdf"
+      ],
+      "files": {
+        "definition": "shared/definitions/relational-storage.v1.json",
+        "client": "shared/client/server-pdf.js",
+        "server": "routes/server-pdf.js",
+        "page": "views/examples/server-pdf.njk"
+      },
+      "regions": [
+        "server-pdf.client",
+        "server-pdf.server"
+      ],
+      "note": "Runs in process: SURVEYJS_LICENSE_KEY applies to server PDFs as well"
+    },
+    {
+      "slug": "extract-from-paper",
+      "section": "Run Server-Side Workflows",
+      "anchor": "extract-responses-from-documents",
+      "title": "Extract Responses from Documents",
+      "status": "done",
+      "page": "/examples/extract-from-paper",
+      "need": "Completed forms arrive as paper scans, photos, or filled PDFs.",
+      "licence": "MIT, needs an AI provider",
+      "endpoints": [
+        "GET /api/work-orders/blank.pdf",
+        "POST /api/work-orders/extract",
+        "POST /api/responses"
+      ],
+      "files": {
+        "definition": "shared/definitions/extract-from-paper.json",
+        "client": "shared/client/extract-from-paper.js",
+        "server": "routes/extract-from-paper.js",
+        "page": "views/examples/extract-from-paper.njk"
+      },
+      "regions": [
+        "extract-from-paper.client",
+        "extract-from-paper.save",
+        "extract-from-paper.template",
+        "extract-from-paper.server"
+      ]
+    }
+  ]
+}

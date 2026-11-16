@@ -1,0 +1,18 @@
+{% extends "layouts/example.njk" %}
+{% set hasActions = true %}
+
+{% block description %}
+    <p>Send completed form responses to your backend and store them as JSON. The server returns the saved response's ID to confirm success.</p>
+{% endblock %}
+
+{% block try %}
+    <li>Enter your email and a message. Both fields are required.</li>
+    <li>Press <strong>Send message</strong>. The completion screen shows <strong>Sending your message...</strong> until the server confirms the save, then displays the response's ID.</li>
+    <li>Open <strong>Requests</strong> and expand <code>POST /api/responses</code> to inspect the request body and the server's response. Then open <strong>Data</strong> to find the saved record with the same ID.</li>
+    <li>If saving fails, an error message appears. Press <strong>Try again</strong> to resend your answers.</li>
+    <li>Press <strong>Start over</strong> to clear the form and submit another response.</li>
+{% endblock %}
+
+{% block actions %}
+    {% include "examples/partials/start-over.njk" %}
+{% endblock %}

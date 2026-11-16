@@ -1,0 +1,85 @@
+{
+  "title": "Work order",
+  "description": "Completed on paper by the technician and scanned at the office",
+  "elements": [
+    {
+      "type": "text",
+      "name": "customer_name",
+      "title": "Customer name"
+    },
+    {
+      "type": "text",
+      "name": "site_address",
+      "title": "Site address"
+    },
+    {
+      "type": "text",
+      "name": "visit_date",
+      "title": "Visit date",
+      "inputType": "date"
+    },
+    {
+      "type": "radiogroup",
+      "name": "work_type",
+      "title": "Type of work",
+      "choices": [
+        {
+          "value": "installation",
+          "text": "Installation"
+        },
+        {
+          "value": "repair",
+          "text": "Repair"
+        },
+        {
+          "value": "inspection",
+          "text": "Inspection"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "name": "parts",
+      "title": "Parts replaced",
+      "choices": [
+        {
+          "value": "filter",
+          "text": "Filter"
+        },
+        {
+          "value": "valve",
+          "text": "Valve"
+        },
+        {
+          "value": "pump",
+          "text": "Pump"
+        },
+        {
+          "value": "sensor",
+          "text": "Sensor"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "hours",
+      "title": "Hours on site",
+      "inputType": "number"
+    },
+    {
+      "type": "boolean",
+      "name": "resolved",
+      "title": "Issue resolved"
+    },
+    {
+      "type": "text",
+      "name": "technician",
+      "title": "Technician"
+    },
+    {
+      "type": "comment",
+      "name": "notes",
+      "title": "Notes"
+    }
+  ]
+}

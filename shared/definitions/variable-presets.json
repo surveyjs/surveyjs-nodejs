@@ -1,0 +1,29 @@
+{
+  "title": "Support request",
+  "elements": [
+    {
+      "type": "dropdown",
+      "name": "product",
+      "title": "Product",
+      "choices": [
+        "Form Library",
+        "Survey Creator",
+        "Dashboard",
+        "PDF Generator"
+      ]
+    },
+    {
+      "type": "comment",
+      "name": "issue",
+      "title": "Describe the issue",
+      "isRequired": true
+    },
+    {
+      "type": "boolean",
+      "name": "callback",
+      "title": "Call me back within one hour",
+      "description": "Available to customers on the premium plan",
+      "visibleIf": "{customerTier} = 'premium'"
+    }
+  ]
+}

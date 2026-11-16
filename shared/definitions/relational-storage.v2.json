@@ -1,0 +1,66 @@
+{
+  "title": "Insurance claim",
+  "elements": [
+    {
+      "type": "panel",
+      "name": "contact",
+      "title": "Contact",
+      "elements": [
+        {
+          "type": "text",
+          "name": "contact_email",
+          "valueName": "customer_email",
+          "dbColumn": "claims.customer_email",
+          "title": "Where should we write to you?",
+          "inputType": "email",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "type": "panel",
+      "name": "claim",
+      "title": "Claim",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "incident",
+          "title": "What happened?",
+          "choices": [
+            {
+              "value": "collision",
+              "text": "Collision"
+            },
+            {
+              "value": "theft",
+              "text": "Theft"
+            },
+            {
+              "value": "weather",
+              "text": "Storm or flood"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "claimed_total",
+          "valueName": "amount",
+          "dbColumn": "claims.amount",
+          "title": "Total amount you are claiming",
+          "inputType": "number",
+          "min": 0
+        },
+        {
+          "type": "comment",
+          "name": "details",
+          "title": "Details"
+        },
+        {
+          "type": "boolean",
+          "name": "priority_handling",
+          "title": "Priority handling"
+        }
+      ]
+    }
+  ]
+}

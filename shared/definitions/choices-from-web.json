@@ -1,0 +1,55 @@
+{
+  "title": "Choose an office",
+  "elements": [
+    {
+      "type": "panel",
+      "name": "find_office",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "region",
+          "title": "Region",
+          "colCount": 3,
+          "defaultValue": "europe",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "europe",
+              "text": "Europe"
+            },
+            {
+              "value": "americas",
+              "text": "Americas"
+            },
+            {
+              "value": "asia-pacific",
+              "text": "Asia-Pacific"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "office",
+          "title": "Office",
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "/api/offices?region={region}",
+            "valueName": "id",
+            "titleName": "name"
+          }
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "name": "country",
+      "title": "Your country",
+      "isRequired": true,
+      "choicesByUrl": {
+        "url": "/api/countries",
+        "valueName": "code",
+        "titleName": "name"
+      }
+    }
+  ]
+}
