@@ -55,7 +55,7 @@ export function readConfig(env) {
     build: text(env.SURVEYJS_BUILD),
 
     // The Node.js integration docs. Example pages link to <docs>#<anchor> (anchors: surveyjs-integration.json)
-    docs: text(env.SURVEYJS_DOCS) ?? "https://surveyjs.io/documentation/backend-integration-nodejs",
+    docs: text(env.SURVEYJS_DOCS) ?? "https://surveyjs.io/documentation/backend-integration-express",
     github: text(env.SURVEYJS_GITHUB) ?? "https://github.com/surveyjs/surveyjs-nodejs",
   });
 }
