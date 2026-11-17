@@ -632,7 +632,9 @@ class Socket {
 }
 const type = (t) => (m) => m.type === t;
 
-/** true when the relay closes the connection (or refuses the handshake) before sending anything. */
+/** true when the relay closes the connection (or refuses the handshake) before sending anything.
+ *  A refused handshake (a 401 or 403 instead of 101) fires "error" and then "close" on Node 24+, but only "error" on
+ *  Node 22 (undici 6), so either one counts. */
 function refused(url, user) {
   const headers = {};
   const cookie = jar.header(user);
@@ -640,8 +642,10 @@ function refused(url, user) {
   const ws = new WebSocket(url, { headers });
   return new Promise((resolve) => {
     const timer = setTimeout(() => { resolve(false); ws.close(); }, 3000);
+    const closed = () => { clearTimeout(timer); resolve(true); };
     ws.addEventListener("message", () => { clearTimeout(timer); resolve(false); ws.close(); });
-    ws.addEventListener("close", () => { clearTimeout(timer); resolve(true); });
+    ws.addEventListener("error", closed);
+    ws.addEventListener("close", closed);
   });
 }
 
