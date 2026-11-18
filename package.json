@@ -46,12 +46,12 @@
     "nunjucks": "3.2.4",
     "openai": "^6.49.0",
     "sharp": "~0.33.5",
-    "survey-analytics": "3.2.3",
-    "survey-core": "3.2.3",
-    "survey-creator-core": "3.2.3",
-    "survey-creator-js": "3.2.3",
-    "survey-js-ui": "3.2.3",
-    "survey-pdf": "3.2.3",
+    "survey-analytics": "3.2.7",
+    "survey-core": "3.2.7",
+    "survey-creator-core": "3.2.7",
+    "survey-creator-js": "3.2.7",
+    "survey-js-ui": "3.2.7",
+    "survey-pdf": "3.2.7",
     "ws": "^8.23.0"
   },
   "devDependencies": {

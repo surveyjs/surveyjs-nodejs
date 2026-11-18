@@ -5,7 +5,7 @@
   "repo": "surveyjs/surveyjs-nodejs",
   "branch": "master",
   "live": "https://surveyjs-nodejs.demos.surveyjs.io",
-  "surveyjsVersion": "3.2.3",
+  "surveyjsVersion": "3.2.7",
   "serverSideWorkflows": "in-process",
   "steps": [
     {
