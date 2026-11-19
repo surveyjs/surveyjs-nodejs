@@ -4,7 +4,7 @@
 FROM node:26-slim
 
 WORKDIR /app
-ENV NODE_ENV=production APP_HOST=0.0.0.0 APP_PORT=8000 DATA_DIR=/app/storage
+ENV NODE_ENV=production APP_HOST=0.0.0.0 DATA_DIR=/app/storage
 
 # .npmrc: engine-strict and ignore-scripts (sharp installs its prebuilt linux-x64 package without a build step)
 COPY package.json package-lock.json .npmrc ./
