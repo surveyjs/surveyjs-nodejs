@@ -4,24 +4,24 @@ This is the Node.js code behind [Integrate SurveyJS with Express](https://survey
 
 - Live catalog: [surveyjs-nodejs.demos.surveyjs.io](https://surveyjs-nodejs.demos.surveyjs.io)
 - SurveyJS demos: [app.demos.surveyjs.io](https://app.demos.surveyjs.io)
-- The same examples for other platforms: [PHP (Laravel)](https://github.com/surveyjs/surveyjs-php-laravel), [ASP.NET Core](https://github.com/surveyjs/surveyjs-aspnet-core), [Python (Flask)](https://github.com/surveyjs/surveyjs-python-flask), [Next.js](https://github.com/surveyjs/surveyjs-nextjs)
+- The same examples for other platforms: [PHP (Laravel)](https://github.com/surveyjs/surveyjs-php-laravel), [ASP.NET Core](https://github.com/surveyjs/surveyjs-aspnet-core), [Python (FastAPI)](https://github.com/surveyjs/surveyjs-python-fastapi), [Next.js](https://github.com/surveyjs/surveyjs-nextjs), [Java (Spring Boot)](https://github.com/surveyjs/surveyjs-java-spring-boot)
 
 ## Run it
 
 You need Node.js 24 or later, and nothing else: no Docker, no database server, no other service (see [Prerequisites](#prerequisites)).
 
 ```bash
-git clone https://github.com/surveyjs/surveyjs-nodejs.git
-cd surveyjs-nodejs
+git clone https://github.com/surveyjs/surveyjs-nodejs-express.git
+cd surveyjs-nodejs-express
 npm ci            # or npm install
-npm run setup     # creates .env (from .env.example), storage/ and the SQLite database with the demo data
+npm run setup     # creates .env for your private keys (from .env.example), storage/ and the SQLite database with the demo data
 npm start         # http://127.0.0.1:8000
 ```
 
 `npm start` also creates and seeds a missing database itself, so `npm run setup` only makes the first run explicit. While you work on the code, run `npm run dev` instead: Node's `--watch` restarts the app when a file changes.
 
 - **Fill Forms Together** and **Edit Forms Together** use WebSocket relays that run inside the app, on its port (`/ws/rooms/<id>` and `/ws/forms/<id>`). There is nothing else to start.
-- **Run Server-Side Workflows** (validate, lint, PDF, extract) run inside the app too, with the SurveyJS libraries (see [Server-side workflows in process](#server-side-workflows-in-process)). Set `VALIDATE_RESPONSES=true` and `LINT_DEFINITIONS=true` in `.env` to switch Validate Responses and Lint JSON Schemas on, and an AI provider for Extract Responses from Documents.
+- **Run Server-Side Workflows** (validate, lint, PDF, extract) run inside the app too, with the SurveyJS libraries (see [Server-side workflows in process](#server-side-workflows-in-process)). Set `VALIDATE_RESPONSES=true` and `LINT_DEFINITIONS=true` in `settings.env` to switch Validate Responses and Lint JSON Schemas on, and an AI provider for Extract Responses from Documents (its key goes in `.env`).
 - The tests: `npm test` (`node --test`, a few seconds, no browser and no network), `npm run contract` (the shared contract test against a fresh database; `npm run contract -- --smoke` for the smoke test) and `npm run test:browser` (the shared Playwright specs; run `npx playwright install chromium` once).
 
 `npm start` checks that nothing answers on the port first, then prints the folder it serves and its `<branch>@<commit>`:
@@ -45,7 +45,7 @@ On Windows:
   node --version
   ```
 
-- npm runs scripts in `cmd`, so `VAR=value npm start` doesn't work there. Set a variable for one run like this, or put it in `.env`:
+- npm runs scripts in `cmd`, so `VAR=value npm start` doesn't work there. Set a variable for one run like this, or put it in `settings.env`:
 
   ```powershell
   $env:APP_PORT=8001; npm start
@@ -76,7 +76,7 @@ With Docker, `docker compose down`.
 ### Run a branch or a PR
 
 - Check the branch out in its own folder, with `git worktree add ../surveyjs-nodejs-pr <branch>` (for a pull request, `git fetch origin pull/<number>/head:pr-<number>` first) or a second clone, and run `npm ci` there. `node_modules/`, `.env` and `storage/` belong to each checkout.
-- Run one checkout on the default port at a time: stop the other one first, or start the second with `APP_PORT=8001` (PowerShell: `$env:APP_PORT=8001; npm start`), or put `APP_PORT=8001` in its `.env`.
+- Run one checkout on the default port at a time: stop the other one first, or start the second with `APP_PORT=8001` (PowerShell: `$env:APP_PORT=8001; npm start`).
 - The page says which checkout answered: "Running `<branch>@<commit>`" under the catalog's footer buttons and at the end of every example's Description panel.
 
 ## Docker
@@ -103,7 +103,7 @@ Traefik passes WebSocket upgrades on by default. `RELAY_URL` and `EDIT_RELAY_URL
 
 ## Configuration
 
-`npm run setup` copies `.env.example` to `.env`; `npm start` loads it with Node's own `--env-file-if-exists` (no `dotenv`). `config.js` reads every setting once, and no other file reads `process.env`. Switches accept `1`, `true`, `on` or `yes`.
+Two files hold the settings. `settings.env` is committed and holds every setting except the private keys. `.env` is git-ignored and holds only the private keys: `SURVEYJS_LICENSE_KEY`, `AI_API_KEY`, `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` (`npm run setup` copies `.env.example` to it). `npm start` loads both with Node's own `--env-file` (no `dotenv`): variables set in the environment win, then `.env`, then `settings.env`. The Docker image loads `settings.env` the same way, and `docker compose` passes `.env` in. `config.js` reads every setting once, and no other file reads `process.env`. Switches accept `1`, `true`, `on` or `yes`.
 
 | Variable | Default | What it does |
 |---|---|---|

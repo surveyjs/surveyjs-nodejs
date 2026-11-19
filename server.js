@@ -1,5 +1,6 @@
 // Starts the app: checks the port, seeds a missing database, serves HTTP and both WebSocket relays on one port,
-// and shuts down cleanly on Ctrl+C and SIGTERM. `npm start` runs `node --env-file-if-exists=.env server.js`.
+// and shuts down cleanly on Ctrl+C and SIGTERM. `npm start` runs
+// `node --env-file=settings.env --env-file-if-exists=.env server.js`.
 
 // node:sqlite needs Node.js 24: say so instead of failing with ERR_UNKNOWN_BUILTIN_MODULE
 const [major] = process.versions.node.split(".").map(Number);

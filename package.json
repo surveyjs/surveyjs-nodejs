@@ -9,19 +9,19 @@
     "node": ">=24"
   },
   "scripts": {
-    "start": "node --env-file-if-exists=.env server.js",
-    "dev": "node --watch --env-file-if-exists=.env server.js",
+    "start": "node --env-file=settings.env --env-file-if-exists=.env server.js",
+    "dev": "node --watch --env-file=settings.env --env-file-if-exists=.env server.js",
     "setup": "node scripts/setup.mjs",
     "test": "node --test \"test/*.test.js\"",
     "test:browser": "playwright test",
-    "check": "node --env-file-if-exists=.env scripts/check.mjs",
+    "check": "node --env-file=settings.env --env-file-if-exists=.env scripts/check.mjs",
     "contract": "node scripts/contract.mjs",
     "readme": "node scripts/readme.mjs",
     "css": "tailwindcss -i styles/site.css -o public/css/site.css --minify"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/surveyjs/surveyjs-nodejs.git"
+    "url": "git+https://github.com/surveyjs/surveyjs-nodejs-express.git"
   },
   "keywords": [
     "survey",
@@ -35,9 +35,9 @@
   "author": "SurveyJS",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/surveyjs/surveyjs-nodejs/issues"
+    "url": "https://github.com/surveyjs/surveyjs-nodejs-express/issues"
   },
-  "homepage": "https://github.com/surveyjs/surveyjs-nodejs#readme",
+  "homepage": "https://github.com/surveyjs/surveyjs-nodejs-express#readme",
   "dependencies": {
     "@anthropic-ai/sdk": "~0.90.0",
     "ai-form-response-extractor": "^0.2.0",

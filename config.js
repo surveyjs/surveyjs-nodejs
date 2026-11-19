@@ -1,6 +1,6 @@
 // Every setting, read from the environment once. No other file reads process.env (the one exception is
 // integration/ai-provider.js, which hands SURVEYJS_OLLAMA_BASE_URL to the extractor; see there).
-// `npm start` loads .env with Node's own --env-file-if-exists, so there is no dotenv.
+// `npm start` loads settings.env and .env (the private keys) with Node's own --env-file, so there is no dotenv.
 import { resolve } from "node:path";
 
 /** Switches accept 1, true, on or yes, as the contract test does. */
@@ -56,7 +56,7 @@ export function readConfig(env) {
 
     // The Node.js integration docs. Example pages link to <docs>#<anchor> (anchors: surveyjs-integration.json)
     docs: text(env.SURVEYJS_DOCS) ?? "https://surveyjs.io/documentation/backend-integration-express",
-    github: text(env.SURVEYJS_GITHUB) ?? "https://github.com/surveyjs/surveyjs-nodejs",
+    github: text(env.SURVEYJS_GITHUB) ?? "https://github.com/surveyjs/surveyjs-nodejs-express",
   });
 }
 

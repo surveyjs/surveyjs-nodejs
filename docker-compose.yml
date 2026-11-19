@@ -1,5 +1,6 @@
 # `docker compose up --build`: the app on http://127.0.0.1:8000, with its data in the storage volume. The relays and
-# Run Server-Side Workflows run inside the app, so there is no other service. .env is optional.
+# Run Server-Side Workflows run inside the app, so there is no other service. The image reads settings.env; .env (the private
+# keys) is optional.
 name: surveyjs-nodejs
 
 services:

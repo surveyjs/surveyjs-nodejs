@@ -9,8 +9,8 @@
 {% block banner %}
     {% if not (config.extraction.provider or config.extraction.openaiApiKey or config.extraction.anthropicApiKey) %}
         <p class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
-            <strong>Document extraction is unavailable.</strong> Configure <code>SURVEYJS_AI_PROVIDER</code> (<code>openai</code>, <code>anthropic</code> or <code>ollama</code>) and its key
-            (<code>OPENAI_API_KEY</code> or <code>ANTHROPIC_API_KEY</code>) or <code>SURVEYJS_OLLAMA_BASE_URL</code> in <code>.env</code>, then restart the app.
+            <strong>Document extraction is unavailable.</strong> Set <code>SURVEYJS_AI_PROVIDER</code> (<code>openai</code>, <code>anthropic</code> or <code>ollama</code>) in <code>settings.env</code>
+            and its key (<code>OPENAI_API_KEY</code> or <code>ANTHROPIC_API_KEY</code>) in <code>.env</code>, or <code>SURVEYJS_OLLAMA_BASE_URL</code> in <code>settings.env</code> for Ollama, then restart the app.
         </p>
     {% endif %}
 {% endblock %}

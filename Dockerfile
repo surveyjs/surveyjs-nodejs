@@ -11,7 +11,7 @@ COPY package.json package-lock.json .npmrc ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 # The app, its views, shared/ (the client modules, definitions and seed) and public/ (the built CSS)
-COPY app.js server.js config.js db.js seed.js auth.js pages.js surveyjs-integration.json ./
+COPY app.js server.js config.js db.js seed.js auth.js pages.js surveyjs-integration.json settings.env ./
 COPY routes ./routes
 COPY relay ./relay
 COPY integration ./integration
@@ -25,4 +25,4 @@ USER node
 EXPOSE 8000
 VOLUME ["/app/storage"]
 # node, not npm start: npm doesn't pass SIGTERM on, so `docker stop` would wait and kill
-CMD ["node", "server.js"]
+CMD ["node", "--env-file=settings.env", "server.js"]
