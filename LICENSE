@@ -1,8 +1,21 @@
-This demo illustrates a basic integration setup between a Node.js backend and a sample React application that includes the SurveyJS Survey Creator and Form Library components.
+MIT License
 
-Please note that the Survey Creator component is proprietary software and requires a developer licence to be integrated and used in your own application.
+Copyright (c) 2015-2026 Devsoft Baltic OÜ - https://surveyjs.io/
 
-For full details, please refer to the SurveyJS Licensing FAQ and the SurveyJS End-User Licence Agreement (EULA):
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-- https://surveyjs.io/faq#licensing
-- https://surveyjs.io/Developer-License-Agreement.pdf
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -107,7 +107,7 @@ for (const [id, where] of found) if (!listed.has(id)) errors.push(`Region sjs:${
 // ---- README: the prose links the docs page exactly twice, both to config.docs (the generated table always holds it)
 const prose = read("README.md").replace(/<!-- steps:start[\s\S]*?<!-- steps:end -->/, "");
 const links = [...prose.matchAll(/\]\((https?:\/\/[^)\s]+)\)|<(https?:\/\/[^>\s]+)>/g)].map((m) => m[1] ?? m[2])
-  .filter((url) => url.startsWith(config.docs) || /^https?:\/\/(www\.)?surveyjs\.io(\/documentation)?\/backend-integration/.test(url));
+  .filter((url) => url.startsWith(config.docs) || /^https?:\/\/(www\.)?surveyjs\.io(\/documentation)?\/backend-integration(?!\/examples)/.test(url));
 const wrong = links.filter((url) => url !== config.docs);
 if (links.length !== 2 || wrong.length) {
   errors.push(`README.md must link to the docs exactly twice outside the example table, both to ${config.docs}; found ${links.length}${wrong.length ? `: ${wrong.join(", ")}` : ""}`);

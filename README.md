@@ -4,6 +4,7 @@ This is the Node.js code behind [Integrate SurveyJS with Express](https://survey
 
 - Live catalog: [surveyjs-nodejs.demos.surveyjs.io](https://surveyjs-nodejs.demos.surveyjs.io)
 - SurveyJS demos: [app.demos.surveyjs.io](https://app.demos.surveyjs.io)
+- Backend integration examples on the SurveyJS website: [surveyjs.io/backend-integration/examples](https://surveyjs.io/backend-integration/examples)
 - The same examples for other platforms: [PHP (Laravel)](https://github.com/surveyjs/surveyjs-php-laravel), [ASP.NET Core](https://github.com/surveyjs/surveyjs-aspnet-core), [Python (FastAPI)](https://github.com/surveyjs/surveyjs-python-fastapi), [Next.js](https://github.com/surveyjs/surveyjs-nextjs), [Java (Spring Boot)](https://github.com/surveyjs/surveyjs-java-spring-boot)
 
 ## Run it
@@ -241,3 +242,9 @@ These examples must not be used as a real service as they are. They don't cover 
 - `demo/users.js`: the demo-user switch stands in for your session or token middleware (`express-session`, Passport, a JWT check). The relays check the same cookie in `relay/index.js`.
 
 When you copy an example into your app, leave out the demo-only code: the `demo/` folder (and its lines in `app.js`, `server.js` and `relay/index.js`), `pages.js`, `views/`, `shared/ui/` (the page frame, its tabs and highlighting, the fonts and site images) and `shared/client/host.js` (its `mountSurvey()` is one line: `renderSurvey(survey, element)` from `survey-js-ui`), and `relay/room-key.js`'s sandbox keys.
+
+## Licence
+
+The code in this repository is available under the [MIT licence](LICENSE).
+
+The examples use SurveyJS Form Library, which is MIT-licensed as well. The examples marked "Commercial" in the Licence column above also use SurveyJS Survey Creator, Dashboard or PDF Generator, which are commercial products. You can integrate them and evaluate their functionality without a licence. Production use requires a developer licence for each developer who works with the SurveyJS APIs or implements the integration. See the [SurveyJS Licensing FAQ](https://surveyjs.io/faq#licensing) and the [End-User License Agreement](https://surveyjs.io/Developer-License-Agreement.pdf).
