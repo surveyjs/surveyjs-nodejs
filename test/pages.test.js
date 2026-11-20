@@ -111,7 +111,7 @@ test("the layout's ids and templates are there, the Description holds one docs l
     }
     assert.equal((html.match(/>Documentation<\/a>/g) ?? []).length, 1, slug);
     const step = readManifest().steps.find((s) => s.slug === slug);
-    assert.ok(html.includes(`href="https://surveyjs.io/documentation/backend-integration-express#${step.anchor}"`), slug);
+    assert.ok(html.includes(`href="https://surveyjs.io/documentation/backend-integration-nodejs-express#${step.anchor}"`), slug);
     const about = html.includes('<div class="space-y-2 text-sm text-gray-600">');
     assert.equal(about, slug === "extract-from-paper", `${slug}: the about block`);
     assert.equal(html.includes("require a developer license"), step.licence.startsWith("Commercial"), `${slug}: the licence note`);
